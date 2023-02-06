@@ -1,0 +1,5 @@
+{
+    "workbench.settings.openDefaultKeybindings": true,
+    "testing.automaticallyOpenPeekViewDuringAutoRun": true,
+    "terminal.integrated.copyOnSelection": true
+}

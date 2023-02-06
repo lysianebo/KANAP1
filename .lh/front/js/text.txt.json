@@ -1,0 +1,46 @@
+{
+    "sourceFile": "front/js/text.txt",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 7,
+            "patches": [
+                {
+                    "date": 1675673645765,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1675678530609,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n    h1 = document.getElementById(\"#title\")\n    h1.appendChild(monText)\n    //h1.textContent=(name)\n    return h1\n-\n+ee\n }\n function makeDescription(description){\n \n }\n"
+                },
+                {
+                    "date": 1675681391612,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,12 +32,14 @@\n    h1 = document.getElementById(\"#title\")\n    h1.appendChild(monText)\n    //h1.textContent=(name)\n    return h1\n-ee\n+\n }\n function makeDescription(description){\n \n }\n function makePrice(price){\n     const span = document.querySelector(\"price\")\n\\ No newline at end of file\n-}\n+}\n+\n+const urlParams = new URLSearchParams(document.location.search)\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675683831975,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,15 +13,10 @@\n \n     \n     \n }\n-function makeImage(imageUrl, altTxt){\n-   // let item__img = document.getElementsByClassName(\".item__img\")\n-    //let imgItem = document.createElement (\"img\")\n-   \n-  \n+\n  \n- \n   //.item__img.append(image)\n  // const imgItem = document.getElementsByClassName(\".item__img\")\n  \n \n"
+                },
+                {
+                    "date": 1675683839283,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,13 +14,8 @@\n     \n     \n }\n \n- \n-  //.item__img.append(image)\n- // const imgItem = document.getElementsByClassName(\".item__img\")\n- \n-\n }\n \n function makeH1(name){\n     monText =document.createTextNode(\"kdkfkdf\")\n"
+                },
+                {
+                    "date": 1675687049431,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,7 @@\n }\n function makeDescription(description){\n \n }\n-function makePrice(price){\n-    const span = document.querySelector(\"price\")\n-}\n \n+\n const urlParams = new URLSearchParams(document.location.search)\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675690631827,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,33 +1,3 @@\n-  \n-function kanap(canape){\n-    \n-    const {altTxt, colors, description, imageUrl, name, price, _id}  = canape\n-    makeImage(imageUrl, altTxt)\n-\n-    const h1 = makeH1(name)\n-    const h3 = makeH3(name)\n-   const imgItems = document.getElementsByClassName (\"item__img\")\n-   imgItem.src = imageUrl\n-  imgItem.alt = altTxt\n-  item__img.append(imgItem);\n-\n-    \n-    \n-}\n-\n-}\n-\n-function makeH1(name){\n-    monText =document.createTextNode(\"kdkfkdf\")\n-   h1 = document.getElementById(\"#title\")\n-   h1.appendChild(monText)\n-   //h1.textContent=(name)\n-   return h1\n-\n-}\n-function makeDescription(description){\n-\n-}\n-\n-\n-const urlParams = new URLSearchParams(document.location.search)\n\\ No newline at end of file\n+ var options = select.getElementsByTagName(\"option\"); // Recupere toutes les options placé dans le formulaire.\n+        var opt_selected = select.options[select.selectedIndex]; // Recuperer l'option selectionnée\n+        if(opt_selected.value==\"autre\") // Verifie que l'on selectionne autre.\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675693474685,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +0,0 @@\n- var options = select.getElementsByTagName(\"option\"); // Recupere toutes les options placé dans le formulaire.\n-        var opt_selected = select.options[select.selectedIndex]; // Recuperer l'option selectionnée\n-        if(opt_selected.value==\"autre\") // Verifie que l'on selectionne autre.\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1675673645765,
+            "name": "Commit-0",
+            "content": "  \nfunction kanap(canape){\n    \n    const {altTxt, colors, description, imageUrl, name, price, _id}  = canape\n    makeImage(imageUrl, altTxt)\n\n    const h1 = makeH1(name)\n    const h3 = makeH3(name)\n   const imgItems = document.getElementsByClassName (\"item__img\")\n   imgItem.src = imageUrl\n  imgItem.alt = altTxt\n  item__img.append(imgItem);\n\n    \n    \n}\nfunction makeImage(imageUrl, altTxt){\n   // let item__img = document.getElementsByClassName(\".item__img\")\n    //let imgItem = document.createElement (\"img\")\n   \n  \n \n \n  //.item__img.append(image)\n // const imgItem = document.getElementsByClassName(\".item__img\")\n \n\n}\n\nfunction makeH1(name){\n    monText =document.createTextNode(\"kdkfkdf\")\n   h1 = document.getElementById(\"#title\")\n   h1.appendChild(monText)\n   //h1.textContent=(name)\n   return h1\n\n}\nfunction makeDescription(description){\n\n}\nfunction makePrice(price){\n    const span = document.querySelector(\"price\")\n}"
+        }
+    ]
+}
