@@ -1,0 +1,42 @@
+{
+    "sourceFile": "front/js/testing.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 6,
+            "patches": [
+                {
+                    "date": 1675610698947,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1675610709279,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,3 @@\n async function getArticles() {\n     var articlesCatch = await fetch(\"http://localhost:3000/api/products\")\n-    return await articlesCatch.json();\n\\ No newline at end of file\n+    return await articlesCatch.json();}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675610725361,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,4 @@\n async function getArticles() {\n     var articlesCatch = await fetch(\"http://localhost:3000/api/products\")\n-    return await articlesCatch.json();}\n\\ No newline at end of file\n+    return await articlesCatch.json();}\n+    \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675610731136,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,5 @@\n async function getArticles() {\n     var articlesCatch = await fetch(\"http://localhost:3000/api/products\")\n     return await articlesCatch.json();}\n-    \n\\ No newline at end of file\n+\n+    conso\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675610741546,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n async function getArticles() {\n     var articlesCatch = await fetch(\"http://localhost:3000/api/products\")\n     return await articlesCatch.json();}\n \n-    conso\n\\ No newline at end of file\n+    console.log()\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675610749643,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n async function getArticles() {\n     var articlesCatch = await fetch(\"http://localhost:3000/api/products\")\n     return await articlesCatch.json();}\n \n-    console.log()\n\\ No newline at end of file\n+    console.log(\"ar\")\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675610756093,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n async function getArticles() {\n     var articlesCatch = await fetch(\"http://localhost:3000/api/products\")\n     return await articlesCatch.json();}\n \n-    console.log(\"ar\")\n\\ No newline at end of file\n+    console.log(\"articlesCatch\")\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1675610698947,
+            "name": "Commit-0",
+            "content": "async function getArticles() {\n    var articlesCatch = await fetch(\"http://localhost:3000/api/products\")\n    return await articlesCatch.json();"
+        }
+    ]
+}

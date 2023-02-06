@@ -1,0 +1,262 @@
+{
+    "sourceFile": "front/js/script.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 61,
+            "patches": [
+                {
+                    "date": 1675527181162,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1675527191912,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,1 @@\n-alert\n\\ No newline at end of file\n+alert()\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675527650219,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,3 @@\n-alert()\n\\ No newline at end of file\n+fetch('https://jsonplaceholder.typicode.com/todos/1')\n+      .then(response => response.json())\n+      .then(json => console.log(json))\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675527666982,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,3 @@\n-fetch('https://jsonplaceholder.typicode.com/todos/1')\n+fetch('https://\"jsonplaceholder.typicode.com/todos/1\"')\n       .then(response => response.json())\n       .then(json => console.log(json))\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675527676482,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,3 @@\n-fetch('https://\"jsonplaceholder.typicode.com/todos/1\"')\n+fetch('https://\"http://\"')\n       .then(response => response.json())\n       .then(json => console.log(json))\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675527681620,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,3 @@\n-fetch('https://\"http://\"')\n+fetch('https://\"http://localhost:\"')\n       .then(response => response.json())\n       .then(json => console.log(json))\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675527687756,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,3 @@\n-fetch('https://\"http://localhost:\"')\n+fetch('https://\"http://localhost:3000/api\"')\n       .then(response => response.json())\n       .then(json => console.log(json))\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675527694237,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,3 @@\n-fetch('https://\"http://localhost:3000/api\"')\n+fetch('https://\"http://localhost:3000/api/products\")\n       .then(response => response.json())\n       .then(json => console.log(json))\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675528454959,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,3 @@\n fetch('https://\"http://localhost:3000/api/products\")\n       .then(response => response.json())\n-      .then(json => console.log(json))\n\\ No newline at end of file\n+      .then(json => console.log(json)\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675528683363,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,3 @@\n-fetch('https://\"http://localhost:3000/api/products\")\n+fetch(https://\"http://localhost:3000/api/products\")\n       .then(response => response.json())\n       .then(json => console.log(json)\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675528697938,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,3 @@\n-fetch(https://\"http://localhost:3000/api/products\")\n+fetch(\"https://localhost:3000/api/products\")\n       .then(response => response.json())\n       .then(json => console.log(json)\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675528752965,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,3 @@\n fetch(\"https://localhost:3000/api/products\")\n-      .then(response => response.json())\n+      .then(res => response.json())\n       .then(json => console.log(json)\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675528761439,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,3 @@\n fetch(\"https://localhost:3000/api/products\")\n-      .then(res => response.json())\n+      .then(res) => response.json()\n       .then(json => console.log(json)\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675528769265,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,3 @@\n fetch(\"https://localhost:3000/api/products\")\n       .then(res) => response.json()\n-      .then(json => console.log(json)\n\\ No newline at end of file\n+      .then(js => console.log(json)\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675528775599,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,3 @@\n fetch(\"https://localhost:3000/api/products\")\n       .then(res) => response.json()\n-      .then(js => console.log(json)\n\\ No newline at end of file\n+      .then(data) => console.log(json)\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675528783031,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,3 @@\n fetch(\"https://localhost:3000/api/products\")\n       .then(res) => response.json()\n-      .then(data) => console.log(json)\n\\ No newline at end of file\n+      .then(data) => console.log(data)\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675528803172,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,3 @@\n fetch(\"https://localhost:3000/api/products\")\n-      .then(res) => response.json()\n+      .then(res) => response.json())\n       .then(data) => console.log(data)\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675528820062,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,3 @@\n fetch(\"https://localhost:3000/api/products\")\n       .then(res) => response.json())\n-      .then(data) => console.log(data)\n\\ No newline at end of file\n+      .then('data) => console.log(data)\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675528831393,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,3 @@\n fetch(\"https://localhost:3000/api/products\")\n       .then(res) => response.json())\n-      .then('data) => console.log(data)\n\\ No newline at end of file\n+      .then((data) => console.log(data))\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675528848476,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,3 @@\n fetch(\"https://localhost:3000/api/products\")\n-      .then(res) => response.json())\n+      .then((res) => response.json())\n       .then((data) => console.log(data))\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675529265915,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,3 @@\n fetch(\"https://localhost:3000/api/products\")\n       .then((res) => response.json())\n-      .then((data) => console.log(data))\n\\ No newline at end of file\n+      .then((data) => console.(data))\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675529293986,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,3 @@\n fetch(\"https://localhost:3000/api/products\")\n       .then((res) => response.json())\n-      .then((data) => console.(data))\n\\ No newline at end of file\n+      .then((data) => {console.(data))\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675529307324,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,4 @@\n fetch(\"https://localhost:3000/api/products\")\n       .then((res) => response.json())\n-      .then((data) => {console.(data))\n\\ No newline at end of file\n+      .then((data) => {\n+        console.tab(data))\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675529324119,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,4 @@\n fetch(\"https://localhost:3000/api/products\")\n       .then((res) => response.json())\n       .then((data) => {\n-        console.tab(data))\n\\ No newline at end of file\n+        console.table(data));\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675529343457,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,5 @@\n fetch(\"https://localhost:3000/api/products\")\n       .then((res) => response.json())\n       .then((data) => {\n-        console.table(data));\n\\ No newline at end of file\n+        console.table(data));\n+        \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675529352319,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n fetch(\"https://localhost:3000/api/products\")\n       .then((res) => response.json())\n       .then((data) => {\n         console.table(data));\n-        \n\\ No newline at end of file\n+        fichierKa\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675529361453,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n fetch(\"https://localhost:3000/api/products\")\n       .then((res) => response.json())\n       .then((data) => {\n         console.table(data));\n-        fichierKa\n\\ No newline at end of file\n+        fichierKanaps(CSSStyleDeclaration)\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675529366937,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n fetch(\"https://localhost:3000/api/products\")\n       .then((res) => response.json())\n       .then((data) => {\n         console.table(data));\n-        fichierKanaps(CSSStyleDeclaration)\n\\ No newline at end of file\n+        fichierKanaps(data)\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675529405669,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n fetch(\"https://localhost:3000/api/products\")\n       .then((res) => response.json())\n       .then((data) => {\n         console.table(data));\n-        fichierKanaps(data)\n\\ No newline at end of file\n+        fichierKanaps(data);\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675529411550,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n fetch(\"https://localhost:3000/api/products\")\n       .then((res) => response.json())\n       .then((data) => {\n         console.table(data));\n-        fichierKanaps(data);\n\\ No newline at end of file\n+        fichierKanaps(data);\n+        \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675529417869,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,5 +2,5 @@\n       .then((res) => response.json())\n       .then((data) => {\n         console.table(data));\n         fichierKanaps(data);\n-        \n\\ No newline at end of file\n+      }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675529465878,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n fetch(\"https://localhost:3000/api/products\")\n       .then((res) => response.json())\n       .then((data) => {\n-        console.table(data));\n+        console.table(data);\n         fichierKanaps(data);\n\\ No newline at end of file\n-      }\n+      })\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675529729627,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-fetch(\"https://localhost:3000/api/products\")\n+//fetch(\"https://localhost:3000/api/products\")\n       .then((res) => response.json())\n       .then((data) => {\n         console.table(data);\n         fichierKanaps(data);\n"
+                },
+                {
+                    "date": 1675529736903,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n //fetch(\"https://localhost:3000/api/products\")\n-      .then((res) => response.json())\n-      .then((data) => {\n+  //    .then((res) => response.json())\n+    //  .then((data) => {\n         console.table(data);\n         fichierKanaps(data);\n       })\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675529743433,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n //fetch(\"https://localhost:3000/api/products\")\n   //    .then((res) => response.json())\n     //  .then((data) => {\n-        console.table(data);\n-        fichierKanaps(data);\n+      //  console.table(data);\n+        //fichierKanaps(data);\n       })\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675529750656,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,5 +2,6 @@\n   //    .then((res) => response.json())\n     //  .then((data) => {\n       //  console.table(data);\n         //fichierKanaps(data);\n-      })\n\\ No newline at end of file\n+      //})\n+      \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675529779044,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,5 +3,7 @@\n     //  .then((data) => {\n       //  console.table(data);\n         //fichierKanaps(data);\n       //})\n-      \n\\ No newline at end of file\n+      const express = require('express')\n+const app = express()\n+const port = 3000\n"
+                },
+                {
+                    "date": 1675530173216,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-//fetch(\"https://localhost:3000/api/products\")\n+fetch(\"https://localhost:3000/api/products\")\n   //    .then((res) => response.json())\n     //  .then((data) => {\n       //  console.table(data);\n         //fichierKanaps(data);\n"
+                },
+                {
+                    "date": 1675530179919,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n fetch(\"https://localhost:3000/api/products\")\n-  //    .then((res) => response.json())\n-    //  .then((data) => {\n-      //  console.table(data);\n+   .then((res) => response.json())\n+    .then((data) => {\n+       console.table(data);\n         //fichierKanaps(data);\n       //})\n       const express = require('express')\n const app = express()\n"
+                },
+                {
+                    "date": 1675530187941,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n fetch(\"https://localhost:3000/api/products\")\n    .then((res) => response.json())\n     .then((data) => {\n        console.table(data);\n-        //fichierKanaps(data);\n-      //})\n+        fichierKanaps(data);\n+      })\n       const express = require('express')\n const app = express()\n const port = 3000\n"
+                },
+                {
+                    "date": 1675530193444,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,7 +3,5 @@\n     .then((data) => {\n        console.table(data);\n         fichierKanaps(data);\n       })\n-      const express = require('express')\n-const app = express()\n-const port = 3000\n+      \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675530582154,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n fetch(\"https://localhost:3000/api/products\")\n    .then((res) => response.json())\n     .then((data) => {\n-       console.table(data);\n+       console.(data);\n         fichierKanaps(data);\n       })\n       \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675530596196,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n fetch(\"https://localhost:3000/api/products\")\n    .then((res) => response.json())\n     .then((data) => {\n-       console.(data);\n+       console.log(data)\n         fichierKanaps(data);\n       })\n       \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675530601659,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n fetch(\"https://localhost:3000/api/products\")\n    .then((res) => response.json())\n     .then((data) => {\n        console.log(data)\n+       const\n         fichierKanaps(data);\n       })\n       \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675530608647,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n fetch(\"https://localhost:3000/api/products\")\n    .then((res) => response.json())\n     .then((data) => {\n        console.log(data)\n-       const\n+       const imageUrl\n         fichierKanaps(data);\n       })\n       \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675530614105,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n fetch(\"https://localhost:3000/api/products\")\n    .then((res) => response.json())\n     .then((data) => {\n        console.log(data)\n-       const imageUrl\n+       const imageUrl =date\n         fichierKanaps(data);\n       })\n       \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675530677038,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n-fetch(\"https://localhost:3000/api/products\")\n+fetch(\"https://localhost:3000/api/Products\")\n    .then((res) => response.json())\n     .then((data) => {\n        console.log(data)\n-       const imageUrl =date\n+       const imageUrl =data\n         fichierKanaps(data);\n       })\n       \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675530827433,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-fetch(\"https://localhost:3000/api/Products\")\n+fetch(\"https://localhost:3000/api/roducts\")\n    .then((res) => response.json())\n     .then((data) => {\n        console.log(data)\n        const imageUrl =data\n"
+                },
+                {
+                    "date": 1675530833740,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +0,0 @@\n-fetch(\"https://localhost:3000/api/roducts\")\n-   .then((res) => response.json())\n-    .then((data) => {\n-       console.log(data)\n-       const imageUrl =data\n-        fichierKanaps(data);\n-      })\n-      \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675530869010,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,2 @@\n+const reponse = await fetch('Products.json');\n+const product = await reponse.json();\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675530928592,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,2 +1,2 @@\n-const reponse = await fetch('Products.json');\n+const reponse = await fetch('Products.json')\n const product = await reponse.json();\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675530980809,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,2 +1,1 @@\n-const reponse = await fetch('Products.json')\n-const product = await reponse.json();\n\\ No newline at end of file\n+const reponse = await fetch('Products.json')const product = await reponse.json()\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675531007613,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,2 @@\n-const reponse = await fetch('Products.json')const product = await reponse.json()\n\\ No newline at end of file\n+const reponse = await fetch('Products.json')\n+const product = await reponse.json()\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675531015806,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,2 +1,2 @@\n-const reponse = await fetch('Products.json')\n+const reponse = await fetch(\"Products.json\")\n const product = await reponse.json()\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675531069421,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,2 +0,0 @@\n-const reponse = await fetch(\"Products.json\")\n-const product = await reponse.json()\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675531095639,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,7 @@\n+fetch(\"https://localhost:3000/api/Products\")\n+   .then((res) => response.json())\n+    .then((data) => {\n+       console.log(data)\n+       const imageUrl =data\n+        fichierKanaps(data);\n+      })\n"
+                },
+                {
+                    "date": 1675531921192,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n fetch(\"https://localhost:3000/api/Products\")\n    .then((res) => response.json())\n-    .then((data) => {\n+   .then((data) => {\n        console.log(data)\n        const imageUrl =data\n         fichierKanaps(data);\n       })\n"
+                },
+                {
+                    "date": 1675531934041,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n fetch(\"https://localhost:3000/api/Products\")\n    .then((res) => response.json())\n    .then((data) => {\n-       console.log(data)\n+      console.log(data)\n        const imageUrl =data\n         fichierKanaps(data);\n       })\n"
+                },
+                {
+                    "date": 1675531940213,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n fetch(\"https://localhost:3000/api/Products\")\n    .then((res) => response.json())\n    .then((data) => {\n       console.log(data)\n-       const imageUrl =data\n+      const imageUrl =data\n         fichierKanaps(data);\n       })\n"
+                },
+                {
+                    "date": 1675531948669,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n fetch(\"https://localhost:3000/api/Products\")\n    .then((res) => response.json())\n    .then((data) => {\n       console.log(data)\n-      const imageUrl =data\n+      const imageUrl =data \n         fichierKanaps(data);\n       })\n"
+                },
+                {
+                    "date": 1675531956356,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n fetch(\"https://localhost:3000/api/Products\")\n    .then((res) => response.json())\n    .then((data) => {\n       console.log(data)\n-      const imageUrl =data [0].\n+      const imageUrl =data [0].u\n         fichierKanaps(data);\n       })\n"
+                },
+                {
+                    "date": 1675531989863,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,6 +2,6 @@\n    .then((res) => response.json())\n    .then((data) => {\n       console.log(data)\n       const imageUrl =data [0].imageUrl\n-      \n+      c\n       })\n"
+                }
+            ],
+            "date": 1675527181162,
+            "name": "Commit-0",
+            "content": "alert"
+        }
+    ]
+}

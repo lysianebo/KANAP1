@@ -1,0 +1,30 @@
+{
+    "sourceFile": "package.json",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1675606040234,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1675606076287,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,9 @@\n   \"name\": \"kanap\",\n   \"version\": \"1.0.0\",\n   \"description\": \"This is the front end and back end server for Project 5 of the Web Developer path.\",\n   \"main\": \"index.js\",\n+  \n   \"scripts\": {\n     \"test\": \"echo \\\"Error: no test specified\\\" && exit 1\"\n   },\n   \"author\": \"\",\n"
+                },
+                {
+                    "date": 1675606082099,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n   \"name\": \"kanap\",\n   \"version\": \"1.0.0\",\n   \"description\": \"This is the front end and back end server for Project 5 of the Web Developer path.\",\n   \"main\": \"index.js\",\n-  \n+  \"proxy\": \"http://localhost:000\"\n   \"scripts\": {\n     \"test\": \"echo \\\"Error: no test specified\\\" && exit 1\"\n   },\n   \"author\": \"\",\n"
+                },
+                {
+                    "date": 1675606091861,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n   \"name\": \"kanap\",\n   \"version\": \"1.0.0\",\n   \"description\": \"This is the front end and back end server for Project 5 of the Web Developer path.\",\n   \"main\": \"index.js\",\n-  \"proxy\": \"http://localhost:000\"\n+  \n   \"scripts\": {\n     \"test\": \"echo \\\"Error: no test specified\\\" && exit 1\"\n   },\n   \"author\": \"\",\n"
+                }
+            ],
+            "date": 1675606040234,
+            "name": "Commit-0",
+            "content": "{\n  \"name\": \"kanap\",\n  \"version\": \"1.0.0\",\n  \"description\": \"This is the front end and back end server for Project 5 of the Web Developer path.\",\n  \"main\": \"index.js\",\n  \"scripts\": {\n    \"test\": \"echo \\\"Error: no test specified\\\" && exit 1\"\n  },\n  \"author\": \"\",\n  \"license\": \"ISC\"\n  \n}\n"
+        }
+    ]
+}

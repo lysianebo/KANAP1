@@ -1,0 +1,54 @@
+{
+    "sourceFile": "front/js/test.txt",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 9,
+            "patches": [
+                {
+                    "date": 1675530836227,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1675531053757,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-fetch(\"https://localhost:3000/api/roducts\")\n+fetch(\"https://localhost:3000/api/Products\")\n    .then((res) => response.json())\n     .then((data) => {\n        console.log(data)\n        const imageUrl =data\n"
+                },
+                {
+                    "date": 1675531074710,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,5 +4,7 @@\n        console.log(data)\n        const imageUrl =data\n         fichierKanaps(data);\n       })\n+\n+      \n       \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675532727911,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,7 @@\n-fetch(\"https://localhost:3000/api/Products\")\n-   .then((res) => response.json())\n-    .then((data) => {\n-       console.log(data)\n-       const imageUrl =data\n-        fichierKanaps(data);\n-      })\n \n-      \n+\n+\n+\n+      const reponse = await fetch(\"Products.json\")\n+const product = await reponse.json()\n       \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675600494501,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,10 @@\n \n+lsof -Pi :number-of-port e.g. 3000\n \n \n \n       const reponse = await fetch(\"Products.json\")\n const product = await reponse.json()\n+      \n+\n       \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675612158284,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,5 +6,12 @@\n       const reponse = await fetch(\"Products.json\")\n const product = await reponse.json()\n       \n \n-      \n\\ No newline at end of file\n+      <a href=\"./product.html?id=42\">\n+<article>\n+  <img src=\".../product01.jpg\" alt=\"Lorem ipsum dolor sit amet, Kanap name1\">\n+  <h3 class=\"productName\">Kanap name1</h3>\n+  <p class=\"productDescription\">Dis enim malesuada risus sapien gravida nulla nisl arcu. Dis enim malesuada risus sapien gravida nulla nisl arcu.</p>\n+</article>\n+</a> -->\n+\n"
+                },
+                {
+                    "date": 1675615042346,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,4 +14,12 @@\n   <p class=\"productDescription\">Dis enim malesuada risus sapien gravida nulla nisl arcu. Dis enim malesuada risus sapien gravida nulla nisl arcu.</p>\n </article>\n </a> -->\n \n+let dataKanap =[]\n+\n+const fetchdata = async () => {\n+    fetch(\"https://localhost:3000/api/products\")\n+   .then((res) => res.json())\n+   .then((data) => console.log(dataKanap))\n+}\n+\n"
+                },
+                {
+                    "date": 1675616808389,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,4 +22,8 @@\n    .then((res) => res.json())\n    .then((data) => console.log(dataKanap))\n }\n \n+const items = document.querySelector(\"#items\");\n+items.appendChild(anchor);\n+console.log(\"okiokdkdfkkdfk\")\n+\n"
+                },
+                {
+                    "date": 1675640285397,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,4 +26,12 @@\n const items = document.querySelector(\"#items\");\n items.appendChild(anchor);\n console.log(\"okiokdkdfkkdfk\")\n \n+anchor.href = imageUrl\n+anchor.text = \"un super canard\"\n+const items =document.querySelector(\"#items\")\n+items.appendChild(anchor)\n+\n+const imageUrl = dataKanaps[0].imageUrl\n+console.log(\"url de l'image\", imageUrl)\n+\n"
+                },
+                {
+                    "date": 1675640356387,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,4 +34,5 @@\n \n const imageUrl = dataKanaps[0].imageUrl\n console.log(\"url de l'image\", imageUrl)\n \n+for (let i = 0; i < datas.length; i++)\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1675530836227,
+            "name": "Commit-0",
+            "content": "fetch(\"https://localhost:3000/api/roducts\")\n   .then((res) => response.json())\n    .then((data) => {\n       console.log(data)\n       const imageUrl =data\n        fichierKanaps(data);\n      })\n      "
+        }
+    ]
+}
