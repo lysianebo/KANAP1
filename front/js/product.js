@@ -48,12 +48,14 @@ button.addEventListener("click", (e) => {
     const quantity = document.querySelector("#quantity").value
     if (color == null || color === "" || quantity == null || quantity == 0) {
     alert("Please select a color and a quantity")
+    return
     }
     const command = {
         id : id,
         color: color,
         quantity: Number(quantity),
         price: Number(price)
+        
 }
 localStorage.setItem(id, JSON.stringify(command))
 window.location.href = "cart.html"
