@@ -1,13 +1,24 @@
 const queryString = window.location.search
 const urlParams = new URLSearchParams(queryString)
 const id = urlParams.get("id")
+if (id != null){
+    let itemPrice = 0
+    let imgUrl, altText
+    let productName
+}
 
 fetch(`http://localhost:3000/api/products/${id}`)
    .then((reponse) => reponse.json())
-   .then((res) => detailProduit(res)) 
+   .then((res) => dataKanap(res)) 
 
-function detailProduit(kanap) {
-    const {altTxt, colors, description, imageUrl, name, price, _id}  = kanap
+function dataKanap(kanap) {
+    //récupération de toutes les données dans l'objet kanap
+    const {altTxt, colors, description, imageUrl, name, price, id}  = kanap
+    //les données sont passées dans des fonctions qui vont les afficher
+    itemPrice = price
+    imgUrl = imageUrl
+    altText = altTxt
+    productName = name 
     makeImage(imageUrl, altTxt)
     makeTitle(name)
     makePrice(price)
@@ -18,19 +29,22 @@ function makeImage(imageUrl, altTxt){
     const image = document.createElement("img")
     image.src = imageUrl
     image.alt = altTxt
-    document.querySelector(".item__img").appendChild(image)
+    const parent = document.querySelector(".item__img")
+    if(parent != null)parent.appendChild(image)
     return image
 } 
 function makeTitle(name) {
-    title.textContent= name
+    const h1 = document.querySelector("#title")
+    if(h1 != null)h1.textContent = name
+    return name
 }
 function makePrice(price) {
     const span = document.querySelector("#price")
-    span.textContent = price
+   if (span !=null)span.textContent = price
 }
 function makeDescription(description) {
     const p = document.querySelector("#description")
-    p.textContent = description
+    if (p != null)p.textContent = description
 }
 function makeColors(colors) {
     const select = document.querySelector("#colors")
@@ -42,22 +56,36 @@ function makeColors(colors) {
     })
 }
 const button = document.querySelector("#addToCart")
-//if (button |= null) {
-button.addEventListener("click", (e) => {
+button.addEventListener("click", buttonEvent)
+
+function buttonEvent(){
     const color = document.querySelector("#colors").value
     const quantity = document.querySelector("#quantity").value
-    if (color == null || color === "" || quantity == null || quantity == 0) {
-    alert("Please select a color and a quantity")
-    return
-    }
+    if (ifInvalidCommand(color, quantity)) return
+    saveCommand(color,quantity)
+    redirectToCart()
+}
+function saveCommand(color, quantity){
+    const key = `${id}-${color}`
     const command = {
         id : id,
         color: color,
         quantity: Number(quantity),
-        price: Number(price)
-        
+        price: itemPrice,
+        imageUrl: imgUrl,
+        altTxt: altText,
+        name: productName 
+    }
+    //Transformer les données en string
+    localStorage.setItem(key, JSON.stringify(command))
 }
-localStorage.setItem(id, JSON.stringify(command))
-window.location.href = "cart.html"
+
+function ifInvalidCommand(color, quantity){
+    if (color == null || color === "" || quantity == null || quantity == 0) {
+        alert("Vous devez sélectionner une couleur et une quantité. Merci")
+        return true
+        }
 }
-)
+function redirectToCart(){
+    window.location.href = "cart.html"
+}

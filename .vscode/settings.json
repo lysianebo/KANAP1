@@ -1,5 +1,6 @@
 {
     "workbench.settings.openDefaultKeybindings": true,
     "testing.automaticallyOpenPeekViewDuringAutoRun": true,
-    "terminal.integrated.copyOnSelection": true
+    "terminal.integrated.copyOnSelection": true,
+    "liveServer.settings.port": 5501
 }

@@ -1,0 +1,66 @@
+{
+    "sourceFile": "front/html/cart.html",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 12,
+            "patches": [
+                {
+                    "date": 1675936268710,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1675981374280,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -132,7 +132,7 @@\n           <p>© Copyright 2021 - 2042 | Openclassrooms by Openclassrooms | All Rights Reserved | Powered by <3</p>\n         </div>\n       </div>\n     </footer>\n-  <script src=\"../js/cart2.js\"></script>\n+  <script src=\"../js/cart.js\"></script>\n   </body>\n </html>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676035118458,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -132,7 +132,7 @@\n           <p>© Copyright 2021 - 2042 | Openclassrooms by Openclassrooms | All Rights Reserved | Powered by <3</p>\n         </div>\n       </div>\n     </footer>\n-  <script src=\"../js/cart.js\"></script>\n+  <script src=\"../js/cart3.js\"></script>\n   </body>\n </html>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676044126747,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -132,7 +132,7 @@\n           <p>© Copyright 2021 - 2042 | Openclassrooms by Openclassrooms | All Rights Reserved | Powered by <3</p>\n         </div>\n       </div>\n     </footer>\n-  <script src=\"../js/cart3.js\"></script>\n+  <script src=\"../js/cart2.js\"></script>\n   </body>\n </html>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676044140865,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -132,7 +132,7 @@\n           <p>© Copyright 2021 - 2042 | Openclassrooms by Openclassrooms | All Rights Reserved | Powered by <3</p>\n         </div>\n       </div>\n     </footer>\n-  <script src=\"../js/cart2.js\"></script>\n+  <script src=\"../js/cart1.js\"></script>\n   </body>\n </html>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676044158564,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -132,7 +132,7 @@\n           <p>© Copyright 2021 - 2042 | Openclassrooms by Openclassrooms | All Rights Reserved | Powered by <3</p>\n         </div>\n       </div>\n     </footer>\n-  <script src=\"../js/cart1.js\"></script>\n+  <script src=\"../js/cart.js\"></script>\n   </body>\n </html>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676044857777,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -132,7 +132,7 @@\n           <p>© Copyright 2021 - 2042 | Openclassrooms by Openclassrooms | All Rights Reserved | Powered by <3</p>\n         </div>\n       </div>\n     </footer>\n-  <script src=\"../js/cart.js\"></script>\n+  <script src=\"../js/cart2.js\"></script>\n   </body>\n </html>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676046322706,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -132,7 +132,7 @@\n           <p>© Copyright 2021 - 2042 | Openclassrooms by Openclassrooms | All Rights Reserved | Powered by <3</p>\n         </div>\n       </div>\n     </footer>\n-  <script src=\"../js/cart2.js\"></script>\n+  <script src=\"../js/cart.js\"></script>\n   </body>\n </html>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676046331971,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -132,7 +132,7 @@\n           <p>© Copyright 2021 - 2042 | Openclassrooms by Openclassrooms | All Rights Reserved | Powered by <3</p>\n         </div>\n       </div>\n     </footer>\n-  <script src=\"../js/cart.js\"></script>\n+  <script src=\"../js/cart2.js\"></script>\n   </body>\n </html>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676046478284,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -132,7 +132,7 @@\n           <p>© Copyright 2021 - 2042 | Openclassrooms by Openclassrooms | All Rights Reserved | Powered by <3</p>\n         </div>\n       </div>\n     </footer>\n-  <script src=\"../js/cart2.js\"></script>\n+  <script src=\"../js/cart.js\"></script>\n   </body>\n </html>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676293712265,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -132,7 +132,7 @@\n           <p>© Copyright 2021 - 2042 | Openclassrooms by Openclassrooms | All Rights Reserved | Powered by <3</p>\n         </div>\n       </div>\n     </footer>\n-  <script src=\"../js/cart.js\"></script>\n+  <script src=\"../js/cart3.js\"></script>\n   </body>\n </html>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676302623867,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -132,7 +132,7 @@\n           <p>© Copyright 2021 - 2042 | Openclassrooms by Openclassrooms | All Rights Reserved | Powered by <3</p>\n         </div>\n       </div>\n     </footer>\n-  <script src=\"../js/cart3.js\"></script>\n+  <script src=\"../js/cart4.js\"></script>\n   </body>\n </html>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676383886276,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -132,7 +132,7 @@\n           <p>© Copyright 2021 - 2042 | Openclassrooms by Openclassrooms | All Rights Reserved | Powered by <3</p>\n         </div>\n       </div>\n     </footer>\n-  <script src=\"../js/cart4.js\"></script>\n+  <script src=\"../js/cart.js\"></script>\n   </body>\n </html>\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1675936268710,
+            "name": "Commit-0",
+            "content": "<!DOCTYPE html>\n<html lang=\"fr\">\n  <head>\n    <title>Cart</title>\n\n    <meta charset=\"utf-8\">\n    <meta name=\"description\" content=\"Plateforme incroyable de e-commerce\">\n\n    <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n    <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\n    <link href=\"https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap\" rel=\"stylesheet\">\n    <link href=\"../css/style.css\" rel=\"stylesheet\" />\n    <link href=\"../css/cart.css\" rel=\"stylesheet\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  </head>\n\n  <body>\n    <header>\n      <div class=\"limitedWidthBlockContainer informations\">\n        <div class=\"limitedWidthBlock\">\n          <ul>\n            <li><img src=\"../images/icons/phone.svg\" alt=\"logo de téléphone\" class=\"informations__phone\">01 23 45 67 89</li>\n            <li><img src=\"../images/icons/mail.svg\" alt=\"logo d'une enveloppe\" class=\"informations__mail\">support@name.com</li>\n            <li><img src=\"../images/icons/adress.svg\" alt=\"logo d'un point de géolocalisation\" class=\"informations__address\">01 23 45 67 89</li>\n          </ul>\n        </div>\n      </div>\n      <div class=\"limitedWidthBlockContainer menu\">\n        <div class=\"limitedWidthBlock\">\n          <a href=\"./index.html\">\n            <img class=\"logo\" src=\"../images/logo.png\" alt=\"Logo de l'entreprise\">\n          </a>\n          <nav>\n            <ul>\n              <a href=\"./index.html\"><li>Accueil</li></a>\n              <a href=\"./cart.html\"><li>Panier</li></a>\n            </ul>\n          </nav>\n        </div>\n      </div>\n      <img class=\"banniere\" src=\"../images/banniere.png\" alt=\"Baniere\">\n    </header>\n    \n    <main class=\"limitedWidthBlockContainer\">\n      <div class=\"limitedWidthBlock\" id=\"limitedWidthBlock\">\n        <div class=\"cartAndFormContainer\" id=\"cartAndFormContainer\">\n          <h1>Votre panier</h1>\n          <section class=\"cart\">\n            <section id=\"cart__items\">\n             <!--  <article class=\"cart__item\" data-id=\"{product-ID}\" data-color=\"{product-color}\">\n                <div class=\"cart__item__img\">\n                  <img src=\"../images/product01.jpg\" alt=\"Photographie d'un canapé\">\n                </div>\n                <div class=\"cart__item__content\">\n                  <div class=\"cart__item__content__description\">\n                    <h2>Nom du produit</h2>\n                    <p>Vert</p>\n                    <p>42,00 €</p>\n                  </div>\n                  <div class=\"cart__item__content__settings\">\n                    <div class=\"cart__item__content__settings__quantity\">\n                      <p>Qté : </p>\n                      <input type=\"number\" class=\"itemQuantity\" name=\"itemQuantity\" min=\"1\" max=\"100\" value=\"42\">\n                    </div>\n                    <div class=\"cart__item__content__settings__delete\">\n                      <p class=\"deleteItem\">Supprimer</p>\n                    </div>\n                  </div>\n                </div>\n              </article> -->\n            </section>\n            <div class=\"cart__price\">\n              <p>Total (<span id=\"totalQuantity\"><!-- 2 --></span> articles) : <span id=\"totalPrice\"><!-- 84,00 --></span> €</p>\n            </div>\n            <div class=\"cart__order\">\n              <form method=\"get\" class=\"cart__order__form\">\n                <div class=\"cart__order__form__question\">\n                  <label for=\"firstName\">Prénom: </label>\n                  <input type=\"text\" name=\"firstName\" id=\"firstName\" required>\n                  <p id=\"firstNameErrorMsg\"><!-- ci est un message d'erreur --></p>\n                </div>\n                <div class=\"cart__order__form__question\">\n                  <label for=\"lastName\">Nom: </label>\n                  <input type=\"text\" name=\"lastName\" id=\"lastName\" required>\n                  <p id=\"lastNameErrorMsg\"></p>\n                </div>\n                <div class=\"cart__order__form__question\">\n                  <label for=\"address\">Adresse: </label>\n                  <input type=\"text\" name=\"address\" id=\"address\" required>\n                  <p id=\"addressErrorMsg\"></p>\n                </div>\n                <div class=\"cart__order__form__question\">\n                  <label for=\"city\">Ville: </label>\n                  <input type=\"text\" name=\"city\" id=\"city\" required>\n                  <p id=\"cityErrorMsg\"></p>\n                </div>\n                <div class=\"cart__order__form__question\">\n                  <label for=\"email\">Email: </label>\n                  <input type=\"email\" name=\"email\" id=\"email\" required>\n                  <p id=\"emailErrorMsg\"></p>\n                </div>\n                <div class=\"cart__order__form__submit\">\n                  <input type=\"submit\" value=\"Commander !\" id=\"order\">\n                </div>\n              </form>\n            </div>\n          </section>\n        </div>\n      </div>\n    </main>\n    \n    <footer>\n      <div class=\"limitedWidthBlockContainer footerMain\">\n        <div class=\"limitedWidthBlock\">\n          <div>\n            <img class=\"logo\" src=\"../images/logo.png\" alt=\"Logo de l'entreprise\">\n          </div>\n          <div>\n            <p>10 quai de la charente <br>75019 Paris 19</p>\n          </div>\n          <div>\n            <p>Téléphone : 01 23 45 67 89</p>\n          </div>\n          <div>\n            <p>Email : support@name.com</p>\n          </div>\n        </div>\n      </div>\n      <div class=\"limitedWidthBlockContainer footerSecondary\">\n        <div class=\"limitedWidthBlock\">\n          <p>© Copyright 2021 - 2042 | Openclassrooms by Openclassrooms | All Rights Reserved | Powered by <3</p>\n        </div>\n      </div>\n    </footer>\n  <script src=\"../js/cart2.js\"></script>\n  </body>\n</html>"
+        }
+    ]
+}

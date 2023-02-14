@@ -2,16 +2,16 @@
 fetch("http://localhost:3000/api/products")
    .then((res) => res.json())
    .then((dataKanaps) => {
-    console.table(dataKanaps);
-    return addProduct(dataKanaps);
+    console.log(dataKanaps);
+    return addProducts(dataKanaps);
    })
   
 
-function addProduct(dataKanaps) {
+function addProducts(dataKanaps) {
 
   dataKanaps.forEach(element => {
     
-  const {_id, imageUrl, altTxt, name, description} = element
+  const {_id, imageUrl, altTxt, name, description, price} = element
   const items = document.getElementById ("items")
 
   const anchor = makeAnchor(_id)

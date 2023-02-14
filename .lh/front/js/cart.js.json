@@ -1,0 +1,82 @@
+{
+    "sourceFile": "front/js/cart.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 16,
+            "patches": [
+                {
+                    "date": 1675784930950,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1675785071705,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,8 @@\n-function addProduct(dataKanaps) {\n \n+\n+function addC(dataKanaps) {\n+\n     dataKanaps.forEach(element => {\n       \n     const {_id, imageUrl, altTxt, name, description} = element\n     const items = document.getElementById (\"items\")\n"
+                },
+                {
+                    "date": 1675785082160,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n \n \n-function addC(dataKanaps) {\n+function addCommand() {\n \n     dataKanaps.forEach(element => {\n       \n     const {_id, imageUrl, altTxt, name, description} = element\n"
+                },
+                {
+                    "date": 1675785099064,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n \n \n function addCommand() {\n \n-    dataKanaps.forEach(element => {\n+    //dataKanaps.forEach(element => {\n       \n     const {_id, imageUrl, altTxt, name, description} = element\n     const items = document.getElementById (\"items\")\n   \n"
+                },
+                {
+                    "date": 1675785105450,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n \n \n function addCommand() {\n \n-    //dataKanaps.forEach(element => {\n+    dataKanaps.forEach(element => {\n       \n     const {_id, imageUrl, altTxt, name, description} = element\n     const items = document.getElementById (\"items\")\n   \n"
+                },
+                {
+                    "date": 1675785116168,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n \n \n-function addCommand() {\n+function addCommand(Ordeer) {\n \n     dataKanaps.forEach(element => {\n       \n     const {_id, imageUrl, altTxt, name, description} = element\n"
+                },
+                {
+                    "date": 1675785134972,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n \n \n-function addCommand(Ordeer) {\n+function addCommand(Order) {\n \n-    dataKanaps.forEach(element => {\n+    O.forEach(element => {\n       \n     const {_id, imageUrl, altTxt, name, description} = element\n     const items = document.getElementById (\"items\")\n   \n"
+                },
+                {
+                    "date": 1675785144882,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n \n \n-function addCommand(Order) {\n+function addCommand(order) {\n \n-    O.forEach(element => {\n+    order.forEach(element => {\n       \n     const {_id, imageUrl, altTxt, name, description} = element\n     const items = document.getElementById (\"items\")\n   \n"
+                },
+                {
+                    "date": 1675785193977,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,8 @@\n     const {_id, imageUrl, altTxt, name, description} = element\n     const items = document.getElementById (\"items\")\n   \n     const anchor = makeAnchor(_id)\n-    const article = document.createElement(\"article\")\n     const h3 = makeH3(name)\n     const p = makeParagraphe(description)\n     const image = makeImage(imageUrl, altTxt)\n   \n"
+                },
+                {
+                    "date": 1675785199561,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,26 @@\n \n function addCommand(order) {\n \n     order.forEach(element => {\n-      \n+      function addProduct(dataKanaps) {\n+\n+  dataKanaps.forEach(element => {\n+    \n+  const {_id, imageUrl, altTxt, name, description} = element\n+  const items = document.getElementById (\"items\")\n+\n+  const anchor = makeAnchor(_id)\n+  const article = document.createElement(\"article\")\n+  const h3 = makeH3(name)\n+  const p = makeParagraphe(description)\n+  const image = makeImage(imageUrl, altTxt)\n+\n+  items.append(anchor)\n+  anchor.append(article)\n+  appendtoArticle(article, [image, h3, p])\n+})\n+}\n     const {_id, imageUrl, altTxt, name, description} = element\n     const items = document.getElementById (\"items\")\n   \n     const anchor = makeAnchor(_id)\n"
+                },
+                {
+                    "date": 1675785210529,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,26 +2,26 @@\n \n function addCommand(order) {\n \n     order.forEach(element => {\n-      function addProduct(dataKanaps) {\n+        function addProduct(dataKanaps) {\n \n-  dataKanaps.forEach(element => {\n-    \n-  const {_id, imageUrl, altTxt, name, description} = element\n-  const items = document.getElementById (\"items\")\n-\n-  const anchor = makeAnchor(_id)\n-  const article = document.createElement(\"article\")\n-  const h3 = makeH3(name)\n-  const p = makeParagraphe(description)\n-  const image = makeImage(imageUrl, altTxt)\n-\n-  items.append(anchor)\n-  anchor.append(article)\n-  appendtoArticle(article, [image, h3, p])\n-})\n-}\n+            dataKanaps.forEach(element => {\n+              \n+            const {_id, imageUrl, altTxt, name, description} = element\n+            const items = document.getElementById (\"items\")\n+          \n+            const anchor = makeAnchor(_id)\n+            const article = document.createElement(\"article\")\n+            const h3 = makeH3(name)\n+            const p = makeParagraphe(description)\n+            const image = makeImage(imageUrl, altTxt)\n+          \n+            items.append(anchor)\n+            anchor.append(article)\n+            appendtoArticle(article, [image, h3, p])\n+          })\n+          }\n     const {_id, imageUrl, altTxt, name, description} = element\n     const items = document.getElementById (\"items\")\n   \n     const anchor = makeAnchor(_id)\n"
+                },
+                {
+                    "date": 1675785217454,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,30 +2,14 @@\n \n function addCommand(order) {\n \n     order.forEach(element => {\n-        function addProduct(dataKanaps) {\n-\n-            dataKanaps.forEach(element => {\n-              \n-            const {_id, imageUrl, altTxt, name, description} = element\n-            const items = document.getElementById (\"items\")\n-          \n-            const anchor = makeAnchor(_id)\n-            const article = document.createElement(\"article\")\n-            const h3 = makeH3(name)\n-            const p = makeParagraphe(description)\n-            const image = makeImage(imageUrl, altTxt)\n-          \n-            items.append(anchor)\n-            anchor.append(article)\n-            appendtoArticle(article, [image, h3, p])\n-          })\n-          }\n+      \n     const {_id, imageUrl, altTxt, name, description} = element\n     const items = document.getElementById (\"items\")\n   \n     const anchor = makeAnchor(_id)\n+    const article = document.createElement(\"article\")\n     const h3 = makeH3(name)\n     const p = makeParagraphe(description)\n     const image = makeImage(imageUrl, altTxt)\n   \n"
+                },
+                {
+                    "date": 1675785234345,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,10 @@\n \n function addCommand(order) {\n \n     order.forEach(element => {\n-      \n+        const article = document.createElement(\"article\")\n+\n     const {_id, imageUrl, altTxt, name, description} = element\n     const items = document.getElementById (\"items\")\n   \n     const anchor = makeAnchor(_id)\n"
+                },
+                {
+                    "date": 1675785244693,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,5 +17,7 @@\n     items.append(anchor)\n     anchor.append(article)\n     appendtoArticle(article, [image, h3, p])\n   })\n-  }\n\\ No newline at end of file\n+  }\n+\n+  \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675785253631,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,5 +19,5 @@\n     appendtoArticle(article, [image, h3, p])\n   })\n   }\n \n-  \n\\ No newline at end of file\n+  fonction makeArticle\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675785632675,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,6 +18,11 @@\n     anchor.append(article)\n     appendtoArticle(article, [image, h3, p])\n   })\n   }\n-\n+  unction makeH3(name){\n+    const h3 = document.createElement(\"h3\")\n+      h3.textContent = name\n+     h3.classList.add(\"productName\")\n+    return h3\n+  }\n   fonction makeArticle()\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1675788275714,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n     const h3 = document.createElement(\"h2\")\n     h2.textContent = name\n     return h3\n   }\n-  function makeH(name){\n+  function make(name){\n     const h3 = document.createElement(\"h3\")\n       h3.textContent = name\n      h3.classList.add(\"productName\")\n     return h3\n"
+                }
+            ],
+            "date": 1675784930950,
+            "name": "Commit-0",
+            "content": "function addProduct(dataKanaps) {\n\n    dataKanaps.forEach(element => {\n      \n    const {_id, imageUrl, altTxt, name, description} = element\n    const items = document.getElementById (\"items\")\n  \n    const anchor = makeAnchor(_id)\n    const article = document.createElement(\"article\")\n    const h3 = makeH3(name)\n    const p = makeParagraphe(description)\n    const image = makeImage(imageUrl, altTxt)\n  \n    items.append(anchor)\n    anchor.append(article)\n    appendtoArticle(article, [image, h3, p])\n  })\n  }"
+        }
+    ]
+}
