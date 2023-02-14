@@ -66,8 +66,13 @@ function makeArticle(item){
                     const deleteP = document.createElement("p")
                     deleteP.classList.add("deleItem")
                     deleteP.textContent ="Supprimer "
+                    
+                   // p.addEvenListener("click", () => deleteItem(item))
+                    //DeleteToSettings()
+                    //const Delete = DeleteToSettings()
+
              
-        appendtoArticle(addArticle, [divImg, contentDiv],)
+        appendtoArticle(addArticle, [divImg, contentDiv])
         appendtoArticle(contentDiv, [descriptionDiv, settingsDiv])
         appendtoArticle(settingsDiv, [quantity, contentDelete])
 
@@ -77,6 +82,8 @@ function makeArticle(item){
 
         const tQuantity = displayTotalQuantity()
         const tPrice = displayTotalPrice()
+       const Delete = DeleteToSettings()
+
 }
 
 function appendtoArticle(article, array) {
@@ -100,14 +107,26 @@ function displayTotalPrice(){
     item.quantity = itemToUpdate.quantity
     displayTotalQuantity()
     displayTotalPrice()
-    saveNewDataToCache(item)
+    deleteDataFromCache(item)
  }
 function saveNewDataToCache(item){
     const dataToSave = JSON.stringify(item)
     const key = `${item.id}-${item.color}`
     localStorage.setItem(key, dataToSave)
 }
-function addDeleteToSettings(settings, item) {
-deleteP.addEvenListener("click", () =>deleteItem(item))
-const itemTodelete = cart.find(product => product.id === item.id)
+function DeleteToSettings(settings, item) {
+   const supprimer = document.querySelector(deleteItem)
+   supprimer.addEvenListener("click", deleteDataFromCache)
+    const itemTodelete = cart.findIndex((product) =>
+    product.id === item.id && product.color === item.color)
+    cart.splice[itemToDelete, 1]
+    displayTotalQuantity()
+    displayTotalPrice
+    deleteDataFromCache(item)
+
 }
+function deleteDataFromCache(item){
+const key = `${item.id}-${item.color}`
+localStorage.removeItem(key)
+}
+console.log(cart)
