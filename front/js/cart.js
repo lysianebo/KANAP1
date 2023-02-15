@@ -82,7 +82,7 @@ function makeArticle(item){
 
         const tQuantity = displayTotalQuantity()
         const tPrice = displayTotalPrice()
-       const Delete = DeleteToSettings()
+      //const Delete = DeleteToSettings()
 
 }
 
@@ -115,10 +115,10 @@ function saveNewDataToCache(item){
     localStorage.setItem(key, dataToSave)
 }
 function DeleteToSettings(settings, item) {
-   const supprimer = document.querySelector(deleteItem)
-   supprimer.addEvenListener("click", deleteDataFromCache)
-    const itemTodelete = cart.findIndex((product) =>
-    product.id === item.id && product.color === item.color)
+   const supprimer = document.querySelector(".deleteItem")
+   supprimer.addEventListener("click", deleteDataFromCache)
+   // const itemTodelete = cart.findIndex((product) =>
+   // product.id === item.id && product.color === item.color)
     cart.splice[itemToDelete, 1]
     displayTotalQuantity()
     displayTotalPrice
