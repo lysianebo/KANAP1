@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 6,
+            "activePatchIndex": 19,
             "patches": [
                 {
                     "date": 1675783115305,
@@ -32,6 +32,58 @@
                 {
                     "date": 1676195989858,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -109,7 +109,7 @@\n           <p>© Copyright 2021 - 2042 | Openclassrooms by Openclassrooms | All Rights Reserved | Powered by <3</p>\n         </div>\n       </div>\n     </footer>\n-  <script src=\"../js/product2.js\"></script>\n+  <script src=\"../js/product.js\"></script>\n   </body>\n </html>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676560857421,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -109,7 +109,7 @@\n           <p>© Copyright 2021 - 2042 | Openclassrooms by Openclassrooms | All Rights Reserved | Powered by <3</p>\n         </div>\n       </div>\n     </footer>\n-  <script src=\"../js/product.js\"></script>\n+  <script src=\"../js/product4.js\"></script>\n   </body>\n </html>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676625967583,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -109,7 +109,7 @@\n           <p>© Copyright 2021 - 2042 | Openclassrooms by Openclassrooms | All Rights Reserved | Powered by <3</p>\n         </div>\n       </div>\n     </footer>\n-  <script src=\"../js/product4.js\"></script>\n+  <script src=\"../js/product5.js\"></script>\n   </body>\n </html>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676627657698,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -109,7 +109,7 @@\n           <p>© Copyright 2021 - 2042 | Openclassrooms by Openclassrooms | All Rights Reserved | Powered by <3</p>\n         </div>\n       </div>\n     </footer>\n-  <script src=\"../js/product5.js\"></script>\n+  <script src=\"../js/product.js\"></script>\n   </body>\n </html>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676627671659,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -109,7 +109,7 @@\n           <p>© Copyright 2021 - 2042 | Openclassrooms by Openclassrooms | All Rights Reserved | Powered by <3</p>\n         </div>\n       </div>\n     </footer>\n-  <script src=\"../js/product.js\"></script>\n+  <script src=\"../js/product4.js\"></script>\n   </body>\n </html>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676627691318,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -109,7 +109,7 @@\n           <p>© Copyright 2021 - 2042 | Openclassrooms by Openclassrooms | All Rights Reserved | Powered by <3</p>\n         </div>\n       </div>\n     </footer>\n-  <script src=\"../js/product4.js\"></script>\n+  <script src=\"../js/product.js\"></script>\n   </body>\n </html>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676627712183,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -109,7 +109,7 @@\n           <p>© Copyright 2021 - 2042 | Openclassrooms by Openclassrooms | All Rights Reserved | Powered by <3</p>\n         </div>\n       </div>\n     </footer>\n-  <script src=\"../js/product.js\"></script>\n+  <script src=\"../js/product5.js\"></script>\n   </body>\n </html>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676657702340,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -109,7 +109,7 @@\n           <p>© Copyright 2021 - 2042 | Openclassrooms by Openclassrooms | All Rights Reserved | Powered by <3</p>\n         </div>\n       </div>\n     </footer>\n-  <script src=\"../js/product5.js\"></script>\n+  <script src=\"../js/product.js\"></script>\n   </body>\n </html>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676657718686,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -109,7 +109,7 @@\n           <p>© Copyright 2021 - 2042 | Openclassrooms by Openclassrooms | All Rights Reserved | Powered by <3</p>\n         </div>\n       </div>\n     </footer>\n-  <script src=\"../js/product.js\"></script>\n+  <script src=\"../js/product2.js\"></script>\n   </body>\n </html>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676657737964,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -109,7 +109,7 @@\n           <p>© Copyright 2021 - 2042 | Openclassrooms by Openclassrooms | All Rights Reserved | Powered by <3</p>\n         </div>\n       </div>\n     </footer>\n-  <script src=\"../js/product2.js\"></script>\n+  <script src=\"../js/product.js\"></script>\n   </body>\n </html>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676726232306,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -109,7 +109,7 @@\n           <p>© Copyright 2021 - 2042 | Openclassrooms by Openclassrooms | All Rights Reserved | Powered by <3</p>\n         </div>\n       </div>\n     </footer>\n-  <script src=\"../js/product.js\"></script>\n+  <script src=\"../js/product5.js\"></script>\n   </body>\n </html>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676988537022,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -109,7 +109,7 @@\n           <p>© Copyright 2021 - 2042 | Openclassrooms by Openclassrooms | All Rights Reserved | Powered by <3</p>\n         </div>\n       </div>\n     </footer>\n-  <script src=\"../js/product5.js\"></script>\n+  <script src=\"../js/product.js\"></script>\n   </body>\n </html>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676988655229,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -109,7 +109,7 @@\n           <p>© Copyright 2021 - 2042 | Openclassrooms by Openclassrooms | All Rights Reserved | Powered by <3</p>\n         </div>\n       </div>\n     </footer>\n-  <script src=\"../js/product.js\"></script>\n+  <script src=\"../js/product5.js\"></script>\n   </body>\n </html>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676989960209,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -109,7 +109,7 @@\n           <p>© Copyright 2021 - 2042 | Openclassrooms by Openclassrooms | All Rights Reserved | Powered by <3</p>\n         </div>\n       </div>\n     </footer>\n-  <script src=\"../js/product5.js\"></script>\n+  <script src=\"../js/product.js\"></script>\n   </body>\n </html>\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1675783115305,

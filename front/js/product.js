@@ -1,8 +1,6 @@
 const queryString = window.location.search
 const urlParams = new URLSearchParams(queryString)
 const id = urlParams.get("id")
-console.log({id});
-let panier =""
 if (id != null){
     let itemPrice = 0
     let imgUrl, altText
@@ -13,9 +11,9 @@ fetch(`http://localhost:3000/api/products/${id}`)
    .then((reponse) => reponse.json())
    .then((res) => getDataKanap(res)) 
 
-function getDataKanap(panier) {
+function getDataKanap(product) {
     //récupération de toutes les données dans l'objet kanap
-    const {altTxt, colors, description, imageUrl, name, price, id}  = panier
+    const {altTxt, colors, description, imageUrl, name, price, id}  = product
     //les données sont passées dans des fonctions qui vont les afficher
     itemPrice = price
     imgUrl = imageUrl
@@ -26,7 +24,6 @@ function getDataKanap(panier) {
     makePrice(price)
     makeDescription(description)
     makeColors(colors)
-    console.log(panier)
 }
 function makeImage(imageUrl, altTxt){
     const image = document.createElement("img")
@@ -58,39 +55,40 @@ function makeColors(colors) {
         select.appendChild(option)
     })
 }
-const buttonToCart = document.querySelector("#addToCart")
-buttonToCart.addEventListener("click", buttonEvent)
-console.log(buttonEvent)
+    const buttonToCart = document.querySelector("#addToCart")
+    buttonToCart.addEventListener("click", buttonEvent)
 function buttonEvent(){
     const color = document.querySelector("#colors").value
     const quantity = document.querySelector("#quantity").value
-  if (invalidCommand(color, quantity)) return
+    if (invalidCommand(color, quantity)) return
     saveCommand(color,quantity)
-   redirectToCart()
+    redirectToCart()
 }
 function invalidCommand(color, quantity){
     if (color == null || color === "" ) {
         alert("Vous devez sélectionner une couleur. Merci")
-        return
+        return true
         }
-    if (quantity == null || quantity < 0 && quantity < 100) {// ||!Number.isInteger(quantity)
-        alert("Vous devez sélectionner une quantité de 1 à 100. Merci")
-        return
-    }
+  //  if (quantity == null || quantity <= 0 || quantity > 100 ||!Number.isInteger(quantity)) {
+      //  alert("Vous devez sélectionner une quantité de 1 à 100. Merci")
+    //    return true
+    //}
 } 
 //Sauvegarde dans localStorage if commande valide
 function saveCommand(color, quantity){
-    let isFound = false;
-
-    if(!panier){
+    let panier =  localStorage
+    console.log("panier")
+//Si le panier n'existe pas 
+//Soit il est vide
+   if(!panier){
         let data = [{
             id : id,
             color : color,
             quantity: Number(quantity),
         }];
-        localStorage.setItem("panier", JSON.stringify(data))
-    }else{
-        panier = JSON.parse(panier);
+        localStorage.setItem("panier",JSON.stringify(data))
+    }else{ // soit le panier n'est pas vide
+        panier = JSON.parse(panier)
 
         panier.forEach(item =>{
             if(isFound) return;
@@ -99,20 +97,15 @@ function saveCommand(color, quantity){
                 isFound = true
             }
         })
-    }
         if(!isFound){
-            function panierPush(id) {
-                panier.push( {
+            panier.push( {
                 id : id,
                 color: color,
-                quantity: Number(quantity),
+                quantity: Number(quantity)
             })
         }
+        localStorage.setItem("panier", JSON.stringify(panier))
     }
-        localStorage.setItem("panier",JSON.stringify(data))
-
-
-
 }
 function redirectToCart(){
     window.location.href = "cart.html"

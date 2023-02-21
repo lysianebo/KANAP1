@@ -1,0 +1,90 @@
+{
+    "sourceFile": "front/js/confirmation.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 18,
+            "patches": [
+                {
+                    "date": 1676556716209,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1676556746232,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +0,0 @@\n-ur\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676556768507,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,3 @@\n+const queryString = window.location.search\n+const urlParams = new URLSearchParams(queryString)\n+const orderid = urlParams.get(\"id\")\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676556774390,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,3 @@\n const queryString = window.location.search\n const urlParams = new URLSearchParams(queryString)\n-const orderid = urlParams.get(\"id\")\n\\ No newline at end of file\n+const orderId = urlParams.get(\"id\")\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676556872765,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,5 @@\n+\n+\n const queryString = window.location.search\n const urlParams = new URLSearchParams(queryString)\n const orderId = urlParams.get(\"id\")\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676556880192,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n+function getO\n \n-\n const queryString = window.location.search\n const urlParams = new URLSearchParams(queryString)\n const orderId = urlParams.get(\"id\")\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676556886174,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-function getO\n+function getOrderId\n \n const queryString = window.location.search\n const urlParams = new URLSearchParams(queryString)\n const orderId = urlParams.get(\"id\")\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676556892695,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-function getOrderId\n+function getOrderId(){}\n \n const queryString = window.location.search\n const urlParams = new URLSearchParams(queryString)\n const orderId = urlParams.get(\"id\")\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676556903298,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-function getOrderId(){}\n+function getOrderId(){\n \n const queryString = window.location.search\n const urlParams = new URLSearchParams(queryString)\n\\ No newline at end of file\n-const orderId = urlParams.get(\"id\")\n+const orderId = urlParams.get(\"id\")\n"
+                },
+                {
+                    "date": 1676556912693,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n function getOrderId(){\n \n const queryString = window.location.search\n const urlParams = new URLSearchParams(queryString)\n-const orderId = urlParams.get(\"id\")\n\\ No newline at end of file\n+const orderId = urlParams.get(\"id\")\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676556920428,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,5 +2,6 @@\n \n const queryString = window.location.search\n const urlParams = new URLSearchParams(queryString)\n const orderId = urlParams.get(\"id\")\n+\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676556926938,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,5 +3,5 @@\n const queryString = window.location.search\n const urlParams = new URLSearchParams(queryString)\n const orderId = urlParams.get(\"id\")\n \n-}\n\\ No newline at end of file\n+}\n"
+                },
+                {
+                    "date": 1676556933707,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,4 +4,5 @@\n const urlParams = new URLSearchParams(queryString)\n const orderId = urlParams.get(\"id\")\n \n }\n+const or\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676556939851,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,5 +4,5 @@\n const urlParams = new URLSearchParams(queryString)\n const orderId = urlParams.get(\"id\")\n \n }\n-const or\n\\ No newline at end of file\n+const getOrderId = get\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676556946076,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,5 +4,6 @@\n const urlParams = new URLSearchParams(queryString)\n const orderId = urlParams.get(\"id\")\n \n }\n-const getOrderId = get\n\\ No newline at end of file\n+const getOrderId = getOrderId()\n+\n"
+                },
+                {
+                    "date": 1676556953599,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,9 @@\n \n const queryString = window.location.search\n const urlParams = new URLSearchParams(queryString)\n const orderId = urlParams.get(\"id\")\n+ret\n \n }\n const getOrderId = getOrderId()\n \n"
+                },
+                {
+                    "date": 1676556966873,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n \n const queryString = window.location.search\n const urlParams = new URLSearchParams(queryString)\n const orderId = urlParams.get(\"id\")\n-ret\n+return orderId\n \n }\n const getOrderId = getOrderId()\n \n"
+                },
+                {
+                    "date": 1676556992139,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,5 +7,5 @@\n \n }\n const getOrderId = getOrderId()\n \n-f\n\\ No newline at end of file\n+fu\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676557035286,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,7 +8,7 @@\n }\n const getOrderId = getOrderId()\n \n function displayOrderId(){\n-    const orderId\n+    const orderIdE\n \n }\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1676556716209,
+            "name": "Commit-0",
+            "content": "ur"
+        }
+    ]
+}

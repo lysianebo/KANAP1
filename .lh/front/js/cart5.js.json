@@ -1,0 +1,442 @@
+{
+    "sourceFile": "front/js/cart5.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 106,
+            "patches": [
+                {
+                    "date": 1676630240116,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1676630329253,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,4 +11,191 @@\n     const itemObjet = JSON.parse(item)\n     cart.push(itemObjet)\n     }\n }\n+\n+function makeArticle(item){\n+    const addArticle = document.createElement(\"article\")\n+    addArticle.classList.add(\"cart__item\")\n+    addArticle.dataset.id = item.id\n+    addArticle.dataset.color = item.color\n+    document.getElementById(\"cart__items\").appendChild(addArticle)\n+\n+        const divImg = document.createElement(\"div\")\n+        divImg.classList.add(\"cart__item__img\")\n+        const image = document.createElement(\"img\")\n+        image.src = item.imageUrl\n+        image.alt = item.altTxt\n+        divImg.appendChild(image)\n+        \n+        const contentDiv = document.createElement('div')\n+        contentDiv.classList.add(\"cart__item__content\")\n+\n+            const descriptionDiv = document.createElement(\"div\")\n+            descriptionDiv.classList.add(\"cart__item__content__description\")\n+            \n+            const h2= document.createElement(\"h2\")\n+            h2.textContent = item.name\n+            const p = document.createElement(\"p\")\n+            p.textContent = item.color\n+            const p2 = document.createElement(\"p\")\n+            p2.textContent = item.price + \"€\"\n+\n+            const settingsDiv = document.createElement(\"div\")\n+            settingsDiv.classList.add(\"cart__item__content__settings\")\n+                const quantity = document.createElement(\"div\")\n+                quantity.classList.add(\"cart__item__content__settings__quantity\")\n+                    const quantityP = document.createElement(\"p\")\n+                    quantityP.textContent =\"Qté : \"\n+                    const input = document.createElement(\"input\")\n+                    input.type = \"number\"\n+                    input.classList.add(\"itemQuantity\")\n+                    input.name =\"itemQuantity\"\n+                    input.min =\"1\"\n+                    input.max =\"100\"\n+                    input.value = item.quantity\n+                    input.addEventListener(\"input\", (e) => updatePriceQuantity(item.id, input.value, item)) \n+                const contentDelete = document.createElement(\"div\")\n+                contentDelete.classList.add(\"cart__item__content__settings__delete\")\n+                    const deleteP = document.createElement(\"p\")\n+                    deleteP.classList.add(\"deleItem\")\n+                    deleteP.textContent =\"Supprimer \"\n+                    \n+                   // p.addEvenListener(\"click\", () => deleteItem(item))\n+                    //DeleteToSettings()\n+                    //const Delete = DeleteToSettings()\n+\n+             \n+        appendtoArticle(addArticle, [divImg, contentDiv])\n+        appendtoArticle(contentDiv, [descriptionDiv, settingsDiv])\n+        appendtoArticle(settingsDiv, [quantity, contentDelete])\n+\n+        appendtoArticle(descriptionDiv, [h2, p, p2])\n+        appendtoArticle(quantity, [quantityP, input])\n+        appendtoArticle(contentDelete, [deleteP])\n+\n+        displayTotalQuantity()\n+        displayTotalPrice()\n+}\n+\n+function appendtoArticle(article, array) {\n+    array.forEach(item => {\n+    article.appendChild(item)\n+})\n+}\n+function displayTotalPrice(){\n+    const totalPrice = document.querySelector(\"#totalPrice\")\n+    const total = panier.reduce((total,item) => total + item.price * item.quantity, 0)\n+    totalPrice.textContent = total\n+ }\n+ function displayTotalQuantity(){\n+    const totalQuantity = document.querySelector(\"#totalQuantity\")\n+    const total = panier.reduce((total,item) => total + item.quantity, 0)\n+    totalQuantity.textContent = total\n+ }\n+ function updatePriceQuantity(id, newValue, item){\n+    const itemToUpdate = cart.find((item) => item.id === id)\n+    itemToUpdate.quantity = Number(newValue)\n+    item.quantity = itemToUpdate.quantity\n+    displayTotalQuantity()\n+    displayTotalPrice()\n+    deleteDataFromCache(item)\n+ }\n+function saveNewDataToCache(item){\n+    const dataToSave = JSON.stringify(item)\n+    const key = `${item.id}-${item.color}`\n+    localStorage.setItem(key, dataToSave)\n+}\n+function DeleteToSettings(settings, item) {\n+   const supprimer = document.querySelector(\".deleteItem\")\n+   supprimer.addEventListener(\"click\", deleteDataFromCache)\n+   // const itemTodelete = cart.findIndex((product) =>\n+   // product.id === item.id && product.color === item.color)\n+    cart.splice[itemToDelete, 1]\n+    displayTotalQuantity()\n+    displayTotalPrice\n+    deleteDataFromCache(item)\n+}\n+function deleteDataFromCache(item){\n+const key = `${item.id}-${item.color}`\n+localStorage.removeItem(key)\n+}\n+//console.log(cart)\n+const orderButton = document.querySelector(\"#order\")\n+orderButton.addEventListener(\"click\", (e) => submitForm(e))\n+\n+function submitForm(e){\n+e.preventDefault() //ne pas rafraîchir\n+if (cart.lenght === 0) alert (\"Sélectionnez votre canapé\")\n+//return;\n+\n+//if (formIsInvalid()) return\n+if (emailIsInvalid()) return\n+\n+const body = makeRequestBody()\n+fetch(\"http://localhost:3000/api/products/order\",{\n+method : \"POST\",\n+body: JSON.stringify(body),\n+Headers:{\n+    \"Content-type\":\"appplication/json\"\n+}\n+})\n+.then((res) => res.json())\n+.then((data) => {\n+const orderId = data.orderId\n+window.location.href = \"front/html/confirmation.html\" + \"?orderId=\" +orderId\n+})\n+.catch((err) => console.error(err))\n+}\n+function formIsInvalid(){\n+    const form = document.querySelector(\"cart__order__form\")\n+    const inputs = form.querySelectorAll(\"input\")\n+    inputs.forEach((input) =>{\n+        if (input.value === \"\"){\n+            alert(\"Vous devez compléter ce champ\")\n+            return true\n+        }\n+        return false\n+    })\n+}\n+function emailIsInvalid(){\n+    const email = document.querySelector(\"#email\").value\n+    const regex = /^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$/\n+    if (regex.test(email) === false) {\n+        alert (\"Votre adresse mail n'est pas valide\")\n+        return true\n+    }\n+    return false\n+}\n+\n+\n+function makeRequestBody(){\n+    const form = document.querySelector(\"cart__order__form\")\n+    const firstName = form.elements.firstName.value\n+    const lastName = form.elements.lastName.value\n+    const address = form.elements.address.value\n+    const city = form.elements.city.value\n+    const email = form.elements.email.value\n+\n+    const body = {\n+    contact: {\n+        firstName: firstName,\n+        lastName: lastName,\n+        address: address,\n+        city: city,\n+        email: email\n+      },\n+        products: getIdsFromCache()\n+    }\n+    return body\n+}\n+//pas besoin de faire split si seulement key et pas color\n+function getIdsFromCache(){\n+    const numberOfProducts = localStorage-length\n+    const ids = []\n+    for (let i = 0; i < numberOfProducts; i++){\n+    const key = localStorage.key(i)\n+    const id = key-split(\"-\")[0]\n+    ids.push(id)\n+    }\n+    return ids\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676630477591,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -88,9 +88,9 @@\n     totalPrice.textContent = total\n  }\n  function displayTotalQuantity(){\n     const totalQuantity = document.querySelector(\"#totalQuantity\")\n-    const total = panier.reduce((total,item) => total + item.quantity, 0)\n+    const total = o.reduce((total,item) => total + item.quantity, 0)\n     totalQuantity.textContent = total\n  }\n  function updatePriceQuantity(id, newValue, item){\n     const itemToUpdate = cart.find((item) => item.id === id)\n"
+                },
+                {
+                    "date": 1676630486478,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -88,9 +88,9 @@\n     totalPrice.textContent = total\n  }\n  function displayTotalQuantity(){\n     const totalQuantity = document.querySelector(\"#totalQuantity\")\n-    const total = o.reduce((total,item) => total + item.quantity, 0)\n+    const total = itemObjet.reduce((total,item) => total + item.quantity, 0)\n     totalQuantity.textContent = total\n  }\n  function updatePriceQuantity(id, newValue, item){\n     const itemToUpdate = cart.find((item) => item.id === id)\n"
+                },
+                {
+                    "date": 1676630528422,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -88,9 +88,9 @@\n     totalPrice.textContent = total\n  }\n  function displayTotalQuantity(){\n     const totalQuantity = document.querySelector(\"#totalQuantity\")\n-    const total = itemObjet.reduce((total,item) => total + item.quantity, 0)\n+    const total = cart.reduce((total,item) => total + item.quantity, 0)\n     totalQuantity.textContent = total\n  }\n  function updatePriceQuantity(id, newValue, item){\n     const itemToUpdate = cart.find((item) => item.id === id)\n"
+                },
+                {
+                    "date": 1676630541803,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -83,9 +83,9 @@\n })\n }\n function displayTotalPrice(){\n     const totalPrice = document.querySelector(\"#totalPrice\")\n-    const total = panier.reduce((total,item) => total + item.price * item.quantity, 0)\n+    const total = C.reduce((total,item) => total + item.price * item.quantity, 0)\n     totalPrice.textContent = total\n  }\n  function displayTotalQuantity(){\n     const totalQuantity = document.querySelector(\"#totalQuantity\")\n"
+                },
+                {
+                    "date": 1676631293446,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -83,9 +83,9 @@\n })\n }\n function displayTotalPrice(){\n     const totalPrice = document.querySelector(\"#totalPrice\")\n-    const total = C.reduce((total,item) => total + item.price * item.quantity, 0)\n+    const total = cart.reduce((total,item) => total + item.price * item.quantity, 0)\n     totalPrice.textContent = total\n  }\n  function displayTotalQuantity(){\n     const totalQuantity = document.querySelector(\"#totalQuantity\")\n@@ -125,9 +125,9 @@\n \n function submitForm(e){\n e.preventDefault() //ne pas rafraîchir\n if (cart.lenght === 0) alert (\"Sélectionnez votre canapé\")\n-//return;\n+return;\n \n //if (formIsInvalid()) return\n if (emailIsInvalid()) return\n \n"
+                },
+                {
+                    "date": 1676631301293,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -125,9 +125,9 @@\n \n function submitForm(e){\n e.preventDefault() //ne pas rafraîchir\n if (cart.lenght === 0) alert (\"Sélectionnez votre canapé\")\n-return;\n+return\n \n //if (formIsInvalid()) return\n if (emailIsInvalid()) return\n \n"
+                },
+                {
+                    "date": 1676631363603,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -127,9 +127,9 @@\n e.preventDefault() //ne pas rafraîchir\n if (cart.lenght === 0) alert (\"Sélectionnez votre canapé\")\n return\n \n-//if (formIsInvalid()) return\n+/if (formIsInvalid()) return\n if (emailIsInvalid()) return\n \n const body = makeRequestBody()\n fetch(\"http://localhost:3000/api/products/order\",{\n"
+                },
+                {
+                    "date": 1676631484188,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -127,9 +127,9 @@\n e.preventDefault() //ne pas rafraîchir\n if (cart.lenght === 0) alert (\"Sélectionnez votre canapé\")\n return\n \n-/if (formIsInvalid()) return\n+if (formIsInvalid()) return\n if (emailIsInvalid()) return\n \n const body = makeRequestBody()\n fetch(\"http://localhost:3000/api/products/order\",{\n@@ -169,9 +169,9 @@\n \n \n function makeRequestBody(){\n     const form = document.querySelector(\"cart__order__form\")\n-    const firstName = form.elements.firstName.value\n+    const firstName = form.elements.firstName\n     const lastName = form.elements.lastName.value\n     const address = form.elements.address.value\n     const city = form.elements.city.value\n     const email = form.elements.email.value\n"
+                },
+                {
+                    "date": 1676631559916,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -125,9 +125,9 @@\n \n function submitForm(e){\n e.preventDefault() //ne pas rafraîchir\n if (cart.lenght === 0) alert (\"Sélectionnez votre canapé\")\n-return\n+//return\n \n if (formIsInvalid()) return\n if (emailIsInvalid()) return\n \n"
+                },
+                {
+                    "date": 1676631626948,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -147,9 +147,9 @@\n .catch((err) => console.error(err))\n }\n function formIsInvalid(){\n     const form = document.querySelector(\"cart__order__form\")\n-    const inputs = form.querySelectorAll(\"input\")\n+   // const inputs = form.querySelectorAll(\"input\")\n     inputs.forEach((input) =>{\n         if (input.value === \"\"){\n             alert(\"Vous devez compléter ce champ\")\n             return true\n"
+                },
+                {
+                    "date": 1676631646599,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -147,9 +147,9 @@\n .catch((err) => console.error(err))\n }\n function formIsInvalid(){\n     const form = document.querySelector(\"cart__order__form\")\n-   // const inputs = form.querySelectorAll(\"input\")\n+   const inputs = form.querySelectorAll(\"input\")\n     inputs.forEach((input) =>{\n         if (input.value === \"\"){\n             alert(\"Vous devez compléter ce champ\")\n             return true\n"
+                },
+                {
+                    "date": 1676631658602,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -127,9 +127,9 @@\n e.preventDefault() //ne pas rafraîchir\n if (cart.lenght === 0) alert (\"Sélectionnez votre canapé\")\n //return\n \n-if (formIsInvalid()) return\n+//if (formIsInvalid()) return\n if (emailIsInvalid()) return\n \n const body = makeRequestBody()\n fetch(\"http://localhost:3000/api/products/order\",{\n"
+                },
+                {
+                    "date": 1676631835590,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -169,9 +169,9 @@\n \n \n function makeRequestBody(){\n     const form = document.querySelector(\"cart__order__form\")\n-    const firstName = form.elements.firstName\n+    const firstName = form.firstName\n     const lastName = form.elements.lastName.value\n     const address = form.elements.address.value\n     const city = form.elements.city.value\n     const email = form.elements.email.value\n"
+                },
+                {
+                    "date": 1676631849795,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -169,9 +169,9 @@\n \n \n function makeRequestBody(){\n     const form = document.querySelector(\"cart__order__form\")\n-    const firstName = form.firstName\n+    const firstName = form.firstName.value\n     const lastName = form.elements.lastName.value\n     const address = form.elements.address.value\n     const city = form.elements.city.value\n     const email = form.elements.email.value\n"
+                },
+                {
+                    "date": 1676631874657,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -169,9 +169,9 @@\n \n \n function makeRequestBody(){\n     const form = document.querySelector(\"cart__order__form\")\n-    const firstName = form.firstName.value\n+    const firstName = for\n     const lastName = form.elements.lastName.value\n     const address = form.elements.address.value\n     const city = form.elements.city.value\n     const email = form.elements.email.value\n"
+                },
+                {
+                    "date": 1676631892063,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -169,9 +169,9 @@\n \n \n function makeRequestBody(){\n     const form = document.querySelector(\"cart__order__form\")\n-    const firstName = for\n+    const firstName = form.e\n     const lastName = form.elements.lastName.value\n     const address = form.elements.address.value\n     const city = form.elements.city.value\n     const email = form.elements.email.value\n"
+                },
+                {
+                    "date": 1676631900068,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -169,9 +169,9 @@\n \n \n function makeRequestBody(){\n     const form = document.querySelector(\"cart__order__form\")\n-    const firstName = form.e\n+    const firstName = form.ELEMENT_NODE\n     const lastName = form.elements.lastName.value\n     const address = form.elements.address.value\n     const city = form.elements.city.value\n     const email = form.elements.email.value\n"
+                },
+                {
+                    "date": 1676631914548,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -169,9 +169,9 @@\n \n \n function makeRequestBody(){\n     const form = document.querySelector(\"cart__order__form\")\n-    const firstName = form.ELEMENT_NODE\n+    const firstName = form.ELEMENT_NODE.f\n     const lastName = form.elements.lastName.value\n     const address = form.elements.address.value\n     const city = form.elements.city.value\n     const email = form.elements.email.value\n"
+                },
+                {
+                    "date": 1676631920246,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -169,9 +169,9 @@\n \n \n function makeRequestBody(){\n     const form = document.querySelector(\"cart__order__form\")\n-    const firstName = form.ELEMENT_NODE.f\n+    const firstName = form.ELEMENT_NODE.firstName.\n     const lastName = form.elements.lastName.value\n     const address = form.elements.address.value\n     const city = form.elements.city.value\n     const email = form.elements.email.value\n"
+                },
+                {
+                    "date": 1676632022120,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -146,9 +146,9 @@\n })\n .catch((err) => console.error(err))\n }\n function formIsInvalid(){\n-    const form = document.querySelector(\"cart__order__form\")\n+   // const form = document.querySelector(\"cart__order__form\")\n    const inputs = form.querySelectorAll(\"input\")\n     inputs.forEach((input) =>{\n         if (input.value === \"\"){\n             alert(\"Vous devez compléter ce champ\")\n@@ -169,9 +169,9 @@\n \n \n function makeRequestBody(){\n     const form = document.querySelector(\"cart__order__form\")\n-    const firstName = form.ELEMENT_NODE.firstName.\n+    const firstName = form.ELEMENT_NODE.firstName.value\n     const lastName = form.elements.lastName.value\n     const address = form.elements.address.value\n     const city = form.elements.city.value\n     const email = form.elements.email.value\n"
+                },
+                {
+                    "date": 1676632168432,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -169,13 +169,13 @@\n \n \n function makeRequestBody(){\n     const form = document.querySelector(\"cart__order__form\")\n-    const firstName = form.ELEMENT_NODE.firstName.value\n-    const lastName = form.elements.lastName.value\n-    const address = form.elements.address.value\n-    const city = form.elements.city.value\n-    const email = form.elements.email.value\n+    inputFirstame = document.getElementById(\"firstName\").value;\n+    inputLastname = document.getElementById(\"lastName\").value;\n+    inputAddress = document.getElementById(\"address\").value;\n+    inputCity = document.getElementById(\"city\").value;\n+    inputEmail = document.getElementById(\"email\").value;\n \n     const body = {\n     contact: {\n         firstName: firstName,\n"
+                },
+                {
+                    "date": 1676632266319,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -141,9 +141,9 @@\n })\n .then((res) => res.json())\n .then((data) => {\n const orderId = data.orderId\n-window.location.href = \"front/html/confirmation.html\" + \"?orderId=\" +orderId\n+window.location.href = \"confirmation.html\" + \"?orderId=\" +orderId\n })\n .catch((err) => console.error(err))\n }\n function formIsInvalid(){\n"
+                },
+                {
+                    "date": 1676635325058,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -101,9 +101,9 @@\n     deleteDataFromCache(item)\n  }\n function saveNewDataToCache(item){\n     const dataToSave = JSON.stringify(item)\n-    const key = `${item.id}-${item.color}`\n+    const key = //`${item.id}-${item.color}`\n     localStorage.setItem(key, dataToSave)\n }\n function DeleteToSettings(settings, item) {\n    const supprimer = document.querySelector(\".deleteItem\")\n"
+                },
+                {
+                    "date": 1676635388485,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -101,9 +101,9 @@\n     deleteDataFromCache(item)\n  }\n function saveNewDataToCache(item){\n     const dataToSave = JSON.stringify(item)\n-    const key = //`${item.id}-${item.color}`\n+    const key = id//`${item.id}-${item.color}`\n     localStorage.setItem(key, dataToSave)\n }\n function DeleteToSettings(settings, item) {\n    const supprimer = document.querySelector(\".deleteItem\")\n@@ -141,9 +141,9 @@\n })\n .then((res) => res.json())\n .then((data) => {\n const orderId = data.orderId\n-window.location.href = \"confirmation.html\" + \"?orderId=\" +orderId\n+window.location.href = \"confirmation.html\" + \"?orderId=\" + orderId\n })\n .catch((err) => console.error(err))\n }\n function formIsInvalid(){\n"
+                },
+                {
+                    "date": 1676641832485,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n const cart = []\n \n retrieveItemsFromCache()\n cart.forEach((item) => makeArticle(item))\n-//cart.forEach((item) => displayItem(item))\n+cart.forEach((item) => displayItem(item))\n function retrieveItemsFromCache() {\n     const numberofItems = localStorage.length\n     for (let i = 0; i < numberofItems; i++) {\n     const item = localStorage.getItem(localStorage.key(i)) || \"\"\n"
+                },
+                {
+                    "date": 1676641867985,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n cart.forEach((item) => displayItem(item))\n function retrieveItemsFromCache() {\n     const numberofItems = localStorage.length\n     for (let i = 0; i < numberofItems; i++) {\n-    const item = localStorage.getItem(localStorage.key(i)) || \"\"\n+    const item = localStorage.getItem(\"\"\n     const itemObjet = JSON.parse(item)\n     cart.push(itemObjet)\n     }\n }\n"
+                },
+                {
+                    "date": 1676641874767,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n cart.forEach((item) => displayItem(item))\n function retrieveItemsFromCache() {\n     const numberofItems = localStorage.length\n     for (let i = 0; i < numberofItems; i++) {\n-    const item = localStorage.getItem(\"\"\n+    const item = localStorage.getItem(id\"\n     const itemObjet = JSON.parse(item)\n     cart.push(itemObjet)\n     }\n }\n"
+                },
+                {
+                    "date": 1676641880008,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n cart.forEach((item) => displayItem(item))\n function retrieveItemsFromCache() {\n     const numberofItems = localStorage.length\n     for (let i = 0; i < numberofItems; i++) {\n-    const item = localStorage.getItem(id\"\n+    const item = localStorage.getItem\n     const itemObjet = JSON.parse(item)\n     cart.push(itemObjet)\n     }\n }\n"
+                },
+                {
+                    "date": 1676641899682,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n cart.forEach((item) => displayItem(item))\n function retrieveItemsFromCache() {\n     const numberofItems = localStorage.length\n     for (let i = 0; i < numberofItems; i++) {\n-    const item = localStorage.getItem\n+    const item = localStorage.getItem(localStorage.key(i)) || \"\"\n     const itemObjet = JSON.parse(item)\n     cart.push(itemObjet)\n     }\n }\n"
+                },
+                {
+                    "date": 1676642004133,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,10 @@\n-\n+fetch(\"http://localhost:3000/api/products\")\n+   .then((res) => res.json())\n+   .then((dataKanaps) => {\n+    console.table(dataKanaps);\n+    return addProducts(dataKanaps);\n+   }\n const cart = []\n \n retrieveItemsFromCache()\n cart.forEach((item) => makeArticle(item))\n"
+                },
+                {
+                    "date": 1676642082348,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n    .then((res) => res.json())\n    .then((dataKanaps) => {\n     console.table(dataKanaps);\n     return addProducts(dataKanaps);\n-   }\n+    ) }\n const cart = []\n \n retrieveItemsFromCache()\n cart.forEach((item) => makeArticle(item))\n"
+                },
+                {
+                    "date": 1676642087693,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n    .then((res) => res.json())\n    .then((dataKanaps) => {\n     console.table(dataKanaps);\n     return addProducts(dataKanaps);\n-    ) }\n+     }\n const cart = []\n \n retrieveItemsFromCache()\n cart.forEach((item) => makeArticle(item))\n"
+                },
+                {
+                    "date": 1676642138601,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,5 @@\n-fetch(\"http://localhost:3000/api/products\")\n-   .then((res) => res.json())\n-   .then((dataKanaps) => {\n-    console.table(dataKanaps);\n-    return addProducts(dataKanaps);\n-     }\n+\n const cart = []\n \n retrieveItemsFromCache()\n cart.forEach((item) => makeArticle(item))\n"
+                },
+                {
+                    "date": 1676643260160,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n cart.forEach((item) => displayItem(item))\n function retrieveItemsFromCache() {\n     const numberofItems = localStorage.length\n     for (let i = 0; i < numberofItems; i++) {\n-    const item = localStorage.getItem(localStorage.key(i)) || \"\"\n+    const item = localStorage.getItem(localStorage.(i)) || \"\"\n     const itemObjet = JSON.parse(item)\n     cart.push(itemObjet)\n     }\n }\n"
+                },
+                {
+                    "date": 1676643267052,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n cart.forEach((item) => displayItem(item))\n function retrieveItemsFromCache() {\n     const numberofItems = localStorage.length\n     for (let i = 0; i < numberofItems; i++) {\n-    const item = localStorage.getItem(localStorage.(i)) || \"\"\n+    const item = localStorage.getItem(localStorage || \"\"\n     const itemObjet = JSON.parse(item)\n     cart.push(itemObjet)\n     }\n }\n"
+                },
+                {
+                    "date": 1676643277707,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n cart.forEach((item) => displayItem(item))\n function retrieveItemsFromCache() {\n     const numberofItems = localStorage.length\n     for (let i = 0; i < numberofItems; i++) {\n-    const item = localStorage.getItem(localStorage || \"\"\n+    const item = localStorage.getItem(localStorage.(i)) || \"\"\n     const itemObjet = JSON.parse(item)\n     cart.push(itemObjet)\n     }\n }\n"
+                },
+                {
+                    "date": 1676643292953,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n cart.forEach((item) => displayItem(item))\n function retrieveItemsFromCache() {\n     const numberofItems = localStorage.length\n     for (let i = 0; i < numberofItems; i++) {\n-    const item = localStorage.getItem(localStorage.(i)) || \"\"\n+    const item = localStorage.getItem((i)) || \"\"\n     const itemObjet = JSON.parse(item)\n     cart.push(itemObjet)\n     }\n }\n"
+                },
+                {
+                    "date": 1676643298781,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n cart.forEach((item) => displayItem(item))\n function retrieveItemsFromCache() {\n     const numberofItems = localStorage.length\n     for (let i = 0; i < numberofItems; i++) {\n-    const item = localStorage.getItem((i)) || \"\"\n+    const item = localStorage.getItem(paNI(i)) || \"\"\n     const itemObjet = JSON.parse(item)\n     cart.push(itemObjet)\n     }\n }\n"
+                },
+                {
+                    "date": 1676643672836,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,14 +1,33 @@\n+//Démarrage de la page\n+function showProducts(){\n+    if(!localStorage.getItem(\"Panier\")){\n+        document.querySelector(\"#cartAndFormContainer\").innerHTML=ALERT_CART_IS_EMPTY;\n+    } else {\n+        getTotalProducts();\n+    }\n+}\n+//######Recuperation du JSON API######\n+function getProductsApi(){\n+    return fetch (`${URL_API}:${PORT_API}/${URL_ALL_PRODUCT}`)\n+    .then(function(productsApi) {\n \n+        if (productsApi.ok) {\n+\n+            return productsApi.json();\n+\n+        }\n+\n+    });\n const cart = []\n \n retrieveItemsFromCache()\n cart.forEach((item) => makeArticle(item))\n cart.forEach((item) => displayItem(item))\n function retrieveItemsFromCache() {\n     const numberofItems = localStorage.length\n     for (let i = 0; i < numberofItems; i++) {\n-    const item = localStorage.getItem(paNI(i)) || \"\"\n+    const item = localStorage.getItem(panier(i)) || \"\"\n     const itemObjet = JSON.parse(item)\n     cart.push(itemObjet)\n     }\n }\n"
+                },
+                {
+                    "date": 1676643809956,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,24 +1,5 @@\n-//Démarrage de la page\n-function showProducts(){\n-    if(!localStorage.getItem(\"Panier\")){\n-        document.querySelector(\"#cartAndFormContainer\").innerHTML=ALERT_CART_IS_EMPTY;\n-    } else {\n-        getTotalProducts();\n-    }\n-}\n-//######Recuperation du JSON API######\n-function getProductsApi(){\n-    return fetch (`${URL_API}:${PORT_API}/${URL_ALL_PRODUCT}`)\n-    .then(function(productsApi) {\n \n-        if (productsApi.ok) {\n-\n-            return productsApi.json();\n-\n-        }\n-\n-    });\n const cart = []\n \n retrieveItemsFromCache()\n cart.forEach((item) => makeArticle(item))\n"
+                },
+                {
+                    "date": 1676643816526,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-\n+const local = JSON.parse(localStorage.getItem(\"user\"))\n const cart = []\n \n retrieveItemsFromCache()\n cart.forEach((item) => makeArticle(item))\n"
+                },
+                {
+                    "date": 1676643821672,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-const local = JSON.parse(localStorage.getItem(\"user\"))\n+const local = JSON.parse(localStorage.getItem(\"\"))\n const cart = []\n \n retrieveItemsFromCache()\n cart.forEach((item) => makeArticle(item))\n"
+                },
+                {
+                    "date": 1676643925684,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-const local = JSON.parse(localStorage.getItem(\"\"))\n+const c = JSON.parse(localStorage.getItem(\"panier\"))\n const cart = []\n \n retrieveItemsFromCache()\n cart.forEach((item) => makeArticle(item))\n"
+                },
+                {
+                    "date": 1676643934058,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-const c = JSON.parse(localStorage.getItem(\"panier\"))\n+const cart = JSON.parse(localStorage.getItem(\"panier\"))\n const cart = []\n \n retrieveItemsFromCache()\n cart.forEach((item) => makeArticle(item))\n"
+                },
+                {
+                    "date": 1676643941744,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,5 @@\n const cart = JSON.parse(localStorage.getItem(\"panier\"))\n-const cart = []\n \n retrieveItemsFromCache()\n cart.forEach((item) => makeArticle(item))\n cart.forEach((item) => displayItem(item))\n"
+                },
+                {
+                    "date": 1676643981050,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n cart.forEach((item) => displayItem(item))\n function retrieveItemsFromCache() {\n     const numberofItems = localStorage.length\n     for (let i = 0; i < numberofItems; i++) {\n-    const item = localStorage.getItem(panier(i)) || \"\"\n+    const item = localStorage.getItem(panier) || \"\"\n     const itemObjet = JSON.parse(item)\n     cart.push(itemObjet)\n     }\n }\n"
+                },
+                {
+                    "date": 1676643996411,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n cart.forEach((item) => displayItem(item))\n function retrieveItemsFromCache() {\n     const numberofItems = localStorage.length\n     for (let i = 0; i < numberofItems; i++) {\n-    const item = localStorage.getItem(panier) || \"\"\n+    const item = localStorage.getItem(panier) \n     const itemObjet = JSON.parse(item)\n     cart.push(itemObjet)\n     }\n }\n"
+                },
+                {
+                    "date": 1676644003162,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n cart.forEach((item) => displayItem(item))\n function retrieveItemsFromCache() {\n     const numberofItems = localStorage.length\n     for (let i = 0; i < numberofItems; i++) {\n-    const item = localStorage.getItem(panier) \n+    const item = localStorage.getItem(\"panier\") \n     const itemObjet = JSON.parse(item)\n     cart.push(itemObjet)\n     }\n }\n"
+                },
+                {
+                    "date": 1676644156090,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,8 @@\n const cart = JSON.parse(localStorage.getItem(\"panier\"))\n \n+\n+\n retrieveItemsFromCache()\n cart.forEach((item) => makeArticle(item))\n cart.forEach((item) => displayItem(item))\n function retrieveItemsFromCache() {\n"
+                },
+                {
+                    "date": 1676644229390,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,24 @@\n const cart = JSON.parse(localStorage.getItem(\"panier\"))\n \n+fetch(\"http://localhost:3000/api/products/${id}`)\n+   .then((reponse) => reponse.json())\n+   .then((res) => dataKanap(res)) \n \n+function dataKanap(kanap) {\n+    //récupération de toutes les données dans l'objet kanap\n+    const {altTxt, colors, description, imageUrl, name, price, id}  = kanap\n+    //les données sont passées dans des fonctions qui vont les afficher\n+    itemPrice = price\n+    imgUrl = imageUrl\n+    altText = altTxt\n+    productName = name \n+    makeImage(imageUrl, altTxt)\n+    makeTitle(name)\n+    makePrice(price)\n+    makeDescription(description)\n+    makeColors(colors)\n+}\n \n retrieveItemsFromCache()\n cart.forEach((item) => makeArticle(item))\n cart.forEach((item) => displayItem(item))\n"
+                },
+                {
+                    "date": 1676644235270,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n const cart = JSON.parse(localStorage.getItem(\"panier\"))\n \n-fetch(\"http://localhost:3000/api/products/${id}`)\n+fetch(\"http://localhost:3000/api/products/\")\n    .then((reponse) => reponse.json())\n    .then((res) => dataKanap(res)) \n \n function dataKanap(kanap) {\n"
+                },
+                {
+                    "date": 1676644256913,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n const cart = JSON.parse(localStorage.getItem(\"panier\"))\n \n fetch(\"http://localhost:3000/api/products/\")\n    .then((reponse) => reponse.json())\n-   .then((res) => dataKanap(res)) \n+   .then((res) => (res)) \n \n function dataKanap(kanap) {\n     //récupération de toutes les données dans l'objet kanap\n     const {altTxt, colors, description, imageUrl, name, price, id}  = kanap\n"
+                },
+                {
+                    "date": 1676644276706,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,13 @@\n const cart = JSON.parse(localStorage.getItem(\"panier\"))\n \n fetch(\"http://localhost:3000/api/products/\")\n    .then((reponse) => reponse.json())\n-   .then((res) => (res)) \n+   .then((res) => product(res)) \n \n function dataKanap(kanap) {\n     //récupération de toutes les données dans l'objet kanap\n-    const {altTxt, colors, description, imageUrl, name, price, id}  = kanap\n+    const {altTxt, colors, description, imageUrl, name, price, id}  = product\n     //les données sont passées dans des fonctions qui vont les afficher\n     itemPrice = price\n     imgUrl = imageUrl\n     altText = altTxt\n"
+                },
+                {
+                    "date": 1676644293185,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n     itemPrice = price\n     imgUrl = imageUrl\n     altText = altTxt\n     productName = name \n-    makeImage(imageUrl, altTxt)\n+   // makeImage(imageUrl, altTxt)\n     makeTitle(name)\n     makePrice(price)\n     makeDescription(description)\n     makeColors(colors)\n"
+                },
+                {
+                    "date": 1676644301004,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,10 +12,10 @@\n     imgUrl = imageUrl\n     altText = altTxt\n     productName = name \n    // makeImage(imageUrl, altTxt)\n-    makeTitle(name)\n-    makePrice(price)\n+   // makeTitle(name)\n+   // makePrice(price)\n     makeDescription(description)\n     makeColors(colors)\n }\n \n"
+                },
+                {
+                    "date": 1676644307419,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,10 +14,10 @@\n     productName = name \n    // makeImage(imageUrl, altTxt)\n    // makeTitle(name)\n    // makePrice(price)\n-    makeDescription(description)\n-    makeColors(colors)\n+    //makeDescription(description)\n+    //makeColors(colors)\n }\n \n retrieveItemsFromCache()\n cart.forEach((item) => makeArticle(item))\n"
+                },
+                {
+                    "date": 1676644323295,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n fetch(\"http://localhost:3000/api/products/\")\n    .then((reponse) => reponse.json())\n    .then((res) => product(res)) \n \n-function dataKanap(kanap) {\n+function dataKanap(PR) {\n     //récupération de toutes les données dans l'objet kanap\n     const {altTxt, colors, description, imageUrl, name, price, id}  = product\n     //les données sont passées dans des fonctions qui vont les afficher\n     itemPrice = price\n"
+                },
+                {
+                    "date": 1676644331872,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,11 @@\n const cart = JSON.parse(localStorage.getItem(\"panier\"))\n \n fetch(\"http://localhost:3000/api/products/\")\n    .then((reponse) => reponse.json())\n-   .then((res) => product(res)) \n+   .then((res) => product()) \n \n-function dataKanap(PR) {\n+function dataKanap(product) {\n     //récupération de toutes les données dans l'objet kanap\n     const {altTxt, colors, description, imageUrl, name, price, id}  = product\n     //les données sont passées dans des fonctions qui vont les afficher\n     itemPrice = price\n"
+                },
+                {
+                    "date": 1676644390951,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n const cart = JSON.parse(localStorage.getItem(\"panier\"))\n \n fetch(\"http://localhost:3000/api/products/\")\n    .then((reponse) => reponse.json())\n-   .then((res) => product()) \n+   .then((res) => product(dataKanap)) \n \n function dataKanap(product) {\n     //récupération de toutes les données dans l'objet kanap\n     const {altTxt, colors, description, imageUrl, name, price, id}  = product\n@@ -18,19 +18,8 @@\n     //makeDescription(description)\n     //makeColors(colors)\n }\n \n-retrieveItemsFromCache()\n-cart.forEach((item) => makeArticle(item))\n-cart.forEach((item) => displayItem(item))\n-function retrieveItemsFromCache() {\n-    const numberofItems = localStorage.length\n-    for (let i = 0; i < numberofItems; i++) {\n-    const item = localStorage.getItem(\"panier\") \n-    const itemObjet = JSON.parse(item)\n-    cart.push(itemObjet)\n-    }\n-}\n \n function makeArticle(item){\n     const addArticle = document.createElement(\"article\")\n     addArticle.classList.add(\"cart__item\")\n"
+                },
+                {
+                    "date": 1676644401443,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,8 +18,19 @@\n     //makeDescription(description)\n     //makeColors(colors)\n }\n \n+retrieveItemsFromCache()\n+cart.forEach((item) => makeArticle(item))\n+cart.forEach((item) => displayItem(item))\n+function retrieveItemsFromCache() {\n+    const numberofItems = localStorage.length\n+    for (let i = 0; i < numberofItems; i++) {\n+    const item = localStorage.getItem(\"panier\") \n+    const itemObjet = JSON.parse(item)\n+    cart.push(itemObjet)\n+    }\n+}\n \n function makeArticle(item){\n     const addArticle = document.createElement(\"article\")\n     addArticle.classList.add(\"cart__item\")\n"
+                },
+                {
+                    "date": 1676644429673,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,9 @@\n function retrieveItemsFromCache() {\n     const numberofItems = localStorage.length\n     for (let i = 0; i < numberofItems; i++) {\n     const item = localStorage.getItem(\"panier\") \n-    const itemObjet = JSON.parse(item)\n+    const itemObjet = JSON.parse(panier)\n     cart.push(itemObjet)\n     }\n }\n \n"
+                },
+                {
+                    "date": 1676644439599,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,9 @@\n function retrieveItemsFromCache() {\n     const numberofItems = localStorage.length\n     for (let i = 0; i < numberofItems; i++) {\n     const item = localStorage.getItem(\"panier\") \n-    const itemObjet = JSON.parse(panier)\n+    const itemObjet = JSON.parse(\"panier)\n     cart.push(itemObjet)\n     }\n }\n \n"
+                },
+                {
+                    "date": 1676644447710,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,9 @@\n function retrieveItemsFromCache() {\n     const numberofItems = localStorage.length\n     for (let i = 0; i < numberofItems; i++) {\n     const item = localStorage.getItem(\"panier\") \n-    const itemObjet = JSON.parse(\"panier)\n+    const itemObjet = JSON.parse(panier)\n     cart.push(itemObjet)\n     }\n }\n \n"
+                },
+                {
+                    "date": 1676644482247,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n     itemPrice = price\n     imgUrl = imageUrl\n     altText = altTxt\n     productName = name \n-   // makeImage(imageUrl, altTxt)\n+   makeImage(imageUrl, altTxt)\n    // makeTitle(name)\n    // makePrice(price)\n     //makeDescription(description)\n     //makeColors(colors)\n"
+                },
+                {
+                    "date": 1676644487522,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n     itemPrice = price\n     imgUrl = imageUrl\n     altText = altTxt\n     productName = name \n-   makeImage(imageUrl, altTxt)\n+   make(imageUrl, altTxt)\n    // makeTitle(name)\n    // makePrice(price)\n     //makeDescription(description)\n     //makeColors(colors)\n"
+                },
+                {
+                    "date": 1676644499955,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n     itemPrice = price\n     imgUrl = imageUrl\n     altText = altTxt\n     productName = name \n-   make(imageUrl, altTxt)\n+   makeArticle()\n    // makeTitle(name)\n    // makePrice(price)\n     //makeDescription(description)\n     //makeColors(colors)\n"
+                },
+                {
+                    "date": 1676644517283,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n     itemPrice = price\n     imgUrl = imageUrl\n     altText = altTxt\n     productName = name \n-   makeArticle()\n+   //makeArticle(item)\n    // makeTitle(name)\n    // makePrice(price)\n     //makeDescription(description)\n     //makeColors(colors)\n"
+                },
+                {
+                    "date": 1676644669067,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n const cart = JSON.parse(localStorage.getItem(\"panier\"))\n \n-fetch(\"http://localhost:3000/api/products/\")\n+fetch(http://localhost:3000/api/products/\")\n    .then((reponse) => reponse.json())\n    .then((res) => product(dataKanap)) \n \n function dataKanap(product) {\n"
+                },
+                {
+                    "date": 1676644679429,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n const cart = JSON.parse(localStorage.getItem(\"panier\"))\n \n-fetch(http://localhost:3000/api/products/\")\n+fetch(`http://localhost:3000/api/products/)\n    .then((reponse) => reponse.json())\n    .then((res) => product(dataKanap)) \n \n function dataKanap(product) {\n"
+                },
+                {
+                    "date": 1676644685144,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n const cart = JSON.parse(localStorage.getItem(\"panier\"))\n \n-fetch(`http://localhost:3000/api/products/)\n+fetch(`http://localhost:3000/api/products/$`)\n    .then((reponse) => reponse.json())\n    .then((res) => product(dataKanap)) \n \n function dataKanap(product) {\n"
+                },
+                {
+                    "date": 1676644723334,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n const cart = JSON.parse(localStorage.getItem(\"panier\"))\n \n-fetch(`http://localhost:3000/api/products/$`)\n+fetch(`http://localhost:3000/api/products/${id}`)\n    .then((reponse) => reponse.json())\n-   .then((res) => product(dataKanap)) \n+   .then((res) => )) \n \n function dataKanap(product) {\n     //récupération de toutes les données dans l'objet kanap\n     const {altTxt, colors, description, imageUrl, name, price, id}  = product\n"
+                },
+                {
+                    "date": 1676644728987,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n const cart = JSON.parse(localStorage.getItem(\"panier\"))\n \n fetch(`http://localhost:3000/api/products/${id}`)\n    .then((reponse) => reponse.json())\n-   .then((res) => )) \n+   .then((res) => getDat)) \n \n function dataKanap(product) {\n     //récupération de toutes les données dans l'objet kanap\n     const {altTxt, colors, description, imageUrl, name, price, id}  = product\n"
+                },
+                {
+                    "date": 1676644737278,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n const cart = JSON.parse(localStorage.getItem(\"panier\"))\n \n fetch(`http://localhost:3000/api/products/${id}`)\n    .then((reponse) => reponse.json())\n-   .then((res) => getDat)) \n+   .then((res) => get)) \n \n function dataKanap(product) {\n     //récupération de toutes les données dans l'objet kanap\n     const {altTxt, colors, description, imageUrl, name, price, id}  = product\n"
+                },
+                {
+                    "date": 1676644743180,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n const cart = JSON.parse(localStorage.getItem(\"panier\"))\n \n fetch(`http://localhost:3000/api/products/${id}`)\n    .then((reponse) => reponse.json())\n-   .then((res) => get)) \n+   .then((res) => getDa)) \n \n function dataKanap(product) {\n     //récupération de toutes les données dans l'objet kanap\n     const {altTxt, colors, description, imageUrl, name, price, id}  = product\n"
+                },
+                {
+                    "date": 1676644749404,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n const cart = JSON.parse(localStorage.getItem(\"panier\"))\n \n fetch(`http://localhost:3000/api/products/${id}`)\n    .then((reponse) => reponse.json())\n-   .then((res) => getDa)) \n+   .then((res) => getDataKanap)) \n \n function dataKanap(product) {\n     //récupération de toutes les données dans l'objet kanap\n     const {altTxt, colors, description, imageUrl, name, price, id}  = product\n"
+                },
+                {
+                    "date": 1676644756254,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n const cart = JSON.parse(localStorage.getItem(\"panier\"))\n \n fetch(`http://localhost:3000/api/products/${id}`)\n    .then((reponse) => reponse.json())\n-   .then((res) => getDataKanap)) \n+   .then((res) => getDataKanap(e))) \n \n function dataKanap(product) {\n     //récupération de toutes les données dans l'objet kanap\n     const {altTxt, colors, description, imageUrl, name, price, id}  = product\n"
+                },
+                {
+                    "date": 1676644800852,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,12 +1,12 @@\n const cart = JSON.parse(localStorage.getItem(\"panier\"))\n \n fetch(`http://localhost:3000/api/products/${id}`)\n    .then((reponse) => reponse.json())\n-   .then((res) => getDataKanap(e))) \n+   .then((res) => getDataKanap(res))) \n \n function dataKanap(product) {\n-    //récupération de toutes les données dans l'objet kanap\n+    //récupération de toutes les données dans l'objet product\n     const {altTxt, colors, description, imageUrl, name, price, id}  = product\n     //les données sont passées dans des fonctions qui vont les afficher\n     itemPrice = price\n     imgUrl = imageUrl\n"
+                },
+                {
+                    "date": 1676644806948,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n \n function dataKanap(product) {\n     //récupération de toutes les données dans l'objet product\n     const {altTxt, colors, description, imageUrl, name, price, id}  = product\n-    //les données sont passées dans des fonctions qui vont les afficher\n+    //les données sont passées dans des fonctions qui vont les afficher \n     itemPrice = price\n     imgUrl = imageUrl\n     altText = altTxt\n     productName = name \n"
+                },
+                {
+                    "date": 1676644813256,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n \n function dataKanap(product) {\n     //récupération de toutes les données dans l'objet product\n     const {altTxt, colors, description, imageUrl, name, price, id}  = product\n-    //les données sont passées dans des fonctions qui vont les afficher \n+    //les données sont passées dans des fonctions qui vont les afficher dans \n     itemPrice = price\n     imgUrl = imageUrl\n     altText = altTxt\n     productName = name \n"
+                },
+                {
+                    "date": 1676644828639,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n \n function dataKanap(product) {\n     //récupération de toutes les données dans l'objet product\n     const {altTxt, colors, description, imageUrl, name, price, id}  = product\n-    //les données sont passées dans des fonctions qui vont les afficher dans \n+    //rÉC\n     itemPrice = price\n     imgUrl = imageUrl\n     altText = altTxt\n     productName = name \n"
+                },
+                {
+                    "date": 1676644834762,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n \n function dataKanap(product) {\n     //récupération de toutes les données dans l'objet product\n     const {altTxt, colors, description, imageUrl, name, price, id}  = product\n-    //rÉC\n+    //Récupération \n     itemPrice = price\n     imgUrl = imageUrl\n     altText = altTxt\n     productName = name \n"
+                },
+                {
+                    "date": 1676644846391,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n    .then((reponse) => reponse.json())\n    .then((res) => getDataKanap(res))) \n \n function dataKanap(product) {\n-    //récupération de toutes les données dans l'objet product\n+    //récupération de toutes les données de l'dans l'objet product\n     const {altTxt, colors, description, imageUrl, name, price, id}  = product\n     //Récupération \n     itemPrice = price\n     imgUrl = imageUrl\n"
+                },
+                {
+                    "date": 1676644861639,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,11 +4,11 @@\n    .then((reponse) => reponse.json())\n    .then((res) => getDataKanap(res))) \n \n function dataKanap(product) {\n-    //récupération de toutes les données de l'dans l'objet product\n+    //récupération de toutes les données de l'API dans l'objet product\n     const {altTxt, colors, description, imageUrl, name, price, id}  = product\n-    //Récupération \n+    //Récupération de\n     itemPrice = price\n     imgUrl = imageUrl\n     altText = altTxt\n     productName = name \n"
+                },
+                {
+                    "date": 1676644868178,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n \n function dataKanap(product) {\n     //récupération de toutes les données de l'API dans l'objet product\n     const {altTxt, colors, description, imageUrl, name, price, id}  = product\n-    //Récupération de\n+    //Récupération des images, \n     itemPrice = price\n     imgUrl = imageUrl\n     altText = altTxt\n     productName = name \n"
+                },
+                {
+                    "date": 1676644876620,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n \n function dataKanap(product) {\n     //récupération de toutes les données de l'API dans l'objet product\n     const {altTxt, colors, description, imageUrl, name, price, id}  = product\n-    //Récupération des images, \n+    //Récupération des images, altText, product\n     itemPrice = price\n     imgUrl = imageUrl\n     altText = altTxt\n     productName = name \n"
+                },
+                {
+                    "date": 1676644883067,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n \n function dataKanap(product) {\n     //récupération de toutes les données de l'API dans l'objet product\n     const {altTxt, colors, description, imageUrl, name, price, id}  = product\n-    //Récupération des images, altText, product\n+    //Récupération des images, altText, productName, Price\n     itemPrice = price\n     imgUrl = imageUrl\n     altText = altTxt\n     productName = name \n"
+                },
+                {
+                    "date": 1676644922990,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n const cart = JSON.parse(localStorage.getItem(\"panier\"))\n-\n+console.log\n fetch(`http://localhost:3000/api/products/${id}`)\n    .then((reponse) => reponse.json())\n    .then((res) => getDataKanap(res))) \n \n"
+                },
+                {
+                    "date": 1676644966494,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n const cart = JSON.parse(localStorage.getItem(\"panier\"))\n-console.log\n+console.log(cart)\n fetch(`http://localhost:3000/api/products/${id}`)\n    .then((reponse) => reponse.json())\n-   .then((res) => getDataKanap(res))) \n+   .then((res) => getDataKanap(res))\n \n function dataKanap(product) {\n     //récupération de toutes les données de l'API dans l'objet product\n     const {altTxt, colors, description, imageUrl, name, price, id}  = product\n"
+                },
+                {
+                    "date": 1676644992611,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n const cart = JSON.parse(localStorage.getItem(\"panier\"))\n console.log(cart)\n-fetch(`http://localhost:3000/api/products/${id}`)\n+fetch(`http://localhost:3000/api/products/`)\n    .then((reponse) => reponse.json())\n    .then((res) => getDataKanap(res))\n \n function dataKanap(product) {\n"
+                },
+                {
+                    "date": 1676645038308,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n console.log(cart)\n fetch(`http://localhost:3000/api/products/`)\n    .then((reponse) => reponse.json())\n    .then((res) => getDataKanap(res))\n-\n+   console.log(cart)\n function dataKanap(product) {\n     //récupération de toutes les données de l'API dans l'objet product\n     const {altTxt, colors, description, imageUrl, name, price, id}  = product\n     //Récupération des images, altText, productName, Price\n"
+                },
+                {
+                    "date": 1676645050444,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n console.log(cart)\n fetch(`http://localhost:3000/api/products/`)\n    .then((reponse) => reponse.json())\n    .then((res) => getDataKanap(res))\n-   console.log(cart)\n+   console.log(GE)\n function dataKanap(product) {\n     //récupération de toutes les données de l'API dans l'objet product\n     const {altTxt, colors, description, imageUrl, name, price, id}  = product\n     //Récupération des images, altText, productName, Price\n"
+                },
+                {
+                    "date": 1676645056885,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n console.log(cart)\n fetch(`http://localhost:3000/api/products/`)\n    .then((reponse) => reponse.json())\n    .then((res) => getDataKanap(res))\n-   console.log(GE)\n+   console.log(getDataKanap)\n function dataKanap(product) {\n     //récupération de toutes les données de l'API dans l'objet product\n     const {altTxt, colors, description, imageUrl, name, price, id}  = product\n     //Récupération des images, altText, productName, Price\n"
+                },
+                {
+                    "date": 1676645085027,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,9 @@\n fetch(`http://localhost:3000/api/products/`)\n    .then((reponse) => reponse.json())\n    .then((res) => getDataKanap(res))\n    console.log(getDataKanap)\n+   \n function dataKanap(product) {\n     //récupération de toutes les données de l'API dans l'objet product\n     const {altTxt, colors, description, imageUrl, name, price, id}  = product\n     //Récupération des images, altText, productName, Price\n"
+                },
+                {
+                    "date": 1676648486923,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n fetch(`http://localhost:3000/api/products/`)\n    .then((reponse) => reponse.json())\n    .then((res) => getDataKanap(res))\n    console.log(getDataKanap)\n-   \n+\n function dataKanap(product) {\n     //récupération de toutes les données de l'API dans l'objet product\n     const {altTxt, colors, description, imageUrl, name, price, id}  = product\n     //Récupération des images, altText, productName, Price\n@@ -134,9 +134,9 @@\n     displayTotalPrice\n     deleteDataFromCache(item)\n }\n function deleteDataFromCache(item){\n-const key = `${item.id}-${item.color}`\n+const key = id`${item.id}-${item.color}`\n localStorage.removeItem(key)\n }\n //console.log(cart)\n const orderButton = document.querySelector(\"#order\")\n"
+                },
+                {
+                    "date": 1676730171550,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n    .then((reponse) => reponse.json())\n    .then((res) => getDataKanap(res))\n    console.log(getDataKanap)\n \n-function dataKanap(product) {\n+function GETdataKanap(product) {\n     //récupération de toutes les données de l'API dans l'objet product\n     const {altTxt, colors, description, imageUrl, name, price, id}  = product\n     //Récupération des images, altText, productName, Price\n     itemPrice = price\n@@ -134,9 +134,9 @@\n     displayTotalPrice\n     deleteDataFromCache(item)\n }\n function deleteDataFromCache(item){\n-const key = id`${item.id}-${item.color}`\n+const key = id //`${item.id}-${item.color}`\n localStorage.removeItem(key)\n }\n //console.log(cart)\n const orderButton = document.querySelector(\"#order\")\n"
+                },
+                {
+                    "date": 1676730343662,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,11 +2,11 @@\n console.log(cart)\n fetch(`http://localhost:3000/api/products/`)\n    .then((reponse) => reponse.json())\n    .then((res) => getDataKanap(res))\n-   console.log(getDataKanap)\n+   //console.log(getDataKanap)\n \n-function GETdataKanap(product) {\n+function getdataKanap(product) {\n     //récupération de toutes les données de l'API dans l'objet product\n     const {altTxt, colors, description, imageUrl, name, price, id}  = product\n     //Récupération des images, altText, productName, Price\n     itemPrice = price\n"
+                },
+                {
+                    "date": 1676730436396,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n const cart = JSON.parse(localStorage.getItem(\"panier\"))\n console.log(cart)\n fetch(`http://localhost:3000/api/products/`)\n    .then((reponse) => reponse.json())\n-   .then((res) => getDataKanap(res))\n+   .then((res) => getDataKanap())\n    //console.log(getDataKanap)\n \n function getdataKanap(product) {\n     //récupération de toutes les données de l'API dans l'objet product\n"
+                },
+                {
+                    "date": 1676730505588,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n const cart = JSON.parse(localStorage.getItem(\"panier\"))\n console.log(cart)\n fetch(`http://localhost:3000/api/products/`)\n    .then((reponse) => reponse.json())\n-   .then((res) => getDataKanap())\n+   .then((res) => panier(product))\n    //console.log(getDataKanap)\n \n function getdataKanap(product) {\n     //récupération de toutes les données de l'API dans l'objet product\n"
+                },
+                {
+                    "date": 1676730529136,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n    .then((reponse) => reponse.json())\n    .then((res) => panier(product))\n    //console.log(getDataKanap)\n \n-function getdataKanap(product) {\n+function panier(product) {\n     //récupération de toutes les données de l'API dans l'objet product\n     const {altTxt, colors, description, imageUrl, name, price, id}  = product\n     //Récupération des images, altText, productName, Price\n     itemPrice = price\n"
+                },
+                {
+                    "date": 1676730853296,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-const cart = JSON.parse(localStorage.getItem(\"panier\"))\n+const panier = JSON.parse(localStorage.getItem(\"panier\"))\n console.log(cart)\n fetch(`http://localhost:3000/api/products/`)\n    .then((reponse) => reponse.json())\n    .then((res) => panier(product))\n"
+                },
+                {
+                    "date": 1676730861995,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n const panier = JSON.parse(localStorage.getItem(\"panier\"))\n-console.log(cart)\n+console.log(PZ)\n fetch(`http://localhost:3000/api/products/`)\n    .then((reponse) => reponse.json())\n    .then((res) => panier(product))\n    //console.log(getDataKanap)\n"
+                },
+                {
+                    "date": 1676730868586,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n const panier = JSON.parse(localStorage.getItem(\"panier\"))\n-console.log(PZ)\n+console.log(panier)\n fetch(`http://localhost:3000/api/products/`)\n    .then((reponse) => reponse.json())\n    .then((res) => panier(product))\n    //console.log(getDataKanap)\n"
+                },
+                {
+                    "date": 1676730911697,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n const panier = JSON.parse(localStorage.getItem(\"panier\"))\n console.log(panier)\n fetch(`http://localhost:3000/api/products/`)\n    .then((reponse) => reponse.json())\n-   .then((res) => panier(product))\n+   .then((res) => getDataKanap(product))\n    //console.log(getDataKanap)\n \n function panier(product) {\n     //récupération de toutes les données de l'API dans l'objet product\n"
+                },
+                {
+                    "date": 1676732310445,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n- panier = JSON.parse(localStorage.getItem(\"panier\"))\n+l panier = JSON.parse(localStorage.getItem(\"panier\"))\n console.log(panier)\n fetch(`http://localhost:3000/api/products/`)\n    .then((reponse) => reponse.json())\n    .then((res) => getDataKanap(product))\n"
+                },
+                {
+                    "date": 1676733049812,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n     const {altTxt, colors, description, imageUrl, name, price, id}  = item\n     itemPrice = price\n     imgUrl = imageUrl\n     altText = altTxt\n-    iMName = name \n+    iName = name \n     makeArticle(product)\n     makeTitle(name)\n     makePrice(price)\n     makeDescription(description)\n"
+                }
+            ],
+            "date": 1676630240116,
+            "name": "Commit-0",
+            "content": "\nconst cart = []\n\nretrieveItemsFromCache()\ncart.forEach((item) => makeArticle(item))\n//cart.forEach((item) => displayItem(item))\nfunction retrieveItemsFromCache() {\n    const numberofItems = localStorage.length\n    for (let i = 0; i < numberofItems; i++) {\n    const item = localStorage.getItem(localStorage.key(i)) || \"\"\n    const itemObjet = JSON.parse(item)\n    cart.push(itemObjet)\n    }\n}\n"
+        }
+    ]
+}

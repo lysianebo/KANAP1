@@ -1,0 +1,22 @@
+{
+    "sourceFile": "front/js/pisteCart.txt",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1676909314080,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1676970041614,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,4 +24,5 @@\n \n     }\n }\n \n+fddddddddddddd\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1676909314080,
+            "name": "Commit-0",
+            "content": "// Récupération des produits depuis le fichier JSON\nfunction addApiProducts(dataKanaps) {\nfetch(\"http://localhost:3000/api/products\")\n   .then((res) => res.json())\n   .then((dataKanaps) => {\n    console.table(panier);\n    return addApiProducts(panier);\n   })\n    panier.forEach(element => {\n  const {_id, imageUrl, altTxt, name, description, price} = element\n  const items = document.getElementById (\"items\")\n  })\n    }\n//Récupération du localStorage\nfunction getPanier(){\n    // --- Gestion du panier basket vide\n    let panier = localStorage.getItem(\"panier\")\n    if(panier == null){\n        return []\n    }else{\n        return JSON.parse(panier)\n        // Stockage des informations dans le localStorage\nwindow.localStorage.setItem(\"panier\", JSON.stringify (panier));\n\n    }\n}\n\n"
+        }
+    ]
+}

@@ -2,10 +2,10 @@
 fetch("http://localhost:3000/api/products")
    .then((res) => res.json())
    .then((dataKanaps) => {
-    console.log(dataKanaps);
+    console.table(dataKanaps);
     return addProducts(dataKanaps);
    })
-  
+ 
 
 function addProducts(dataKanaps) {
 

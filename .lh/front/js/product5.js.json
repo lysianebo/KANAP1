@@ -1,0 +1,626 @@
+{
+    "sourceFile": "front/js/product5.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 152,
+            "patches": [
+                {
+                    "date": 1676625981699,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1676626186133,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -82,9 +82,9 @@\n } \n //Sauvegarde dans localStorage if commande valide\n function saveCommand(color, quantity){\n     let isFound = false;\n-    let panier =   localStorage.getItem(\"panier\")  // tu dois réccupérer le panier qui est stoké dans le localstorage et uniquement celui-ci, pas besoin de lui donner une valeur par défaut comme tu vaais essayer de faire ligne 4\n+  //  let panier =   localStorage.getItem(\"panier\")  // tu dois réccupérer le panier qui est stoké dans le localstorage et uniquement celui-ci, pas besoin de lui donner une valeur par défaut comme tu vaais essayer de faire ligne 4\n     // panier n'existe pas\n     if(!panier){  // soit le panier est vide\n         let data = [{\n             id : id,\n"
+                },
+                {
+                    "date": 1676626398527,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -65,9 +65,9 @@\n //console.log(buttonEvent) j'ai du mal à voir ce que ce console.log peut d'apporter\n function buttonEvent(){\n     const color = document.querySelector(\"#colors\").value\n     const quantity = document.querySelector(\"#quantity\").value\n-  if (invalidCommand(color, quantity)) return\n+ // if (invalidCommand(color, quantity)) return\n     saveCommand(color,quantity)\n     redirectToCart()\n }\n function invalidCommand(color, quantity){\n"
+                },
+                {
+                    "date": 1676626429952,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -82,9 +82,9 @@\n } \n //Sauvegarde dans localStorage if commande valide\n function saveCommand(color, quantity){\n     let isFound = false;\n-  //  let panier =   localStorage.getItem(\"panier\")  // tu dois réccupérer le panier qui est stoké dans le localstorage et uniquement celui-ci, pas besoin de lui donner une valeur par défaut comme tu vaais essayer de faire ligne 4\n+  let panier =   localStorage.getItem(\"panier\")  // tu dois réccupérer le panier qui est stoké dans le localstorage et uniquement celui-ci, pas besoin de lui donner une valeur par défaut comme tu vaais essayer de faire ligne 4\n     // panier n'existe pas\n     if(!panier){  // soit le panier est vide\n         let data = [{\n             id : id,\n"
+                },
+                {
+                    "date": 1676626703932,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n const queryString = window.location.search\n const urlParams = new URLSearchParams(queryString)\n const id = urlParams.get(\"id\")\n-//let panier = \"\"   Pas nécessaire voir commentaire ligne 86\n+let panier = \"\"   Pas nécessaire voir commentaire ligne 86\n console.log({id});\n \n if (id != null){\n     let itemPrice = 0\n"
+                },
+                {
+                    "date": 1676626722755,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n const queryString = window.location.search\n const urlParams = new URLSearchParams(queryString)\n const id = urlParams.get(\"id\")\n-let panier = \"\"   Pas nécessaire voir commentaire ligne 86\n+let panier = \"\"  // Pas nécessaire voir commentaire ligne 86\n console.log({id});\n \n if (id != null){\n     let itemPrice = 0\n"
+                },
+                {
+                    "date": 1676626754185,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,9 +52,9 @@\n     if (p != null)p.textContent = description\n }\n function makeColors(colors) {\n     const select = document.querySelector(\"#colors\")\n-    colors.forEach((color) => {\n+    colors.forEach((colors) => {\n         const option = document.createElement(\"option\")\n         option.value = color\n         option.textContent = color\n         select.appendChild(option)\n"
+                },
+                {
+                    "date": 1676626762705,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,9 +52,9 @@\n     if (p != null)p.textContent = description\n }\n function makeColors(colors) {\n     const select = document.querySelector(\"#colors\")\n-    colors.forEach((colors) => {\n+    colors.forEach((color) => {\n         const option = document.createElement(\"option\")\n         option.value = color\n         option.textContent = color\n         select.appendChild(option)\n"
+                },
+                {
+                    "date": 1676626769825,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,9 +52,9 @@\n     if (p != null)p.textContent = description\n }\n function makeColors(colors) {\n     const select = document.querySelector(\"#colors\")\n-    colors.forEach((color) => {\n+    color.forEach((color) => {\n         const option = document.createElement(\"option\")\n         option.value = color\n         option.textContent = color\n         select.appendChild(option)\n"
+                },
+                {
+                    "date": 1676626775888,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,9 +52,9 @@\n     if (p != null)p.textContent = description\n }\n function makeColors(colors) {\n     const select = document.querySelector(\"#colors\")\n-    color.forEach((color) => {\n+    colors.forEach((color) => {\n         const option = document.createElement(\"option\")\n         option.value = color\n         option.textContent = color\n         select.appendChild(option)\n"
+                },
+                {
+                    "date": 1676626795199,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,9 +50,9 @@\n function makeDescription(description) {\n     const p = document.querySelector(\"#description\")\n     if (p != null)p.textContent = description\n }\n-function makeColors(colors) {\n+function makeColors(color) {\n     const select = document.querySelector(\"#colors\")\n     colors.forEach((color) => {\n         const option = document.createElement(\"option\")\n         option.value = color\n"
+                },
+                {
+                    "date": 1676626803915,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,9 +52,9 @@\n     if (p != null)p.textContent = description\n }\n function makeColors(color) {\n     const select = document.querySelector(\"#colors\")\n-    colors.forEach((color) => {\n+    color.forEach((color) => {\n         const option = document.createElement(\"option\")\n         option.value = color\n         option.textContent = color\n         select.appendChild(option)\n"
+                },
+                {
+                    "date": 1676626964729,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,9 @@\n     makeImage(imageUrl, altTxt)\n     makeTitle(name)\n     makePrice(price)\n     makeDescription(description)\n-    makeColors(colors)\n+    makeColors(color)\n   //  console.log(panier)\n }\n //localStorage.clear()\n function makeImage(imageUrl, altTxt){\n"
+                },
+                {
+                    "date": 1676627005308,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,9 +52,9 @@\n     if (p != null)p.textContent = description\n }\n function makeColors(color) {\n     const select = document.querySelector(\"#colors\")\n-    color.forEach((color) => {\n+    colors.forEach((color) => {\n         const option = document.createElement(\"option\")\n         option.value = color\n         option.textContent = color\n         select.appendChild(option)\n"
+                },
+                {
+                    "date": 1676627015423,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,9 +50,9 @@\n function makeDescription(description) {\n     const p = document.querySelector(\"#description\")\n     if (p != null)p.textContent = description\n }\n-function makeColors(color) {\n+function makeColors(colors) {\n     const select = document.querySelector(\"#colors\")\n     colors.forEach((color) => {\n         const option = document.createElement(\"option\")\n         option.value = color\n"
+                },
+                {
+                    "date": 1676627028939,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,9 @@\n     makeImage(imageUrl, altTxt)\n     makeTitle(name)\n     makePrice(price)\n     makeDescription(description)\n-    makeColors(color)\n+    makeColors(colors)\n   //  console.log(panier)\n }\n //localStorage.clear()\n function makeImage(imageUrl, altTxt){\n"
+                },
+                {
+                    "date": 1676627054566,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -54,9 +54,9 @@\n function makeColors(colors) {\n     const select = document.querySelector(\"#colors\")\n     colors.forEach((color) => {\n         const option = document.createElement(\"option\")\n-        option.value = color\n+        option.value = colors\n         option.textContent = color\n         select.appendChild(option)\n     })\n }\n"
+                },
+                {
+                    "date": 1676627069859,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,13 +50,13 @@\n function makeDescription(description) {\n     const p = document.querySelector(\"#description\")\n     if (p != null)p.textContent = description\n }\n-function makeColors(colors) {\n+function makeColors(color) {\n     const select = document.querySelector(\"#colors\")\n     colors.forEach((color) => {\n         const option = document.createElement(\"option\")\n-        option.value = colors\n+        option.value = color\n         option.textContent = color\n         select.appendChild(option)\n     })\n }\n"
+                },
+                {
+                    "date": 1676627079000,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,9 +52,9 @@\n     if (p != null)p.textContent = description\n }\n function makeColors(color) {\n     const select = document.querySelector(\"#colors\")\n-    colors.forEach((color) => {\n+    color.forEach((color) => {\n         const option = document.createElement(\"option\")\n         option.value = color\n         option.textContent = color\n         select.appendChild(option)\n"
+                },
+                {
+                    "date": 1676627194885,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,11 +50,11 @@\n function makeDescription(description) {\n     const p = document.querySelector(\"#description\")\n     if (p != null)p.textContent = description\n }\n-function makeColors(color) {\n+function makeColors(colors) {\n     const select = document.querySelector(\"#colors\")\n-    color.forEach((color) => {\n+    colors.forEach((color) => {\n         const option = document.createElement(\"option\")\n         option.value = color\n         option.textContent = color\n         select.appendChild(option)\n"
+                },
+                {
+                    "date": 1676627827397,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n const queryString = window.location.search\n const urlParams = new URLSearchParams(queryString)\n const id = urlParams.get(\"id\")\n-let panier = \"\"  // Pas nécessaire voir commentaire ligne 86\n+//let panier = \"\"  // Pas nécessaire voir commentaire ligne 86\n console.log({id});\n \n if (id != null){\n     let itemPrice = 0\n"
+                },
+                {
+                    "date": 1676627985498,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -82,9 +82,9 @@\n } \n //Sauvegarde dans localStorage if commande valide\n function saveCommand(color, quantity){\n     let isFound = false;\n-  let panier =   localStorage.getItem(\"panier\")  // tu dois réccupérer le panier qui est stoké dans le localstorage et uniquement celui-ci, pas besoin de lui donner une valeur par défaut comme tu vaais essayer de faire ligne 4\n+  //let panier =   localStorage.getItem(\"panier\")  // tu dois réccupérer le panier qui est stoké dans le localstorage et uniquement celui-ci, pas besoin de lui donner une valeur par défaut comme tu vaais essayer de faire ligne 4\n     // panier n'existe pas\n     if(!panier){  // soit le panier est vide\n         let data = [{\n             id : id,\n"
+                },
+                {
+                    "date": 1676628027654,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -82,9 +82,9 @@\n } \n //Sauvegarde dans localStorage if commande valide\n function saveCommand(color, quantity){\n     let isFound = false;\n-  //let panier =   localStorage.getItem(\"panier\")  // tu dois réccupérer le panier qui est stoké dans le localstorage et uniquement celui-ci, pas besoin de lui donner une valeur par défaut comme tu vaais essayer de faire ligne 4\n+  let panier =   localStorage.getItem(\"panier\")  // tu dois réccupérer le panier qui est stoké dans le localstorage et uniquement celui-ci, pas besoin de lui donner une valeur par défaut comme tu vaais essayer de faire ligne 4\n     // panier n'existe pas\n     if(!panier){  // soit le panier est vide\n         let data = [{\n             id : id,\n"
+                },
+                {
+                    "date": 1676628037150,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -82,9 +82,9 @@\n } \n //Sauvegarde dans localStorage if commande valide\n function saveCommand(color, quantity){\n     let isFound = false;\n-  let panier =   localStorage.getItem(\"panier\")  // tu dois réccupérer le panier qui est stoké dans le localstorage et uniquement celui-ci, pas besoin de lui donner une valeur par défaut comme tu vaais essayer de faire ligne 4\n+  let panier =   localStorage  // tu dois réccupérer le panier qui est stoké dans le localstorage et uniquement celui-ci, pas besoin de lui donner une valeur par défaut comme tu vaais essayer de faire ligne 4\n     // panier n'existe pas\n     if(!panier){  // soit le panier est vide\n         let data = [{\n             id : id,\n"
+                },
+                {
+                    "date": 1676628076614,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -82,9 +82,9 @@\n } \n //Sauvegarde dans localStorage if commande valide\n function saveCommand(color, quantity){\n     let isFound = false;\n-  let panier =   localStorage  // tu dois réccupérer le panier qui est stoké dans le localstorage et uniquement celui-ci, pas besoin de lui donner une valeur par défaut comme tu vaais essayer de faire ligne 4\n+  let panier =  localStorage  // tu dois réccupérer le panier qui est stoké dans le localstorage et uniquement celui-ci, pas besoin de lui donner une valeur par défaut comme tu vaais essayer de faire ligne 4\n     // panier n'existe pas\n     if(!panier){  // soit le panier est vide\n         let data = [{\n             id : id,\n"
+                },
+                {
+                    "date": 1676628251344,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -65,9 +65,9 @@\n //console.log(buttonEvent) j'ai du mal à voir ce que ce console.log peut d'apporter\n function buttonEvent(){\n     const color = document.querySelector(\"#colors\").value\n     const quantity = document.querySelector(\"#quantity\").value\n- // if (invalidCommand(color, quantity)) return\n+ // (invalidCommand(color, quantity)) return\n     saveCommand(color,quantity)\n     redirectToCart()\n }\n function invalidCommand(color, quantity){\n@@ -82,9 +82,9 @@\n } \n //Sauvegarde dans localStorage if commande valide\n function saveCommand(color, quantity){\n     let isFound = false;\n-  let panier =  localStorage  // tu dois réccupérer le panier qui est stoké dans le localstorage et uniquement celui-ci, pas besoin de lui donner une valeur par défaut comme tu vaais essayer de faire ligne 4\n+  let panier = localStorage  // tu dois réccupérer le panier qui est stoké dans le localstorage et uniquement celui-ci, pas besoin de lui donner une valeur par défaut comme tu vaais essayer de faire ligne 4\n     // panier n'existe pas\n     if(!panier){  // soit le panier est vide\n         let data = [{\n             id : id,\n"
+                },
+                {
+                    "date": 1676628256795,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -65,9 +65,9 @@\n //console.log(buttonEvent) j'ai du mal à voir ce que ce console.log peut d'apporter\n function buttonEvent(){\n     const color = document.querySelector(\"#colors\").value\n     const quantity = document.querySelector(\"#quantity\").value\n- // (invalidCommand(color, quantity)) return\n+ // if (invalidCommand(color, quantity)) return\n     saveCommand(color,quantity)\n     redirectToCart()\n }\n function invalidCommand(color, quantity){\n@@ -82,9 +82,9 @@\n } \n //Sauvegarde dans localStorage if commande valide\n function saveCommand(color, quantity){\n     let isFound = false;\n-  let panier = localStorage  // tu dois réccupérer le panier qui est stoké dans le localstorage et uniquement celui-ci, pas besoin de lui donner une valeur par défaut comme tu vaais essayer de faire ligne 4\n+  let panier =  localStorage  // tu dois réccupérer le panier qui est stoké dans le localstorage et uniquement celui-ci, pas besoin de lui donner une valeur par défaut comme tu vaais essayer de faire ligne 4\n     // panier n'existe pas\n     if(!panier){  // soit le panier est vide\n         let data = [{\n             id : id,\n"
+                },
+                {
+                    "date": 1676628270037,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -65,9 +65,9 @@\n //console.log(buttonEvent) j'ai du mal à voir ce que ce console.log peut d'apporter\n function buttonEvent(){\n     const color = document.querySelector(\"#colors\").value\n     const quantity = document.querySelector(\"#quantity\").value\n- // if (invalidCommand(color, quantity)) return\n+ if (invalidCommand(color, quantity)) return\n     saveCommand(color,quantity)\n     redirectToCart()\n }\n function invalidCommand(color, quantity){\n@@ -82,9 +82,9 @@\n } \n //Sauvegarde dans localStorage if commande valide\n function saveCommand(color, quantity){\n     let isFound = false;\n-  let panier =  localStorage  // tu dois réccupérer le panier qui est stoké dans le localstorage et uniquement celui-ci, pas besoin de lui donner une valeur par défaut comme tu vaais essayer de faire ligne 4\n+  let panier = localStorage  // tu dois réccupérer le panier qui est stoké dans le localstorage et uniquement celui-ci, pas besoin de lui donner une valeur par défaut comme tu vaais essayer de faire ligne 4\n     // panier n'existe pas\n     if(!panier){  // soit le panier est vide\n         let data = [{\n             id : id,\n"
+                },
+                {
+                    "date": 1676628291631,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -82,9 +82,9 @@\n } \n //Sauvegarde dans localStorage if commande valide\n function saveCommand(color, quantity){\n     let isFound = false;\n-  let panier = localStorage  // tu dois réccupérer le panier qui est stoké dans le localstorage et uniquement celui-ci, pas besoin de lui donner une valeur par défaut comme tu vaais essayer de faire ligne 4\n+    let panier = localStorage  // tu dois réccupérer le panier qui est stoké dans le localstorage et uniquement celui-ci, pas besoin de lui donner une valeur par défaut comme tu vaais essayer de faire ligne 4\n     // panier n'existe pas\n     if(!panier){  // soit le panier est vide\n         let data = [{\n             id : id,\n"
+                },
+                {
+                    "date": 1676628299573,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -82,9 +82,9 @@\n } \n //Sauvegarde dans localStorage if commande valide\n function saveCommand(color, quantity){\n     let isFound = false;\n-    let panier = localStorage  // tu dois réccupérer le panier qui est stoké dans le localstorage et uniquement celui-ci, pas besoin de lui donner une valeur par défaut comme tu vaais essayer de faire ligne 4\n+    let panier = localStorage;  // tu dois réccupérer le panier qui est stoké dans le localstorage et uniquement celui-ci, pas besoin de lui donner une valeur par défaut comme tu vaais essayer de faire ligne 4\n     // panier n'existe pas\n     if(!panier){  // soit le panier est vide\n         let data = [{\n             id : id,\n"
+                },
+                {
+                    "date": 1676628314111,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -92,9 +92,9 @@\n             quantity: Number(quantity),\n         }];\n         localStorage.setItem(\"panier\", JSON.stringify(data))\n     }else{ // soit le panier n'est pas vide\n-        panier = JSON.parse(panier);\n+        panier = JSON.parse(panier)\n \n         panier.forEach(item =>{\n             if(isFound) return;\n             if(id === item.id && color === item.color){\n"
+                },
+                {
+                    "date": 1676628401850,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -92,9 +92,9 @@\n             quantity: Number(quantity),\n         }];\n         localStorage.setItem(\"panier\", JSON.stringify(data))\n     }else{ // soit le panier n'est pas vide\n-        panier = JSON.parse(panier)\n+        panier = JSON.parse(\"panier)\n \n         panier.forEach(item =>{\n             if(isFound) return;\n             if(id === item.id && color === item.color){\n"
+                },
+                {
+                    "date": 1676628447633,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -92,9 +92,9 @@\n             quantity: Number(quantity),\n         }];\n         localStorage.setItem(\"panier\", JSON.stringify(data))\n     }else{ // soit le panier n'est pas vide\n-        panier = JSON.parse(\"panier)\n+        panier = JSON.parse(panier\")\n \n         panier.forEach(item =>{\n             if(isFound) return;\n             if(id === item.id && color === item.color){\n"
+                },
+                {
+                    "date": 1676628513079,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -92,9 +92,9 @@\n             quantity: Number(quantity),\n         }];\n         localStorage.setItem(\"panier\", JSON.stringify(data))\n     }else{ // soit le panier n'est pas vide\n-        panier = JSON.parse(panier\")\n+        panier = JSON.parse()\n \n         panier.forEach(item =>{\n             if(isFound) return;\n             if(id === item.id && color === item.color){\n"
+                },
+                {
+                    "date": 1676628682348,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -92,9 +92,9 @@\n             quantity: Number(quantity),\n         }];\n         localStorage.setItem(\"panier\", JSON.stringify(data))\n     }else{ // soit le panier n'est pas vide\n-        panier = JSON.parse()\n+        panier = JSON.parse(data)\n \n         panier.forEach(item =>{\n             if(isFound) return;\n             if(id === item.id && color === item.color){\n"
+                },
+                {
+                    "date": 1676628720662,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -92,9 +92,9 @@\n             quantity: Number(quantity),\n         }];\n         localStorage.setItem(\"panier\", JSON.stringify(data))\n     }else{ // soit le panier n'est pas vide\n-        panier = JSON.parse(data)\n+        panier = JSON.parse(RO)\n \n         panier.forEach(item =>{\n             if(isFound) return;\n             if(id === item.id && color === item.color){\n"
+                },
+                {
+                    "date": 1676628726459,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -92,9 +92,9 @@\n             quantity: Number(quantity),\n         }];\n         localStorage.setItem(\"panier\", JSON.stringify(data))\n     }else{ // soit le panier n'est pas vide\n-        panier = JSON.parse(RO)\n+        panier = JSON.parse(product)\n \n         panier.forEach(item =>{\n             if(isFound) return;\n             if(id === item.id && color === item.color){\n"
+                },
+                {
+                    "date": 1676628743479,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -92,9 +92,9 @@\n             quantity: Number(quantity),\n         }];\n         localStorage.setItem(\"panier\", JSON.stringify(data))\n     }else{ // soit le panier n'est pas vide\n-        panier = JSON.parse(product)\n+        panier = JSON.parse\n \n         panier.forEach(item =>{\n             if(isFound) return;\n             if(id === item.id && color === item.color){\n"
+                },
+                {
+                    "date": 1676628770455,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -92,9 +92,9 @@\n             quantity: Number(quantity),\n         }];\n         localStorage.setItem(\"panier\", JSON.stringify(data))\n     }else{ // soit le panier n'est pas vide\n-        panier = JSON.parse\n+        panier = JSON.parse()\n \n         panier.forEach(item =>{\n             if(isFound) return;\n             if(id === item.id && color === item.color){\n"
+                },
+                {
+                    "date": 1676628804462,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -93,10 +93,9 @@\n         }];\n         localStorage.setItem(\"panier\", JSON.stringify(data))\n     }else{ // soit le panier n'est pas vide\n         panier = JSON.parse()\n-\n-        panier.forEach(item =>{\n+panier.forEach(item =>{\n             if(isFound) return;\n             if(id === item.id && color === item.color){\n                 item.quantity = Number(item.quantity) + Number(quantity);\n                 isFound = true\n"
+                },
+                {
+                    "date": 1676629023751,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -92,10 +92,10 @@\n             quantity: Number(quantity),\n         }];\n         localStorage.setItem(\"panier\", JSON.stringify(data))\n     }else{ // soit le panier n'est pas vide\n-        panier = JSON.parse()\n-panier.forEach(item =>{\n+        panier = JSON.parse(id)\n+        panier.forEach(item =>{\n             if(isFound) return;\n             if(id === item.id && color === item.color){\n                 item.quantity = Number(item.quantity) + Number(quantity);\n                 isFound = true\n"
+                },
+                {
+                    "date": 1676629967337,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,23 +1,20 @@\n const queryString = window.location.search\n const urlParams = new URLSearchParams(queryString)\n const id = urlParams.get(\"id\")\n-//let panier = \"\"  // Pas nécessaire voir commentaire ligne 86\n-console.log({id});\n-\n if (id != null){\n     let itemPrice = 0\n     let imgUrl, altText\n     let productName\n }\n \n fetch(`http://localhost:3000/api/products/${id}`)\n    .then((reponse) => reponse.json())\n-   .then((res) => getDataKanap(res)) \n+   .then((res) => dataKanap(res)) \n \n-function getDataKanap(product) {   // product au lieu de panier est plus adapté, toujours nommer ces variables de manière explicite à quoi ça correspond\n+function dataKanap(kanap) {\n     //récupération de toutes les données dans l'objet kanap\n-    const {altTxt, colors, description, imageUrl, name, price, id}  = product  // product à la place de panier\n+    const {altTxt, colors, description, imageUrl, name, price, id}  = kanap\n     //les données sont passées dans des fonctions qui vont les afficher\n     itemPrice = price\n     imgUrl = imageUrl\n     altText = altTxt\n@@ -26,11 +23,9 @@\n     makeTitle(name)\n     makePrice(price)\n     makeDescription(description)\n     makeColors(colors)\n-  //  console.log(panier)\n }\n-//localStorage.clear()\n function makeImage(imageUrl, altTxt){\n     const image = document.createElement(\"img\")\n     image.src = imageUrl\n     image.alt = altTxt\n@@ -59,63 +54,38 @@\n         option.textContent = color\n         select.appendChild(option)\n     })\n }\n-const buttonToCart = document.querySelector(\"#addToCart\")\n-buttonToCart.addEventListener(\"click\", buttonEvent)\n-//console.log(buttonEvent) j'ai du mal à voir ce que ce console.log peut d'apporter\n+const button = document.querySelector(\"#addToCart\")\n+button.addEventListener(\"click\", buttonEvent)\n+\n function buttonEvent(){\n     const color = document.querySelector(\"#colors\").value\n     const quantity = document.querySelector(\"#quantity\").value\n- if (invalidCommand(color, quantity)) return\n+    if (ifInvalidCommand(color, quantity)) return\n     saveCommand(color,quantity)\n     redirectToCart()\n }\n-function invalidCommand(color, quantity){\n-    if (color == null || color === \"\" ) {\n-        alert(\"Vous devez sélectionner une couleur. Merci\")\n-        return true // il faut retourner une valeur parce ligne 69, tu as une condition sur le retour de la fonction, si tu retourne rien, peu importe que le formulaire soit bon ou pas, le comportement restera inchangé\n-        }\n-    if (quantity == null || quantity < 0 && quantity < 100) {// ||!Number.isInteger(quantity)\n-        alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n-        return true // il faut retourner une valeur même chose que le commentaire ligne 76\n+function saveCommand(color, quantity){\n+    const key = `${id}-${color}`\n+    const command = {\n+        id : id,\n+        color: color,\n+        quantity: Number(quantity),\n+        price: itemPrice,\n+        imageUrl: imgUrl,\n+        altTxt: altText,\n+        name: productName \n     }\n-} \n-//Sauvegarde dans localStorage if commande valide\n-function saveCommand(color, quantity){\n-    let isFound = false;\n-    let panier = localStorage;  // tu dois réccupérer le panier qui est stoké dans le localstorage et uniquement celui-ci, pas besoin de lui donner une valeur par défaut comme tu vaais essayer de faire ligne 4\n-    // panier n'existe pas\n-    if(!panier){  // soit le panier est vide\n-        let data = [{\n-            id : id,\n-            color : color,\n-            quantity: Number(quantity),\n-        }];\n-        localStorage.setItem(\"panier\", JSON.stringify(data))\n-    }else{ // soit le panier n'est pas vide\n-        panier = JSON.parse(id)\n-        panier.forEach(item =>{\n-            if(isFound) return;\n-            if(id === item.id && color === item.color){\n-                item.quantity = Number(item.quantity) + Number(quantity);\n-                isFound = true\n-            }\n-        })\n+    //Transformer les données en string\n+    localStorage.setItem(key, JSON.stringify(command))\n+}\n \n-        if(!isFound){\n-            panier.push( {\n-                id : id,\n-                color: color,\n-                quantity: Number(quantity),\n-            })\n+function ifInvalidCommand(color, quantity){\n+    if (color == null || color === \"\" || quantity == null || quantity == 0) {\n+        alert(\"Vous devez sélectionner une couleur et une quantité. Merci\")\n+        return true\n         }\n-\n-        localStorage.setItem(\"panier\",JSON.stringify(panier))\n-    }\n-// j'ai remis en ordre le code, j'ai pas compris la tentative de la création d'une fonction panierPush et de toute façon, on évite de créer des fonctions dans des fonctions\n-// il y a deux possibilité : panier vide ou pas vide, tu as déplacé du code à l'exterieur du  \"if else\"\n-// le boulot à faire est principalement sur la page cart.js est pas ici, tu as tout chamboulé alors que tu avais just à copier le code fait ensemble dans la fonction  savecommand\n }\n function redirectToCart(){\n     window.location.href = \"cart.html\"\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676635683226,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n \n fetch(`http://localhost:3000/api/products/${id}`)\n    .then((reponse) => reponse.json())\n    .then((res) => dataKanap(res)) \n-\n+   console.table(dataKanaps);\n function dataKanap(kanap) {\n     //récupération de toutes les données dans l'objet kanap\n     const {altTxt, colors, description, imageUrl, name, price, id}  = kanap\n     //les données sont passées dans des fonctions qui vont les afficher\n"
+                },
+                {
+                    "date": 1676635707165,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n \n fetch(`http://localhost:3000/api/products/${id}`)\n    .then((reponse) => reponse.json())\n    .then((res) => dataKanap(res)) \n-   console.table(dataKanaps);\n+   console.table(Kanaps);\n function dataKanap(kanap) {\n     //récupération de toutes les données dans l'objet kanap\n     const {altTxt, colors, description, imageUrl, name, price, id}  = kanap\n     //les données sont passées dans des fonctions qui vont les afficher\n"
+                },
+                {
+                    "date": 1676635724541,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n \n fetch(`http://localhost:3000/api/products/${id}`)\n    .then((reponse) => reponse.json())\n    .then((res) => dataKanap(res)) \n-   console.table(Kanaps);\n+\n function dataKanap(kanap) {\n     //récupération de toutes les données dans l'objet kanap\n     const {altTxt, colors, description, imageUrl, name, price, id}  = kanap\n     //les données sont passées dans des fonctions qui vont les afficher\n"
+                },
+                {
+                    "date": 1676635732601,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,8 +24,9 @@\n     makePrice(price)\n     makeDescription(description)\n     makeColors(colors)\n }\n+console.table(Kanap);\n function makeImage(imageUrl, altTxt){\n     const image = document.createElement(\"img\")\n     image.src = imageUrl\n     image.alt = altTxt\n"
+                },
+                {
+                    "date": 1676635741344,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n     makePrice(price)\n     makeDescription(description)\n     makeColors(colors)\n }\n-console.table(Kanap);\n+console.table(Kanap)\n function makeImage(imageUrl, altTxt){\n     const image = document.createElement(\"img\")\n     image.src = imageUrl\n     image.alt = altTxt\n"
+                },
+                {
+                    "date": 1676635746998,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n     makePrice(price)\n     makeDescription(description)\n     makeColors(colors)\n }\n-console.table(Kanap)\n+\n function makeImage(imageUrl, altTxt){\n     const image = document.createElement(\"img\")\n     image.src = imageUrl\n     image.alt = altTxt\n"
+                },
+                {
+                    "date": 1676635752409,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,8 +23,9 @@\n     makeTitle(name)\n     makePrice(price)\n     makeDescription(description)\n     makeColors(colors)\n+    console.table(Kanap);\n }\n \n function makeImage(imageUrl, altTxt){\n     const image = document.createElement(\"img\")\n"
+                },
+                {
+                    "date": 1676635765653,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n     makeTitle(name)\n     makePrice(price)\n     makeDescription(description)\n     makeColors(colors)\n-    console.table(Kanap);\n+    console.table(anap)\n }\n \n function makeImage(imageUrl, altTxt){\n     const image = document.createElement(\"img\")\n"
+                },
+                {
+                    "date": 1676635834432,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,17 +15,17 @@\n     //récupération de toutes les données dans l'objet kanap\n     const {altTxt, colors, description, imageUrl, name, price, id}  = kanap\n     //les données sont passées dans des fonctions qui vont les afficher\n     itemPrice = price\n-    imgUrl = imageUrl\n+  //  imgUrl = imageUrl\n     altText = altTxt\n     productName = name \n     makeImage(imageUrl, altTxt)\n     makeTitle(name)\n     makePrice(price)\n     makeDescription(description)\n     makeColors(colors)\n-    console.table(anap)\n+    console.table(kanap)\n }\n \n function makeImage(imageUrl, altTxt){\n     const image = document.createElement(\"img\")\n"
+                },
+                {
+                    "date": 1676635859497,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,16 +16,15 @@\n     const {altTxt, colors, description, imageUrl, name, price, id}  = kanap\n     //les données sont passées dans des fonctions qui vont les afficher\n     itemPrice = price\n   //  imgUrl = imageUrl\n-    altText = altTxt\n+   // altText = altTxt\n     productName = name \n     makeImage(imageUrl, altTxt)\n     makeTitle(name)\n     makePrice(price)\n     makeDescription(description)\n     makeColors(colors)\n-    console.table(kanap)\n }\n \n function makeImage(imageUrl, altTxt){\n     const image = document.createElement(\"img\")\n"
+                },
+                {
+                    "date": 1676635870725,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n     let itemPrice = 0\n     let imgUrl, altText\n     let productName\n }\n-\n+   console.table(Kanap);\n fetch(`http://localhost:3000/api/products/${id}`)\n    .then((reponse) => reponse.json())\n    .then((res) => dataKanap(res)) \n \n"
+                },
+                {
+                    "date": 1676635881777,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n     let itemPrice = 0\n     let imgUrl, altText\n     let productName\n }\n-   console.table(Kanap);\n+\n fetch(`http://localhost:3000/api/products/${id}`)\n    .then((reponse) => reponse.json())\n    .then((res) => dataKanap(res)) \n \n@@ -23,8 +23,9 @@\n     makeTitle(name)\n     makePrice(price)\n     makeDescription(description)\n     makeColors(colors)\n+    console.table(kanap)\n }\n \n function makeImage(imageUrl, altTxt){\n     const image = document.createElement(\"img\")\n"
+                },
+                {
+                    "date": 1676635956147,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n    .then((res) => dataKanap(res)) \n \n function dataKanap(kanap) {\n     //récupération de toutes les données dans l'objet kanap\n-    const {altTxt, colors, description, imageUrl, name, price, id}  = kanap\n+    const {altTxt, colors, description, imageUrl, name, price, _id}  = kanap\n     //les données sont passées dans des fonctions qui vont les afficher\n     itemPrice = price\n   //  imgUrl = imageUrl\n    // altText = altTxt\n"
+                },
+                {
+                    "date": 1676635978024,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n     let imgUrl, altText\n     let productName\n }\n \n-fetch(`http://localhost:3000/api/products/${id}`)\n+fetch(`http://localhost:3000/api/products/${_id}`)\n    .then((reponse) => reponse.json())\n    .then((res) => dataKanap(res)) \n \n function dataKanap(kanap) {\n"
+                },
+                {
+                    "date": 1676635984968,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n     let imgUrl, altText\n     let productName\n }\n \n-fetch(`http://localhost:3000/api/products/${_id}`)\n+fetch(`http://localhost:3000/api/products/${id}`)\n    .then((reponse) => reponse.json())\n    .then((res) => dataKanap(res)) \n \n function dataKanap(kanap) {\n"
+                },
+                {
+                    "date": 1676635995802,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n     let imgUrl, altText\n     let productName\n }\n \n-fetch(`http://localhost:3000/api/products/${id}`)\n+fetch(`http://localhost:3000/api/products/`)\n    .then((reponse) => reponse.json())\n    .then((res) => dataKanap(res)) \n \n function dataKanap(kanap) {\n"
+                },
+                {
+                    "date": 1676636002202,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n     let imgUrl, altText\n     let productName\n }\n \n-fetch(`http://localhost:3000/api/products/`)\n+fetch(`http://localhost:3000/api/products/${id}`)\n    .then((reponse) => reponse.json())\n    .then((res) => dataKanap(res)) \n \n function dataKanap(kanap) {\n"
+                },
+                {
+                    "date": 1676636014243,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n const queryString = window.location.search\n const urlParams = new URLSearchParams(queryString)\n-const id = urlParams.get(\"id\")\n+const id = urlParams.get(\"_id\")\n if (id != null){\n     let itemPrice = 0\n     let imgUrl, altText\n     let productName\n"
+                },
+                {
+                    "date": 1676636021493,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n const queryString = window.location.search\n const urlParams = new URLSearchParams(queryString)\n-const id = urlParams.get(\"_id\")\n+const id = urlParams.get(\"id\")\n if (id != null){\n     let itemPrice = 0\n     let imgUrl, altText\n     let productName\n"
+                },
+                {
+                    "date": 1676636262590,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n }\n \n fetch(`http://localhost:3000/api/products/${id}`)\n    .then((reponse) => reponse.json())\n-   .then((res) => dataKanap(res)) \n+   .then((res) => getdataKanap(res)) \n \n function dataKanap(kanap) {\n     //récupération de toutes les données dans l'objet kanap\n     const {altTxt, colors, description, imageUrl, name, price, _id}  = kanap\n"
+                },
+                {
+                    "date": 1676636285397,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n fetch(`http://localhost:3000/api/products/${id}`)\n    .then((reponse) => reponse.json())\n    .then((res) => getdataKanap(res)) \n \n-function dataKanap(kanap) {\n+function getdataKanap(product) {\n     //récupération de toutes les données dans l'objet kanap\n     const {altTxt, colors, description, imageUrl, name, price, _id}  = kanap\n     //les données sont passées dans des fonctions qui vont les afficher\n     itemPrice = price\n"
+                },
+                {
+                    "date": 1676636305649,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n    .then((reponse) => reponse.json())\n    .then((res) => getdataKanap(res)) \n \n function getdataKanap(product) {\n-    //récupération de toutes les données dans l'objet kanap\n+    //récupération de toutes les données dans l'objet product\n     const {altTxt, colors, description, imageUrl, name, price, _id}  = kanap\n     //les données sont passées dans des fonctions qui vont les afficher\n     itemPrice = price\n   //  imgUrl = imageUrl\n"
+                },
+                {
+                    "date": 1676636323786,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n    .then((res) => getdataKanap(res)) \n \n function getdataKanap(product) {\n     //récupération de toutes les données dans l'objet product\n-    const {altTxt, colors, description, imageUrl, name, price, _id}  = kanap\n+    const {altTxt, colors, description, imageUrl, name, price, _id}  = product\n     //les données sont passées dans des fonctions qui vont les afficher\n     itemPrice = price\n   //  imgUrl = imageUrl\n    // altText = altTxt\n"
+                },
+                {
+                    "date": 1676636349475,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n \n function getdataKanap(product) {\n     //récupération de toutes les données dans l'objet product\n     const {altTxt, colors, description, imageUrl, name, price, _id}  = product\n-    //les données sont passées dans des fonctions qui vont les afficher\n+    //les données sont passées dans des fonctions qui vont les afficher dans le html\n     itemPrice = price\n   //  imgUrl = imageUrl\n    // altText = altTxt\n     productName = name \n"
+                },
+                {
+                    "date": 1676636398917,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n     makeTitle(name)\n     makePrice(price)\n     makeDescription(description)\n     makeColors(colors)\n-    console.table(kanap)\n+    console.table(product)\n }\n \n function makeImage(imageUrl, altTxt){\n     const image = document.createElement(\"img\")\n"
+                },
+                {
+                    "date": 1676636513463,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,8 @@\n     makeDescription(description)\n     makeColors(colors)\n     console.table(product)\n }\n-\n function makeImage(imageUrl, altTxt){\n     const image = document.createElement(\"img\")\n     image.src = imageUrl\n     image.alt = altTxt\n"
+                },
+                {
+                    "date": 1676636542390,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -55,9 +55,9 @@\n         option.textContent = color\n         select.appendChild(option)\n     })\n }\n-const button = document.querySelector(\"#addToCart\")\n+    const button = document.querySelector(\"#addToCart\")\n button.addEventListener(\"click\", buttonEvent)\n \n function buttonEvent(){\n     const color = document.querySelector(\"#colors\").value\n"
+                },
+                {
+                    "date": 1676636640518,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -55,10 +55,10 @@\n         option.textContent = color\n         select.appendChild(option)\n     })\n }\n-    const button = document.querySelector(\"#addToCart\")\n-button.addEventListener(\"click\", buttonEvent)\n+    const buttontOc = document.querySelector(\"#addToCart\")\n+    button.addEventListener(\"click\", buttonEvent)\n \n function buttonEvent(){\n     const color = document.querySelector(\"#colors\").value\n     const quantity = document.querySelector(\"#quantity\").value\n"
+                },
+                {
+                    "date": 1676636647988,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -55,9 +55,9 @@\n         option.textContent = color\n         select.appendChild(option)\n     })\n }\n-    const buttontOc = document.querySelector(\"#addToCart\")\n+    const buttonToCart = document.querySelector(\"#addToCart\")\n     button.addEventListener(\"click\", buttonEvent)\n \n function buttonEvent(){\n     const color = document.querySelector(\"#colors\").value\n"
+                },
+                {
+                    "date": 1676636659970,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -56,9 +56,9 @@\n         select.appendChild(option)\n     })\n }\n     const buttonToCart = document.querySelector(\"#addToCart\")\n-    button.addEventListener(\"click\", buttonEvent)\n+    buttonT.addEventListener(\"click\", buttonEvent)\n \n function buttonEvent(){\n     const color = document.querySelector(\"#colors\").value\n     const quantity = document.querySelector(\"#quantity\").value\n"
+                },
+                {
+                    "date": 1676636746036,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -56,9 +56,9 @@\n         select.appendChild(option)\n     })\n }\n     const buttonToCart = document.querySelector(\"#addToCart\")\n-    buttonT.addEventListener(\"click\", buttonEvent)\n+    buttonToCart.addEventListener(\"click\", buttonEvent)\n \n function buttonEvent(){\n     const color = document.querySelector(\"#colors\").value\n     const quantity = document.querySelector(\"#quantity\").value\n@@ -80,13 +80,8 @@\n     //Transformer les données en string\n     localStorage.setItem(key, JSON.stringify(command))\n }\n \n-function ifInvalidCommand(color, quantity){\n-    if (color == null || color === \"\" || quantity == null || quantity == 0) {\n-        alert(\"Vous devez sélectionner une couleur et une quantité. Merci\")\n-        return true\n-        }\n-}\n+\n function redirectToCart(){\n     window.location.href = \"cart.html\"\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676636753529,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -65,8 +65,9 @@\n     if (ifInvalidCommand(color, quantity)) return\n     saveCommand(color,quantity)\n     redirectToCart()\n }\n+\n function saveCommand(color, quantity){\n     const key = `${id}-${color}`\n     const command = {\n         id : id,\n"
+                },
+                {
+                    "date": 1676636760266,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -65,9 +65,14 @@\n     if (ifInvalidCommand(color, quantity)) return\n     saveCommand(color,quantity)\n     redirectToCart()\n }\n-\n+function ifInvalidCommand(color, quantity){\n+    if (color == null || color === \"\" || quantity == null || quantity == 0) {\n+        alert(\"Vous devez sélectionner une couleur et une quantité. Merci\")\n+        return true\n+        }\n+}\n function saveCommand(color, quantity){\n     const key = `${id}-${color}`\n     const command = {\n         id : id,\n"
+                },
+                {
+                    "date": 1676636798294,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -66,9 +66,9 @@\n     saveCommand(color,quantity)\n     redirectToCart()\n }\n function ifInvalidCommand(color, quantity){\n-    if (color == null || color === \"\" || quantity == null || quantity == 0) {\n+    if (color == null || color === \"\" ) {\n         alert(\"Vous devez sélectionner une couleur et une quantité. Merci\")\n         return true\n         }\n }\n"
+                },
+                {
+                    "date": 1676636830290,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -67,11 +67,15 @@\n     redirectToCart()\n }\n function ifInvalidCommand(color, quantity){\n     if (color == null || color === \"\" ) {\n-        alert(\"Vous devez sélectionner une couleur et une quantité. Merci\")\n-        return true\n+        alert(\"Vous devez sélectionner une couleur. Merci\")\n+        return true // il faut retourner une valeur parce ligne 69, tu as une condition sur le retour de la fonction, si tu retourne rien, peu importe que le formulaire soit bon ou pas, le comportement restera inchangé\n         }\n+    if (quantity == null || quantity < 0 && quantity < 100) {// ||!Number.isInteger(quantity)\n+        alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n+        return true // il faut retourner une valeur même chose que le commentaire ligne 76\n+    }\n }\n function saveCommand(color, quantity){\n     const key = `${id}-${color}`\n     const command = {\n"
+                },
+                {
+                    "date": 1676636837543,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -68,9 +68,9 @@\n }\n function ifInvalidCommand(color, quantity){\n     if (color == null || color === \"\" ) {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n-        return true // il faut retourner une valeur parce ligne 69, tu as une condition sur le retour de la fonction, si tu retourne rien, peu importe que le formulaire soit bon ou pas, le comportement restera inchangé\n+        return true \n         }\n     if (quantity == null || quantity < 0 && quantity < 100) {// ||!Number.isInteger(quantity)\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true // il faut retourner une valeur même chose que le commentaire ligne 76\n"
+                },
+                {
+                    "date": 1676636846560,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -72,9 +72,9 @@\n         return true \n         }\n     if (quantity == null || quantity < 0 && quantity < 100) {// ||!Number.isInteger(quantity)\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n-        return true // il faut retourner une valeur même chose que le commentaire ligne 76\n+        return true \n     }\n }\n function saveCommand(color, quantity){\n     const key = `${id}-${color}`\n"
+                },
+                {
+                    "date": 1676636859374,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -72,9 +72,9 @@\n         return true \n         }\n     if (quantity == null || quantity < 0 && quantity < 100) {// ||!Number.isInteger(quantity)\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n-        return true \n+        return true\n     }\n }\n function saveCommand(color, quantity){\n     const key = `${id}-${color}`\n"
+                },
+                {
+                    "date": 1676637063689,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -66,9 +66,9 @@\n     saveCommand(color,quantity)\n     redirectToCart()\n }\n function ifInvalidCommand(color, quantity){\n-    if (color == null || color === \"\" ) {\n+    if (color == null || color === \"\") {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true \n         }\n     if (quantity == null || quantity < 0 && quantity < 100) {// ||!Number.isInteger(quantity)\n"
+                },
+                {
+                    "date": 1676637078949,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -62,9 +62,9 @@\n function buttonEvent(){\n     const color = document.querySelector(\"#colors\").value\n     const quantity = document.querySelector(\"#quantity\").value\n     if (ifInvalidCommand(color, quantity)) return\n-    saveCommand(color,quantity)\n+    saveCommand(color, quantity)\n     redirectToCart()\n }\n function ifInvalidCommand(color, quantity){\n     if (color == null || color === \"\") {\n"
+                },
+                {
+                    "date": 1676637161022,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n     //récupération de toutes les données dans l'objet product\n     const {altTxt, colors, description, imageUrl, name, price, _id}  = product\n     //les données sont passées dans des fonctions qui vont les afficher dans le html\n     itemPrice = price\n-  //  imgUrl = imageUrl\n+    imgUrl = imageUrl\n    // altText = altTxt\n     productName = name \n     makeImage(imageUrl, altTxt)\n     makeTitle(name)\n"
+                },
+                {
+                    "date": 1676637185403,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n     const {altTxt, colors, description, imageUrl, name, price, _id}  = product\n     //les données sont passées dans des fonctions qui vont les afficher dans le html\n     itemPrice = price\n     imgUrl = imageUrl\n-   // altText = altTxt\n+   altText = altTxt\n     productName = name \n     makeImage(imageUrl, altTxt)\n     makeTitle(name)\n     makePrice(price)\n"
+                },
+                {
+                    "date": 1676637276964,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n     const {altTxt, colors, description, imageUrl, name, price, _id}  = product\n     //les données sont passées dans des fonctions qui vont les afficher dans le html\n     itemPrice = price\n     imgUrl = imageUrl\n-   altText = altTxt\n+    altText = altTxt\n     productName = name \n     makeImage(imageUrl, altTxt)\n     makeTitle(name)\n     makePrice(price)\n@@ -70,9 +70,9 @@\n     if (color == null || color === \"\") {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true \n         }\n-    if (quantity == null || quantity < 0 && quantity < 100) {// ||!Number.isInteger(quantity)\n+    if (quantity == null || quantity < 0  quantity < 100) {// ||!Number.isInteger(quantity)\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n }\n"
+                },
+                {
+                    "date": 1676637298031,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -70,9 +70,9 @@\n     if (color == null || color === \"\") {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true \n         }\n-    if (quantity == null || quantity < 0  quantity < 100) {// ||!Number.isInteger(quantity)\n+    if (quantity == null || quantity <= 0 || quantity < 100) {// ||!Number.isInteger(quantity)\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n }\n"
+                },
+                {
+                    "date": 1676637359465,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -70,9 +70,9 @@\n     if (color == null || color === \"\") {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true \n         }\n-    if (quantity == null || quantity <= 0 || quantity < 100) {// ||!Number.isInteger(quantity)\n+    if (quantity == null || quantity <= 0 || quantity  100) {// ||!Number.isInteger(quantity)\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n }\n"
+                },
+                {
+                    "date": 1676637370020,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -70,9 +70,9 @@\n     if (color == null || color === \"\") {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true \n         }\n-    if (quantity == null || quantity <= 0 || quantity  100) {// ||!Number.isInteger(quantity)\n+    if (quantity == null || quantity <= 0 || quantity > 100) {// ||!Number.isInteger(quantity)\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n }\n"
+                },
+                {
+                    "date": 1676637422429,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -70,9 +70,9 @@\n     if (color == null || color === \"\") {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true \n         }\n-    if (quantity == null || quantity <= 0 || quantity > 100) {// ||!Number.isInteger(quantity)\n+    if (quantity == null || quantity <= 0 || quantity > 100) {// \n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n }\n"
+                },
+                {
+                    "date": 1676637430527,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -69,10 +69,10 @@\n function ifInvalidCommand(color, quantity){\n     if (color == null || color === \"\") {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true \n-        }\n-    if (quantity == null || quantity <= 0 || quantity > 100) {// \n+        \n+    if (quantity == null || quantity <= 0 || quantity > 100) {\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n }\n"
+                },
+                {
+                    "date": 1676637474337,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -69,10 +69,10 @@\n function ifInvalidCommand(color, quantity){\n     if (color == null || color === \"\") {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true \n-        \n-    if (quantity == null || quantity <= 0 || quantity > 100) {\n+        }\n+    if (quantity == null || quantity <= 0 || quantity > 100) {// ||!Number.isInteger(quantity)\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n }\n"
+                },
+                {
+                    "date": 1676637485353,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -70,9 +70,9 @@\n     if (color == null || color === \"\") {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true \n         }\n-    if (quantity == null || quantity <= 0 || quantity > 100) {// ||!Number.isInteger(quantity)\n+    if (quantity == null || quantity <= 0 || quantity > 100) {\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n }\n"
+                },
+                {
+                    "date": 1676637498266,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -70,9 +70,9 @@\n     if (color == null || color === \"\") {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true \n         }\n-    if (quantity == null || quantity <= 0 || quantity > 100) {\n+    if (quantity == null || quantity <= 0 || quantity > 100 ) {\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n }\n"
+                },
+                {
+                    "date": 1676637508331,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -70,9 +70,9 @@\n     if (color == null || color === \"\") {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true \n         }\n-    if (quantity == null || quantity <= 0 || quantity > 100 ) {\n+    if (quantity == null || quantity <= 0 || quantity > 100 ||!Number.isInteger(quantity)) {\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n }\n"
+                },
+                {
+                    "date": 1676637617559,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -71,8 +71,9 @@\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true \n         }\n     if (quantity == null || quantity <= 0 || quantity > 100 ||!Number.isInteger(quantity)) {\n+        re\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n }\n"
+                },
+                {
+                    "date": 1676637624090,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -71,9 +71,9 @@\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true \n         }\n     if (quantity == null || quantity <= 0 || quantity > 100 ||!Number.isInteger(quantity)) {\n-        re\n+        return true\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n }\n"
+                },
+                {
+                    "date": 1676637640522,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -71,9 +71,9 @@\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true \n         }\n     if (quantity == null || quantity <= 0 || quantity > 100 ||!Number.isInteger(quantity)) {\n-        return true\n+        return\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n }\n"
+                },
+                {
+                    "date": 1676637701502,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -71,9 +71,8 @@\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true \n         }\n     if (quantity == null || quantity <= 0 || quantity > 100 ||!Number.isInteger(quantity)) {\n-        return\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n }\n"
+                },
+                {
+                    "date": 1676637906174,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -61,9 +61,9 @@\n \n function buttonEvent(){\n     const color = document.querySelector(\"#colors\").value\n     const quantity = document.querySelector(\"#quantity\").value\n-    if (ifInvalidCommand(color, quantity)) return\n+    if (ifInvalidCommand(color, quantity))\n     saveCommand(color, quantity)\n     redirectToCart()\n }\n function ifInvalidCommand(color, quantity){\n"
+                },
+                {
+                    "date": 1676637924431,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -61,9 +61,9 @@\n \n function buttonEvent(){\n     const color = document.querySelector(\"#colors\").value\n     const quantity = document.querySelector(\"#quantity\").value\n-    if (ifInvalidCommand(color, quantity))\n+    if (ifInvalidCommand(color, quantity)) \n     saveCommand(color, quantity)\n     redirectToCart()\n }\n function ifInvalidCommand(color, quantity){\n"
+                },
+                {
+                    "date": 1676638476278,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -61,18 +61,18 @@\n \n function buttonEvent(){\n     const color = document.querySelector(\"#colors\").value\n     const quantity = document.querySelector(\"#quantity\").value\n-    if (ifInvalidCommand(color, quantity)) \n+    if (ifInvalidCommand(color, quantity)) return\n     saveCommand(color, quantity)\n     redirectToCart()\n }\n function ifInvalidCommand(color, quantity){\n     if (color == null || color === \"\") {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true \n         }\n-    if (quantity == null || quantity <= 0 || quantity > 100 ||!Number.isInteger(quantity)) {\n+    if (quantity == null || quantity <= 0 || quantity > 100 ||Number.isInteger(quantity)) {\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n }\n"
+                },
+                {
+                    "date": 1676638512670,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -70,9 +70,9 @@\n     if (color == null || color === \"\") {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true \n         }\n-    if (quantity == null || quantity <= 0 || quantity > 100 ||Number.isInteger(quantity)) {\n+    if (quantity == null || quantity <= 0 || quantity > 100 ||!Number.isInteger(quantity)) {\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n }\n"
+                },
+                {
+                    "date": 1676638629568,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -77,9 +77,9 @@\n     }\n }\n function saveCommand(color, quantity){\n     const key = `${id}-${color}`\n-    const command = {\n+     = {\n         id : id,\n         color: color,\n         quantity: Number(quantity),\n         price: itemPrice,\n"
+                },
+                {
+                    "date": 1676638635392,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -77,9 +77,9 @@\n     }\n }\n function saveCommand(color, quantity){\n     const key = `${id}-${color}`\n-     = {\n+    let  = {\n         id : id,\n         color: color,\n         quantity: Number(quantity),\n         price: itemPrice,\n"
+                },
+                {
+                    "date": 1676638673606,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -76,10 +76,10 @@\n         return true\n     }\n }\n function saveCommand(color, quantity){\n-    const key = `${id}-${color}`\n-    let  = {\n+    //const key = `${id}-${color}`\n+    let panier = {\n         id : id,\n         color: color,\n         quantity: Number(quantity),\n         price: itemPrice,\n"
+                },
+                {
+                    "date": 1676638679051,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -77,8 +77,9 @@\n     }\n }\n function saveCommand(color, quantity){\n     //const key = `${id}-${color}`\n+    L\n     let panier = {\n         id : id,\n         color: color,\n         quantity: Number(quantity),\n"
+                },
+                {
+                    "date": 1676638686173,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -77,9 +77,9 @@\n     }\n }\n function saveCommand(color, quantity){\n     //const key = `${id}-${color}`\n-    L\n+    \n     let panier = {\n         id : id,\n         color: color,\n         quantity: Number(quantity),\n"
+                },
+                {
+                    "date": 1676638691847,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -77,9 +77,9 @@\n     }\n }\n function saveCommand(color, quantity){\n     //const key = `${id}-${color}`\n-    \n+    let \n     let panier = {\n         id : id,\n         color: color,\n         quantity: Number(quantity),\n"
+                },
+                {
+                    "date": 1676638697269,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -77,9 +77,9 @@\n     }\n }\n function saveCommand(color, quantity){\n     //const key = `${id}-${color}`\n-    let \n+    let isFound\n     let panier = {\n         id : id,\n         color: color,\n         quantity: Number(quantity),\n"
+                },
+                {
+                    "date": 1676638709177,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -77,9 +77,9 @@\n     }\n }\n function saveCommand(color, quantity){\n     //const key = `${id}-${color}`\n-    let isFound\n+    let isFound = false;\n     let panier = {\n         id : id,\n         color: color,\n         quantity: Number(quantity),\n"
+                },
+                {
+                    "date": 1676638789826,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -78,9 +78,9 @@\n }\n function saveCommand(color, quantity){\n     //const key = `${id}-${color}`\n     let isFound = false;\n-    let panier = {\n+    let dat = {\n         id : id,\n         color: color,\n         quantity: Number(quantity),\n         price: itemPrice,\n"
+                },
+                {
+                    "date": 1676638881726,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -78,16 +78,13 @@\n }\n function saveCommand(color, quantity){\n     //const key = `${id}-${color}`\n     let isFound = false;\n-    let dat = {\n+    let data = {\n         id : id,\n         color: color,\n         quantity: Number(quantity),\n-        price: itemPrice,\n-        imageUrl: imgUrl,\n-        altTxt: altText,\n-        name: productName \n+       \n     }\n     //Transformer les données en string\n     localStorage.setItem(key, JSON.stringify(command))\n }\n"
+                },
+                {
+                    "date": 1676638888678,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -82,9 +82,8 @@\n     let data = {\n         id : id,\n         color: color,\n         quantity: Number(quantity),\n-       \n     }\n     //Transformer les données en string\n     localStorage.setItem(key, JSON.stringify(command))\n }\n"
+                },
+                {
+                    "date": 1676638908453,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n         color: color,\n         quantity: Number(quantity),\n     }\n     //Transformer les données en string\n-    localStorage.setItem(key, JSON.stringify(command))\n+    localStorage.setItem(key, JSON.stringify(d))\n }\n \n \n function redirectToCart(){\n"
+                },
+                {
+                    "date": 1676638919177,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n         color: color,\n         quantity: Number(quantity),\n     }\n     //Transformer les données en string\n-    localStorage.setItem(key, JSON.stringify(d))\n+    localStorage.setItem(, JSON.stringify(data))\n }\n \n \n function redirectToCart(){\n"
+                },
+                {
+                    "date": 1676639351723,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -78,15 +78,16 @@\n }\n function saveCommand(color, quantity){\n     //const key = `${id}-${color}`\n     let isFound = false;\n+    \n     let data = {\n         id : id,\n         color: color,\n         quantity: Number(quantity),\n     }\n     //Transformer les données en string\n-    localStorage.setItem(, JSON.stringify(data))\n+    localStorage.setItem(id, JSON.stringify(data))\n }\n \n \n function redirectToCart(){\n"
+                },
+                {
+                    "date": 1676639363235,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -78,9 +78,9 @@\n }\n function saveCommand(color, quantity){\n     //const key = `${id}-${color}`\n     let isFound = false;\n-    \n+    let panier = localStorage\n     let data = {\n         id : id,\n         color: color,\n         quantity: Number(quantity),\n"
+                },
+                {
+                    "date": 1676639370534,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -78,9 +78,9 @@\n }\n function saveCommand(color, quantity){\n     //const key = `${id}-${color}`\n     let isFound = false;\n-    let panier = localStorage\n+    let panier = localStorage.getItem()\n     let data = {\n         id : id,\n         color: color,\n         quantity: Number(quantity),\n"
+                },
+                {
+                    "date": 1676639529570,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -78,10 +78,10 @@\n }\n function saveCommand(color, quantity){\n     //const key = `${id}-${color}`\n     let isFound = false;\n-    let panier = localStorage.getItem()\n-    let data = {\n+    let panier = localStorage.getItem(\"id\")\n+    let data = [{\n         id : id,\n         color: color,\n         quantity: Number(quantity),\n     }\n"
+                },
+                {
+                    "date": 1676639534683,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -83,9 +83,9 @@\n     let data = [{\n         id : id,\n         color: color,\n         quantity: Number(quantity),\n-    }\n+    }[]\n     //Transformer les données en string\n     localStorage.setItem(id, JSON.stringify(data))\n }\n \n"
+                },
+                {
+                    "date": 1676639540047,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -83,9 +83,9 @@\n     let data = [{\n         id : id,\n         color: color,\n         quantity: Number(quantity),\n-    }[]\n+    }]\n     //Transformer les données en string\n     localStorage.setItem(id, JSON.stringify(data))\n }\n \n"
+                },
+                {
+                    "date": 1676639546414,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -83,10 +83,10 @@\n     let data = [{\n         id : id,\n         color: color,\n         quantity: Number(quantity),\n-    }]\n-    //Transformer les données en string\n+    }];\n+        //Transformer les données en string\n     localStorage.setItem(id, JSON.stringify(data))\n }\n \n \n"
+                },
+                {
+                    "date": 1676639569775,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -79,8 +79,9 @@\n function saveCommand(color, quantity){\n     //const key = `${id}-${color}`\n     let isFound = false;\n     let panier = localStorage.getItem(\"id\")\n+    \n     let data = [{\n         id : id,\n         color: color,\n         quantity: Number(quantity),\n"
+                },
+                {
+                    "date": 1676639576388,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -79,9 +79,9 @@\n function saveCommand(color, quantity){\n     //const key = `${id}-${color}`\n     let isFound = false;\n     let panier = localStorage.getItem(\"id\")\n-    \n+    if()\n     let data = [{\n         id : id,\n         color: color,\n         quantity: Number(quantity),\n"
+                },
+                {
+                    "date": 1676639582898,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -79,9 +79,9 @@\n function saveCommand(color, quantity){\n     //const key = `${id}-${color}`\n     let isFound = false;\n     let panier = localStorage.getItem(\"id\")\n-    if()\n+    if(!panier)\n     let data = [{\n         id : id,\n         color: color,\n         quantity: Number(quantity),\n"
+                },
+                {
+                    "date": 1676639591368,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -79,9 +79,9 @@\n function saveCommand(color, quantity){\n     //const key = `${id}-${color}`\n     let isFound = false;\n     let panier = localStorage.getItem(\"id\")\n-    if(!panier)\n+    if(!panier){}\n     let data = [{\n         id : id,\n         color: color,\n         quantity: Number(quantity),\n"
+                },
+                {
+                    "date": 1676639669975,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -79,17 +79,17 @@\n function saveCommand(color, quantity){\n     //const key = `${id}-${color}`\n     let isFound = false;\n     let panier = localStorage.getItem(\"id\")\n-    if(!panier){}\n+    if(!panier){\n     let data = [{\n         id : id,\n         color: color,\n         quantity: Number(quantity),\n     }];\n         //Transformer les données en string\n     localStorage.setItem(id, JSON.stringify(data))\n-}\n+}else\n \n \n function redirectToCart(){\n     window.location.href = \"cart.html\"\n"
+                },
+                {
+                    "date": 1676639698361,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -88,9 +88,17 @@\n     }];\n         //Transformer les données en string\n     localStorage.setItem(id, JSON.stringify(data))\n }else\n+panier = JSON.parse(panier);\n \n+panier.forEach(item =>{\n+    if(isFound) return;\n+    if(id === item.id && color === item.color){\n+        item.quantity = Number(item.quantity) + Number(quantity);\n+        isFound = true\n+    }\n+})\n \n function redirectToCart(){\n     window.location.href = \"cart.html\"\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676639765517,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -100,5 +100,5 @@\n })\n \n function redirectToCart(){\n     window.location.href = \"cart.html\"\n-}\n\\ No newline at end of file\n+}\n"
+                },
+                {
+                    "date": 1676639837833,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -98,7 +98,18 @@\n         isFound = true\n     }\n })\n \n+if(!isFound){\n+    panier.push( {\n+        id : id,\n+        color: color,\n+        quantity: Number(quantity),\n+    })\n+}\n+\n+localStorage.setItem(\"panier\",JSON.stringify(panier))\n+}\n function redirectToCart(){\n     window.location.href = \"cart.html\"\n }\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676639975000,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -76,40 +76,38 @@\n         return true\n     }\n }\n function saveCommand(color, quantity){\n-    //const key = `${id}-${color}`\n     let isFound = false;\n-    let panier = localStorage.getItem(\"id\")\n-    if(!panier){\n-    let data = [{\n-        id : id,\n-        color: color,\n-        quantity: Number(quantity),\n-    }];\n-        //Transformer les données en string\n-    localStorage.setItem(id, JSON.stringify(data))\n-}else\n-panier = JSON.parse(panier);\n+    let panier =   localStorage.getItem(\"panier\")  // tu dois réccupérer le panier qui est stoké dans le localstorage et uniquement celui-ci, pas besoin de lui donner une valeur par défaut comme tu vaais essayer de faire ligne 4\n+    // panier n'existe pas\n+    if(!panier){  // soit le panier est vide\n+        let data = [{\n+            id : id,\n+            color : color,\n+            quantity: Number(quantity),\n+        }];\n+        localStorage.setItem(\"panier\", JSON.stringify(data))\n+    }else{ // soit le panier n'est pas vide\n+        panier = JSON.parse(panier);\n \n-panier.forEach(item =>{\n-    if(isFound) return;\n-    if(id === item.id && color === item.color){\n-        item.quantity = Number(item.quantity) + Number(quantity);\n-        isFound = true\n-    }\n-})\n+        panier.forEach(item =>{\n+            if(isFound) return;\n+            if(id === item.id && color === item.color){\n+                item.quantity = Number(item.quantity) + Number(quantity);\n\\ No newline at end of file\n+                isFound = true\n+            }\n+        })\n \n-if(!isFound){\n-    panier.push( {\n-        id : id,\n-        color: color,\n-        quantity: Number(quantity),\n-    })\n-}\n+        if(!isFound){\n+            panier.push( {\n+                id : id,\n+                color: color,\n+                quantity: Number(quantity),\n+            })\n+        }\n \n-localStorage.setItem(\"panier\",JSON.stringify(panier))\n-}\n+        localStorage.setItem(\"panier\",JSON.stringify(panier))\n+    }\n function redirectToCart(){\n     window.location.href = \"cart.html\"\n }\n-}\n"
+                },
+                {
+                    "date": 1676640160121,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -107,7 +107,8 @@\n         }\n \n         localStorage.setItem(\"panier\",JSON.stringify(panier))\n     }\n+    \n function redirectToCart(){\n     window.location.href = \"cart.html\"\n\\ No newline at end of file\n-}\n+}\n"
+                },
+                {
+                    "date": 1676640227150,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -88,10 +88,9 @@\n         }];\n         localStorage.setItem(\"panier\", JSON.stringify(data))\n     }else{ // soit le panier n'est pas vide\n         panier = JSON.parse(panier);\n-\n-        panier.forEach(item =>{\n+panier.forEach(item =>{\n             if(isFound) return;\n             if(id === item.id && color === item.color){\n                 item.quantity = Number(item.quantity) + Number(quantity);\n                 isFound = true\n@@ -107,8 +106,8 @@\n         }\n \n         localStorage.setItem(\"panier\",JSON.stringify(panier))\n     }\n-    \n+}\n function redirectToCart(){\n     window.location.href = \"cart.html\"\n\\ No newline at end of file\n-}\n+}\n"
+                },
+                {
+                    "date": 1676640252912,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -77,9 +77,9 @@\n     }\n }\n function saveCommand(color, quantity){\n     let isFound = false;\n-    let panier =   localStorage.getItem(\"panier\")  // tu dois réccupérer le panier qui est stoké dans le localstorage et uniquement celui-ci, pas besoin de lui donner une valeur par défaut comme tu vaais essayer de faire ligne 4\n+    let panier =   localStorage.getItem(\"id\")  // tu dois réccupérer le panier qui est stoké dans le localstorage et uniquement celui-ci, pas besoin de lui donner une valeur par défaut comme tu vaais essayer de faire ligne 4\n     // panier n'existe pas\n     if(!panier){  // soit le panier est vide\n         let data = [{\n             id : id,\n@@ -88,9 +88,9 @@\n         }];\n         localStorage.setItem(\"panier\", JSON.stringify(data))\n     }else{ // soit le panier n'est pas vide\n         panier = JSON.parse(panier);\n-panier.forEach(item =>{\n+        panier.forEach(item =>{\n             if(isFound) return;\n             if(id === item.id && color === item.color){\n                 item.quantity = Number(item.quantity) + Number(quantity);\n                 isFound = true\n@@ -109,5 +109,5 @@\n     }\n }\n function redirectToCart(){\n     window.location.href = \"cart.html\"\n-}\n\\ No newline at end of file\n+}\n"
+                },
+                {
+                    "date": 1676640306463,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -77,9 +77,9 @@\n     }\n }\n function saveCommand(color, quantity){\n     let isFound = false;\n-    let panier =   localStorage.getItem(\"id\")  // tu dois réccupérer le panier qui est stoké dans le localstorage et uniquement celui-ci, pas besoin de lui donner une valeur par défaut comme tu vaais essayer de faire ligne 4\n+   // let panier =   localStorage.getItem(\"id\")  // tu dois réccupérer le panier qui est stoké dans le localstorage et uniquement celui-ci, pas besoin de lui donner une valeur par défaut comme tu vaais essayer de faire ligne 4\n     // panier n'existe pas\n     if(!panier){  // soit le panier est vide\n         let data = [{\n             id : id,\n"
+                },
+                {
+                    "date": 1676640388499,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -77,9 +77,9 @@\n     }\n }\n function saveCommand(color, quantity){\n     let isFound = false;\n-   // let panier =   localStorage.getItem(\"id\")  // tu dois réccupérer le panier qui est stoké dans le localstorage et uniquement celui-ci, pas besoin de lui donner une valeur par défaut comme tu vaais essayer de faire ligne 4\n+   //let panier =   localStorage.getItem(\"id\")  // tu dois réccupérer le panier qui est stoké dans le localstorage et uniquement celui-ci, pas besoin de lui donner une valeur par défaut comme tu vaais essayer de faire ligne 4\n     // panier n'existe pas\n     if(!panier){  // soit le panier est vide\n         let data = [{\n             id : id,\n"
+                },
+                {
+                    "date": 1676640393672,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -77,9 +77,9 @@\n     }\n }\n function saveCommand(color, quantity){\n     let isFound = false;\n-   //let panier =   localStorage.getItem(\"id\")  // tu dois réccupérer le panier qui est stoké dans le localstorage et uniquement celui-ci, pas besoin de lui donner une valeur par défaut comme tu vaais essayer de faire ligne 4\n+    let panier =   localStorage.getItem(\"id\")  // tu dois réccupérer le panier qui est stoké dans le localstorage et uniquement celui-ci, pas besoin de lui donner une valeur par défaut comme tu vaais essayer de faire ligne 4\n     // panier n'existe pas\n     if(!panier){  // soit le panier est vide\n         let data = [{\n             id : id,\n"
+                },
+                {
+                    "date": 1676640419664,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -77,9 +77,9 @@\n     }\n }\n function saveCommand(color, quantity){\n     let isFound = false;\n-    let panier =   localStorage.getItem(\"id\")  // tu dois réccupérer le panier qui est stoké dans le localstorage et uniquement celui-ci, pas besoin de lui donner une valeur par défaut comme tu vaais essayer de faire ligne 4\n+    let panier =   localStorage.getItem(\"panier\")  // tu dois réccupérer le panier qui est stoké dans le localstorage et uniquement celui-ci, pas besoin de lui donner une valeur par défaut comme tu vaais essayer de faire ligne 4\n     // panier n'existe pas\n     if(!panier){  // soit le panier est vide\n         let data = [{\n             id : id,\n"
+                },
+                {
+                    "date": 1676640504596,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -105,9 +105,9 @@\n             })\n         }\n \n         localStorage.setItem(\"panier\",JSON.stringify(panier))\n-    }\n+    \n }\n function redirectToCart(){\n     window.location.href = \"cart.html\"\n }\n"
+                },
+                {
+                    "date": 1676640515076,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -105,9 +105,9 @@\n             })\n         }\n \n         localStorage.setItem(\"panier\",JSON.stringify(panier))\n-    \n+    }\n }\n function redirectToCart(){\n     window.location.href = \"cart.html\"\n }\n"
+                },
+                {
+                    "date": 1676640568428,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -77,9 +77,9 @@\n     }\n }\n function saveCommand(color, quantity){\n     let isFound = false;\n-    let panier =   localStorage.getItem(\"panier\")  // tu dois réccupérer le panier qui est stoké dans le localstorage et uniquement celui-ci, pas besoin de lui donner une valeur par défaut comme tu vaais essayer de faire ligne 4\n+    //let panier =   localStorage.getItem(\"panier\")  // tu dois réccupérer le panier qui est stoké dans le localstorage et uniquement celui-ci, pas besoin de lui donner une valeur par défaut comme tu vaais essayer de faire ligne 4\n     // panier n'existe pas\n     if(!panier){  // soit le panier est vide\n         let data = [{\n             id : id,\n"
+                },
+                {
+                    "date": 1676640591027,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -61,9 +61,9 @@\n \n function buttonEvent(){\n     const color = document.querySelector(\"#colors\").value\n     const quantity = document.querySelector(\"#quantity\").value\n-    if (ifInvalidCommand(color, quantity)) return\n+   // if (ifInvalidCommand(color, quantity)) return\n     saveCommand(color, quantity)\n     redirectToCart()\n }\n function ifInvalidCommand(color, quantity){\n"
+                },
+                {
+                    "date": 1676640655866,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -77,9 +77,9 @@\n     }\n }\n function saveCommand(color, quantity){\n     let isFound = false;\n-    //let panier =   localStorage.getItem(\"panier\")  // tu dois réccupérer le panier qui est stoké dans le localstorage et uniquement celui-ci, pas besoin de lui donner une valeur par défaut comme tu vaais essayer de faire ligne 4\n+    let panier =   localStorage.getItem(\"panier\")  // tu dois réccupérer le panier qui est stoké dans le localstorage et uniquement celui-ci, pas besoin de lui donner une valeur par défaut comme tu vaais essayer de faire ligne 4\n     // panier n'existe pas\n     if(!panier){  // soit le panier est vide\n         let data = [{\n             id : id,\n"
+                },
+                {
+                    "date": 1676640706596,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -77,9 +77,9 @@\n     }\n }\n function saveCommand(color, quantity){\n     let isFound = false;\n-    let panier =   localStorage.getItem(\"panier\")  // tu dois réccupérer le panier qui est stoké dans le localstorage et uniquement celui-ci, pas besoin de lui donner une valeur par défaut comme tu vaais essayer de faire ligne 4\n+    let panier =   localStorage.getItem(\"id\")  // tu dois réccupérer le panier qui est stoké dans le localstorage et uniquement celui-ci, pas besoin de lui donner une valeur par défaut comme tu vaais essayer de faire ligne 4\n     // panier n'existe pas\n     if(!panier){  // soit le panier est vide\n         let data = [{\n             id : id,\n"
+                },
+                {
+                    "date": 1676640721922,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -77,9 +77,9 @@\n     }\n }\n function saveCommand(color, quantity){\n     let isFound = false;\n-    let panier =   localStorage.getItem(\"id\")  // tu dois réccupérer le panier qui est stoké dans le localstorage et uniquement celui-ci, pas besoin de lui donner une valeur par défaut comme tu vaais essayer de faire ligne 4\n+    let panier =  localStorage.getItem(\"id\")  // tu dois réccupérer le panier qui est stoké dans le localstorage et uniquement celui-ci, pas besoin de lui donner une valeur par défaut comme tu vaais essayer de faire ligne 4\n     // panier n'existe pas\n     if(!panier){  // soit le panier est vide\n         let data = [{\n             id : id,\n"
+                },
+                {
+                    "date": 1676640733634,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -77,9 +77,9 @@\n     }\n }\n function saveCommand(color, quantity){\n     let isFound = false;\n-    let panier =  localStorage.getItem(\"id\")  // tu dois réccupérer le panier qui est stoké dans le localstorage et uniquement celui-ci, pas besoin de lui donner une valeur par défaut comme tu vaais essayer de faire ligne 4\n+    let panier =  localStorage // tu dois réccupérer le panier qui est stoké dans le localstorage et uniquement celui-ci, pas besoin de lui donner une valeur par défaut comme tu vaais essayer de faire ligne 4\n     // panier n'existe pas\n     if(!panier){  // soit le panier est vide\n         let data = [{\n             id : id,\n"
+                },
+                {
+                    "date": 1676641295895,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -77,9 +77,9 @@\n     }\n }\n function saveCommand(color, quantity){\n     let isFound = false;\n-    let panier =  localStorage // tu dois réccupérer le panier qui est stoké dans le localstorage et uniquement celui-ci, pas besoin de lui donner une valeur par défaut comme tu vaais essayer de faire ligne 4\n+    let panier =  localStorage. // tu dois réccupérer le panier qui est stoké dans le localstorage et uniquement celui-ci, pas besoin de lui donner une valeur par défaut comme tu vaais essayer de faire ligne 4\n     // panier n'existe pas\n     if(!panier){  // soit le panier est vide\n         let data = [{\n             id : id,\n"
+                },
+                {
+                    "date": 1676641343061,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -77,9 +77,9 @@\n     }\n }\n function saveCommand(color, quantity){\n     let isFound = false;\n-    let panier =  localStorage. // tu dois réccupérer le panier qui est stoké dans le localstorage et uniquement celui-ci, pas besoin de lui donner une valeur par défaut comme tu vaais essayer de faire ligne 4\n+    let panier =  localStorage.getItem() // tu dois réccupérer le panier qui est stoké dans le localstorage et uniquement celui-ci, pas besoin de lui donner une valeur par défaut comme tu vaais essayer de faire ligne 4\n     // panier n'existe pas\n     if(!panier){  // soit le panier est vide\n         let data = [{\n             id : id,\n"
+                },
+                {
+                    "date": 1676641349460,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -77,9 +77,9 @@\n     }\n }\n function saveCommand(color, quantity){\n     let isFound = false;\n-    let panier =  localStorage.getItem() // tu dois réccupérer le panier qui est stoké dans le localstorage et uniquement celui-ci, pas besoin de lui donner une valeur par défaut comme tu vaais essayer de faire ligne 4\n+    let panier =  localStorage.getItem(\"panier\") // tu dois réccupérer le panier qui est stoké dans le localstorage et uniquement celui-ci, pas besoin de lui donner une valeur par défaut comme tu vaais essayer de faire ligne 4\n     // panier n'existe pas\n     if(!panier){  // soit le panier est vide\n         let data = [{\n             id : id,\n"
+                },
+                {
+                    "date": 1676641433952,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -77,9 +77,9 @@\n     }\n }\n function saveCommand(color, quantity){\n     let isFound = false;\n-    let panier =  localStorage.getItem(\"panier\") // tu dois réccupérer le panier qui est stoké dans le localstorage et uniquement celui-ci, pas besoin de lui donner une valeur par défaut comme tu vaais essayer de faire ligne 4\n+    let panier =  localStorage.getItem(\"\") // tu dois réccupérer le panier qui est stoké dans le localstorage et uniquement celui-ci, pas besoin de lui donner une valeur par défaut comme tu vaais essayer de faire ligne 4\n     // panier n'existe pas\n     if(!panier){  // soit le panier est vide\n         let data = [{\n             id : id,\n"
+                },
+                {
+                    "date": 1676641533353,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -77,9 +77,9 @@\n     }\n }\n function saveCommand(color, quantity){\n     let isFound = false;\n-    let panier =  localStorage.getItem(\"\") // tu dois réccupérer le panier qui est stoké dans le localstorage et uniquement celui-ci, pas besoin de lui donner une valeur par défaut comme tu vaais essayer de faire ligne 4\n+    let panier =  localStorage.getItem(\"panier\") // tu dois réccupérer le panier qui est stoké dans le localstorage et uniquement celui-ci, pas besoin de lui donner une valeur par défaut comme tu vaais essayer de faire ligne 4\n     // panier n'existe pas\n     if(!panier){  // soit le panier est vide\n         let data = [{\n             id : id,\n"
+                },
+                {
+                    "date": 1676641631140,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -77,9 +77,9 @@\n     }\n }\n function saveCommand(color, quantity){\n     let isFound = false;\n-    let panier =  localStorage.getItem(\"I\") // tu dois réccupérer le panier qui est stoké dans le localstorage et uniquement celui-ci, pas besoin de lui donner une valeur par défaut comme tu vaais essayer de faire ligne 4\n+    let panier =  localStorage.getItem(\"\") // tu dois réccupérer le panier qui est stoké dans le localstorage et uniquement celui-ci, pas besoin de lui donner une valeur par défaut comme tu vaais essayer de faire ligne 4\n     // panier n'existe pas\n     if(!panier){  // soit le panier est vide\n         let data = [{\n             id : id,\n"
+                },
+                {
+                    "date": 1676646029738,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -74,9 +74,9 @@\n     if (color == null || color === \"\" ) {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true // il faut retourner une valeur parce ligne 69, tu as une condition sur le retour de la fonction, si tu retourne rien, peu importe que le formulaire soit bon ou pas, le comportement restera inchangé\n         }\n-    if (quantity == null || quantity <= 0 || quantity > 100) {\n+    if (quantity == null || quantity <= 0 || quantity > 100 ) {\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true // il faut retourner une valeur même chose que le commentaire ligne 76\n     }\n } \n"
+                }
+            ],
+            "date": 1676625981699,
+            "name": "Commit-0",
+            "content": "const queryString = window.location.search\nconst urlParams = new URLSearchParams(queryString)\nconst id = urlParams.get(\"id\")\n//let panier = \"\"   Pas nécessaire voir commentaire ligne 86\nconsole.log({id});\n\nif (id != null){\n    let itemPrice = 0\n    let imgUrl, altText\n    let productName\n}\n\nfetch(`http://localhost:3000/api/products/${id}`)\n   .then((reponse) => reponse.json())\n   .then((res) => getDataKanap(res)) \n\nfunction getDataKanap(product) {   // product au lieu de panier est plus adapté, toujours nommer ces variables de manière explicite à quoi ça correspond\n    //récupération de toutes les données dans l'objet kanap\n    const {altTxt, colors, description, imageUrl, name, price, id}  = product  // product à la place de panier\n    //les données sont passées dans des fonctions qui vont les afficher\n    itemPrice = price\n    imgUrl = imageUrl\n    altText = altTxt\n    productName = name \n    makeImage(imageUrl, altTxt)\n    makeTitle(name)\n    makePrice(price)\n    makeDescription(description)\n    makeColors(colors)\n  //  console.log(panier)\n}\n//localStorage.clear()\nfunction makeImage(imageUrl, altTxt){\n    const image = document.createElement(\"img\")\n    image.src = imageUrl\n    image.alt = altTxt\n    const parent = document.querySelector(\".item__img\")\n    if(parent != null)parent.appendChild(image)\n    return image\n} \nfunction makeTitle(name) {\n    const h1 = document.querySelector(\"#title\")\n    if(h1 != null)h1.textContent = name\n    return name\n}\nfunction makePrice(price) {\n    const span = document.querySelector(\"#price\")\n   if (span !=null)span.textContent = price\n}\nfunction makeDescription(description) {\n    const p = document.querySelector(\"#description\")\n    if (p != null)p.textContent = description\n}\nfunction makeColors(colors) {\n    const select = document.querySelector(\"#colors\")\n    colors.forEach((color) => {\n        const option = document.createElement(\"option\")\n        option.value = color\n        option.textContent = color\n        select.appendChild(option)\n    })\n}\nconst buttonToCart = document.querySelector(\"#addToCart\")\nbuttonToCart.addEventListener(\"click\", buttonEvent)\n//console.log(buttonEvent) j'ai du mal à voir ce que ce console.log peut d'apporter\nfunction buttonEvent(){\n    const color = document.querySelector(\"#colors\").value\n    const quantity = document.querySelector(\"#quantity\").value\n  if (invalidCommand(color, quantity)) return\n    saveCommand(color,quantity)\n    redirectToCart()\n}\nfunction invalidCommand(color, quantity){\n    if (color == null || color === \"\" ) {\n        alert(\"Vous devez sélectionner une couleur. Merci\")\n        return true // il faut retourner une valeur parce ligne 69, tu as une condition sur le retour de la fonction, si tu retourne rien, peu importe que le formulaire soit bon ou pas, le comportement restera inchangé\n        }\n    if (quantity == null || quantity < 0 && quantity < 100) {// ||!Number.isInteger(quantity)\n        alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n        return true // il faut retourner une valeur même chose que le commentaire ligne 76\n    }\n} \n//Sauvegarde dans localStorage if commande valide\nfunction saveCommand(color, quantity){\n    let isFound = false;\n    let panier =   localStorage.getItem(\"panier\")  // tu dois réccupérer le panier qui est stoké dans le localstorage et uniquement celui-ci, pas besoin de lui donner une valeur par défaut comme tu vaais essayer de faire ligne 4\n    // panier n'existe pas\n    if(!panier){  // soit le panier est vide\n        let data = [{\n            id : id,\n            color : color,\n            quantity: Number(quantity),\n        }];\n        localStorage.setItem(\"panier\", JSON.stringify(data))\n    }else{ // soit le panier n'est pas vide\n        panier = JSON.parse(panier);\n\n        panier.forEach(item =>{\n            if(isFound) return;\n            if(id === item.id && color === item.color){\n                item.quantity = Number(item.quantity) + Number(quantity);\n                isFound = true\n            }\n        })\n\n        if(!isFound){\n            panier.push( {\n                id : id,\n                color: color,\n                quantity: Number(quantity),\n            })\n        }\n\n        localStorage.setItem(\"panier\",JSON.stringify(panier))\n    }\n// j'ai remis en ordre le code, j'ai pas compris la tentative de la création d'une fonction panierPush et de toute façon, on évite de créer des fonctions dans des fonctions\n// il y a deux possibilité : panier vide ou pas vide, tu as déplacé du code à l'exterieur du  \"if else\"\n// le boulot à faire est principalement sur la page cart.js est pas ici, tu as tout chamboulé alors que tu avais just à copier le code fait ensemble dans la fonction  savecommand\n}\nfunction redirectToCart(){\n    window.location.href = \"cart.html\"\n}"
+        }
+    ]
+}

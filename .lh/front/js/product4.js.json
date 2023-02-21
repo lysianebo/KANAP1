@@ -1,0 +1,290 @@
+{
+    "sourceFile": "front/js/product4.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 68,
+            "patches": [
+                {
+                    "date": 1676560865956,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1676561078283,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n fetch(`http://localhost:3000/api/products/${id}`)\n    .then((reponse) => reponse.json())\n    .then((res) => dataKanap(res)) \n \n-function dataKanap(kanap) {\n+function dataKanap() {\n     //récupération de toutes les données dans l'objet kanap\n     const {altTxt, colors, description, imageUrl, name, price, id}  = kanap\n     //les données sont passées dans des fonctions qui vont les afficher\n     itemPrice = price\n"
+                },
+                {
+                    "date": 1676561164662,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n fetch(`http://localhost:3000/api/products/${id}`)\n    .then((reponse) => reponse.json())\n    .then((res) => dataKanap(res)) \n \n-function dataKanap() {\n+function dataKanap(kanap) {\n     //récupération de toutes les données dans l'objet kanap\n     const {altTxt, colors, description, imageUrl, name, price, id}  = kanap\n     //les données sont passées dans des fonctions qui vont les afficher\n     itemPrice = price\n@@ -54,9 +54,9 @@\n         option.textContent = color\n         select.appendChild(option)\n     })\n }\n-const button = document.querySelector(\"#addToCart\")\n+    const button = document.querySelector(\"#addToCart\")\n button.addEventListener(\"click\", buttonEvent)\n \n function buttonEvent(){\n     const color = document.querySelector(\"#colors\").value\n"
+                },
+                {
+                    "date": 1676561707294,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -55,9 +55,9 @@\n         select.appendChild(option)\n     })\n }\n     const button = document.querySelector(\"#addToCart\")\n-button.addEventListener(\"click\", buttonEvent)\n+    button.addEventListener(\"click\", buttonEvent)\n \n function buttonEvent(){\n     const color = document.querySelector(\"#colors\").value\n     const quantity = document.querySelector(\"#quantity\").value\n@@ -80,12 +80,16 @@\n     localStorage.setItem(key, JSON.stringify(command))\n }\n \n function ifInvalidCommand(color, quantity){\n-    if (color == null || color === \"\" || quantity == null || quantity == 0) {\n-        alert(\"Vous devez sélectionner une couleur et une quantité. Merci\")\n+    if (color == null || color === \"\" ) {\n+        alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true\n         }\n+    if (quantity == null || quantity < 0 && quantity < 100) {// ||!Number.isInteger(quantity)\n+        alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n+        return true\n+    }\n }\n function redirectToCart(){\n     window.location.href = \"cart.html\"\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676561721310,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n     if (color == null || color === \"\" ) {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true\n         }\n-    if (quantity == null || quantity < 0 && quantity < 100) {// ||!Number.isInteger(quantity)\n+    if (quantity == null || quantity < 0 && quantity < 100 ||!Number.isInteger(quantity)\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n }\n"
+                },
+                {
+                    "date": 1676561736672,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n     if (color == null || color === \"\" ) {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true\n         }\n-    if (quantity == null || quantity < 0 && quantity < 100 ||!Number.isInteger(quantity)\n+    if (quantity == null || quantity < 0 && quantity < 100 ||!Number.isInteger(quantity))\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n }\n"
+                },
+                {
+                    "date": 1676561743288,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -88,8 +88,8 @@\n     if (quantity == null || quantity < 0 && quantity < 100 ||!Number.isInteger(quantity))\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n-}\n+\n function redirectToCart(){\n     window.location.href = \"cart.html\"\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676562961573,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n     if (color == null || color === \"\" ) {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true\n         }\n-    if (quantity == null || quantity < 0 && quantity < 100 ||!Number.isInteger(quantity))\n+    if (quantity == null || quantity < 0 && quantity  100 ||!Number.isInteger(quantity))\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n \n"
+                },
+                {
+                    "date": 1676563078277,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n     if (color == null || color === \"\" ) {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true\n         }\n-    if (quantity == null || quantity < 0 && quantity  100 ||!Number.isInteger(quantity))\n+    if (quantity == null || quantity  0 && quantity > 100 ||!Number.isInteger(quantity))\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n \n"
+                },
+                {
+                    "date": 1676563088877,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n     if (color == null || color === \"\" ) {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true\n         }\n-    if (quantity == null || quantity  0 && quantity > 100 ||!Number.isInteger(quantity))\n+    if (quantity == null || quantity > 0 && quantity  100 ||!Number.isInteger(quantity))\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n \n"
+                },
+                {
+                    "date": 1676563112532,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n     if (color == null || color === \"\" ) {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true\n         }\n-    if (quantity == null || quantity > 0 && quantity  100 ||!Number.isInteger(quantity))\n+    if (quantity == null || quantity > 0 && quantity < 100 ||!Number.isInteger(quantity))\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n \n"
+                },
+                {
+                    "date": 1676563705907,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n     if (color == null || color === \"\" ) {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true\n         }\n-    if (quantity == null || quantity > 0 && quantity < 100 ||!Number.isInteger(quantity))\n+    if (quantity == null || quantity < 0 && quantity < 100 ||!Number.isInteger(quantity))\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n \n"
+                },
+                {
+                    "date": 1676563712378,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n     if (color == null || color === \"\" ) {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true\n         }\n-    if (quantity == null || quantity < 0 && quantity < 100 ||!Number.isInteger(quantity))\n+    if (quantity == null || quantity < 0 && quantity  100 ||!Number.isInteger(quantity))\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n \n"
+                },
+                {
+                    "date": 1676563721178,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n     if (color == null || color === \"\" ) {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true\n         }\n-    if (quantity == null || quantity < 0 && quantity  100 ||!Number.isInteger(quantity))\n+    if (quantity == null || quantity < 0 && quantity > 100 || !Number.isInteger(quantity))\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n \n"
+                },
+                {
+                    "date": 1676563767223,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n     if (color == null || color === \"\" ) {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true\n         }\n-    if (quantity == null || quantity < 0 && quantity > 100 || !Number.isInteger(quantity))\n+    if (quantity == null || quantity < 0 && quantity > 100 )\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n \n"
+                },
+                {
+                    "date": 1676563838647,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n     if (color == null || color === \"\" ) {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true\n         }\n-    if (quantity == null || quantity < 0 && quantity > 100 )\n+    if (quantity == null || quantity < 0 && quantity > 100 || !Number.isInteger(quantity))\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n \n"
+                },
+                {
+                    "date": 1676563866117,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n     if (color == null || color === \"\" ) {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true\n         }\n-    if (quantity == null || quantity < 0 && quantity > 100 || !Number.isInteger(quantity))\n+    if (quantity == null || !Number.isInteger(quantity))\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n \n"
+                },
+                {
+                    "date": 1676563892973,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n     if (color == null || color === \"\" ) {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true\n         }\n-    if (quantity == null || !Number.isInteger(quantity))\n+    if (quantity == null || quantity < 0 && quantity > 100 || !Number.isInteger(quantity))\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n \n"
+                },
+                {
+                    "date": 1676563929764,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n     if (color == null || color === \"\" ) {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true\n         }\n-    if (quantity == null || quantity < 0 && quantity > 100 || !Number.isInteger(quantity))\n+    if (quantity == null || quantity < 0 && quantity > 100 )\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n \n"
+                },
+                {
+                    "date": 1676563977909,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n     if (color == null || color === \"\" ) {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true\n         }\n-    if (quantity == null || quantity < 0 && quantity > 100 )\n+    if (quantity == null || quantity  0 && quantity > 100 )\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n \n"
+                },
+                {
+                    "date": 1676563985390,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n     if (color == null || color === \"\" ) {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true\n         }\n-    if (quantity == null || quantity  0 && quantity > 100 )\n+    if (quantity == null || quantity > 0 && quantity > 100 )\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n \n"
+                },
+                {
+                    "date": 1676564234112,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n     if (color == null || color === \"\" ) {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true\n         }\n-    if (quantity == null || quantity > 0 && quantity > 100 )\n+        if (quantity == null || quantity < 0 && quantity < 100) {// ||!Number.isInteger(quantity)\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n \n"
+                },
+                {
+                    "date": 1676564305767,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n     if (color == null || color === \"\" ) {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true\n         }\n-        if (quantity == null || quantity < 0 && quantity < 100) {// ||!Number.isInteger(quantity)\n+        if (quantity.value == null || quantity < 0 && quantity < 100) {// ||!Number.isInteger(quantity)\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n \n"
+                },
+                {
+                    "date": 1676564312588,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n     if (color == null || color === \"\" ) {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true\n         }\n-        if (quantity.value == null || quantity < 0 && quantity < 100) {// ||!Number.isInteger(quantity)\n+        if (quantity.value == null || quantity.value < 0 && quantity < 100) {// ||!Number.isInteger(quantity)\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n \n"
+                },
+                {
+                    "date": 1676564319190,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n     if (color == null || color === \"\" ) {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true\n         }\n-        if (quantity.value == null || quantity.value < 0 && quantity < 100) {// ||!Number.isInteger(quantity)\n+        if (quantity.value == null || quantity.value < 0 && quantity.value < 100) {// ||!Number.isInteger(quantity)\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n \n"
+                },
+                {
+                    "date": 1676564379960,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -91,5 +91,5 @@\n     }\n \n function redirectToCart(){\n     window.location.href = \"cart.html\"\n-}\n\\ No newline at end of file\n+}\n"
+                },
+                {
+                    "date": 1676564485707,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,12 +84,13 @@\n     if (color == null || color === \"\" ) {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true\n         }\n-        if (quantity.value == null || quantity.value < 0 && quantity.value < 100) {// ||!Number.isInteger(quantity)\n+        if (quantity.value == null || quantity.value < 0 && quantity.value < 100) {\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n \n function redirectToCart(){\n     window.location.href = \"cart.html\"\n }\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676564502168,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n     if (color == null || color === \"\" ) {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true\n         }\n-        if (quantity.value == null || quantity.value < 0 && quantity.value < 100) {\n+        if (quantity.value == null || quantity < 0 && quantity.value < 100) {\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n \n"
+                },
+                {
+                    "date": 1676564517605,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n     if (color == null || color === \"\" ) {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true\n         }\n-        if (quantity.value == null || quantity < 0 && quantity.value < 100) {\n+        if (quantity == null || quantity < 0 && quantity < 100) {\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n \n"
+                },
+                {
+                    "date": 1676564556446,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -91,6 +91,4 @@\n     }\n \n function redirectToCart(){\n     window.location.href = \"cart.html\"\n-}\n-}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676564561599,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -91,4 +91,6 @@\n     }\n \n function redirectToCart(){\n     window.location.href = \"cart.html\"\n+}\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676564571423,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -88,9 +88,8 @@\n         if (quantity == null || quantity < 0 && quantity < 100) {\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n-\n+}\n function redirectToCart(){\n     window.location.href = \"cart.html\"\n }\n\\ No newline at end of file\n-}\n"
+                },
+                {
+                    "date": 1676564621152,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,12 +84,12 @@\n     if (color == null || color === \"\" ) {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true\n         }\n-        if (quantity == null || quantity < 0 && quantity < 100) {\n+        if (quantity == null || quantity < 0 && quantity  100) {\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n }\n function redirectToCart(){\n     window.location.href = \"cart.html\"\n\\ No newline at end of file\n-}\n+}\n"
+                },
+                {
+                    "date": 1676564717742,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -60,9 +60,9 @@\n \n function buttonEvent(){\n     const color = document.querySelector(\"#colors\").value\n     const quantity = document.querySelector(\"#quantity\").value\n-    if (ifInvalidCommand(color, quantity)) return\n+    if (ifInvalidCommand(color, quantity.)) return\n     saveCommand(color,quantity)\n     redirectToCart()\n }\n function saveCommand(color, quantity){\n@@ -84,12 +84,12 @@\n     if (color == null || color === \"\" ) {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true\n         }\n-        if (quantity == null || quantity < 0 && quantity  100) {\n+        if (quantity == null || quantity < 0 && quantity > 100) {\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n }\n function redirectToCart(){\n     window.location.href = \"cart.html\"\n\\ No newline at end of file\n-}\n+}\n"
+                },
+                {
+                    "date": 1676564787186,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -60,9 +60,9 @@\n \n function buttonEvent(){\n     const color = document.querySelector(\"#colors\").value\n     const quantity = document.querySelector(\"#quantity\").value\n-    if (ifInvalidCommand(color, quantity.)) return\n+    if (ifInvalidCommand(color, quantity)) return\n     saveCommand(color,quantity)\n     redirectToCart()\n }\n function saveCommand(color, quantity){\n@@ -91,5 +91,5 @@\n     }\n }\n function redirectToCart(){\n     window.location.href = \"cart.html\"\n-}\n\\ No newline at end of file\n+}\n"
+                },
+                {
+                    "date": 1676564803463,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n     if (color == null || color === \"\" ) {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true\n         }\n-        if (quantity == null || quantity < 0 && quantity > 100) {\n+        if (quantity == null || quantity. < 0 && quantity > 100) {\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n }\n"
+                },
+                {
+                    "date": 1676564809768,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n     if (color == null || color === \"\" ) {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true\n         }\n-        if (quantity == null || quantity. < 0 && quantity > 100) {\n+        if (quantity == null || quantity.value < 0 && quantity > 100) {\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n }\n"
+                },
+                {
+                    "date": 1676565166504,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n     if (color == null || color === \"\" ) {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true\n         }\n-        if (quantity == null || quantity.value < 0 && quantity > 100) {\n+        if (quantity == null || quantity.value < 0 && quantity  100) {\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n }\n"
+                },
+                {
+                    "date": 1676565171805,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n     if (color == null || color === \"\" ) {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true\n         }\n-        if (quantity == null || quantity.value < 0 && quantity  100) {\n+        if (quantity == null || quantity.value < 0 && quantity < 100 ) {\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n }\n"
+                },
+                {
+                    "date": 1676565184139,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n     if (color == null || color === \"\" ) {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true\n         }\n-        if (quantity == null || quantity.value < 0 && quantity < 100 ) {\n+        if (quantity == null || quantity.value < 0 && quantity < 100 ||!Number.isInteger(quantity)) {\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n }\n"
+                },
+                {
+                    "date": 1676565260816,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n     if (color == null || color === \"\" ) {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true\n         }\n-        if (quantity == null || quantity.value < 0 && quantity < 100 ||!Number.isInteger(quantity)) {\n+        if (quantity == null || quantity < 0 && quantity < 100 ||!Number.isInteger(quantity)) {\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n }\n"
+                },
+                {
+                    "date": 1676565442370,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n     if (color == null || color === \"\" ) {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true\n         }\n-        if (quantity == null || quantity < 0 && quantity < 100 ||!Number.isInteger(quantity)) {\n+        if (quantity == null || quantity. < 0 && quantity < 100 ||!Number.isInteger(quantity)) {\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n }\n"
+                },
+                {
+                    "date": 1676565451197,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n     if (color == null || color === \"\" ) {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true\n         }\n-        if (quantity == null || quantity. < 0 && quantity < 100 ||!Number.isInteger(quantity)) {\n+        if (quantity == null || quantity.value < 0 && quantity.value < 100 ||!Number.isInteger(quantity)) {\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n }\n"
+                },
+                {
+                    "date": 1676565630367,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -60,9 +60,9 @@\n \n function buttonEvent(){\n     const color = document.querySelector(\"#colors\").value\n     const quantity = document.querySelector(\"#quantity\").value\n-    if (ifInvalidCommand(color, quantity)) return\n+    if (ifInvalidCommand(color, quantity))\n     saveCommand(color,quantity)\n     redirectToCart()\n }\n function saveCommand(color, quantity){\n"
+                },
+                {
+                    "date": 1676565696930,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n     if (color == null || color === \"\" ) {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true\n         }\n-        if (quantity == null || quantity.value < 0 && quantity.value < 100 ||!Number.isInteger(quantity)) {\n+        if (quantity == null || quantity.value < 0 && quantity.value  100 ||!Number.isInteger(quantity)) {\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n }\n"
+                },
+                {
+                    "date": 1676565727954,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n     if (color == null || color === \"\" ) {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true\n         }\n-        if (quantity == null || quantity.value < 0 && quantity.value  100 ||!Number.isInteger(quantity)) {\n+        if (quantity == null || quantity.value < 0 && quantity.value > 100 ) {\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n }\n"
+                },
+                {
+                    "date": 1676565776733,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n     if (color == null || color === \"\" ) {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true\n         }\n-        if (quantity == null || quantity.value < 0 && quantity.value > 100 ) {\n+        if (quantity == null || quantity.value < 0 && quantity.value  100 ) {\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n }\n"
+                },
+                {
+                    "date": 1676565828554,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n     if (color == null || color === \"\" ) {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true\n         }\n-        if (quantity == null || quantity.value < 0 && quantity.value  100 ) {\n+        if (quantity == null || quantity < 0 && quantity.value < 100 ) {\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n }\n"
+                },
+                {
+                    "date": 1676565834095,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n     if (color == null || color === \"\" ) {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true\n         }\n-        if (quantity == null || quantity < 0 && quantity.value < 100 ) {\n+        if (quantity == null || quantity < 0 && quantity < 100 ) {\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n }\n"
+                },
+                {
+                    "date": 1676565945004,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -60,9 +60,9 @@\n \n function buttonEvent(){\n     const color = document.querySelector(\"#colors\").value\n     const quantity = document.querySelector(\"#quantity\").value\n-    if (ifInvalidCommand(color, quantity))\n+    if (ifInvalidCommand(color, quantity)) r\n     saveCommand(color,quantity)\n     redirectToCart()\n }\n function saveCommand(color, quantity){\n"
+                },
+                {
+                    "date": 1676565982891,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -60,9 +60,9 @@\n \n function buttonEvent(){\n     const color = document.querySelector(\"#colors\").value\n     const quantity = document.querySelector(\"#quantity\").value\n-    if (ifInvalidCommand(color, quantity)) r\n+    if (ifInvalidCommand(color, quantity)) return\n     saveCommand(color,quantity)\n     redirectToCart()\n }\n function saveCommand(color, quantity){\n@@ -84,9 +84,9 @@\n     if (color == null || color === \"\" ) {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true\n         }\n-        if (quantity == null || quantity < 0 && quantity < 100 ) {\n+        if (quantity == null || quantity =< 0 && quantity < 100 ) {\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n }\n"
+                },
+                {
+                    "date": 1676566005599,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n     if (color == null || color === \"\" ) {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true\n         }\n-        if (quantity == null || quantity =< 0 && quantity < 100 ) {\n+        if (quantity == null || quantity <= 0 && quantity  100 ) {\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n }\n"
+                },
+                {
+                    "date": 1676566012897,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n     if (color == null || color === \"\" ) {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true\n         }\n-        if (quantity == null || quantity <= 0 && quantity  100 ) {\n+        if (quantity == null || quantity <= 0 && quantity > 100 ) {\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n }\n"
+                },
+                {
+                    "date": 1676566046540,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n     if (color == null || color === \"\" ) {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true\n         }\n-        if (quantity == null || quantity <= 0 && quantity > 100 ) {\n+        if (quantity == null || quantity <= 0  quantity > 100 ) {\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n }\n"
+                },
+                {
+                    "date": 1676566121255,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n     if (color == null || color === \"\" ) {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true\n         }\n-        if (quantity == null || quantity <= 0  quantity > 100 ) {\n+        if (quantity == null || quantity <= 0 || quantity > 100 |!Number.isInteger(quantity)) {\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n }\n"
+                },
+                {
+                    "date": 1676566128562,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n     if (color == null || color === \"\" ) {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true\n         }\n-        if (quantity == null || quantity <= 0 || quantity > 100 |!Number.isInteger(quantity)) {\n+        if (quantity == null || quantity <= 0 || quantity > 100 ||!Number.isInteger(quantity)) {\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n }\n"
+                },
+                {
+                    "date": 1676566697709,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n     if (color == null || color === \"\" ) {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true\n         }\n-        if (quantity == null || quantity <= 0 || quantity > 100 ||!Number.isInteger(quantity)) {\n+        if (quantity == null || quantity <= 0 || quantity > 100 ||Number.isInteger(quantity)) {\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n }\n"
+                },
+                {
+                    "date": 1676566702991,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n     if (color == null || color === \"\" ) {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true\n         }\n-        if (quantity == null || quantity <= 0 || quantity > 100 ||Number.isInteger(quantity)) {\n+        if (quantity == null || quantity <= 0 || quantity > 100 || Number.isInteger(quantity)) {\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n }\n"
+                },
+                {
+                    "date": 1676566711898,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n     if (color == null || color === \"\" ) {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true\n         }\n-        if (quantity == null || quantity <= 0 || quantity > 100 || Number.isInteger(quantity)) {\n+        if (quantity == null || quantity <= 0 || quantity > 100 || !Number.isInteger(quantity)) {\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n }\n"
+                },
+                {
+                    "date": 1676566977833,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n     if (color == null || color === \"\" ) {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true\n         }\n-        if (quantity == null || quantity <= 0 || quantity > 100 || !Number.isInteger(quantity)) {\n+        if (quantity == null || quantity <= 0 || quantity > 100  !Number.isInteger(quantity)) {\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n }\n"
+                },
+                {
+                    "date": 1676566984094,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n     if (color == null || color === \"\" ) {\n         alert(\"Vous devez sélectionner une couleur. Merci\")\n         return true\n         }\n-        if (quantity == null || quantity <= 0 || quantity > 100  !Number.isInteger(quantity)) {\n+        if (quantity == null || quantity <= 0 || quantity > 100 && !Number.isInteger(quantity)) {\n         alert(\"Vous devez sélectionner une quantité de 1 à 100. Merci\")\n         return true\n     }\n }\n"
+                },
+                {
+                    "date": 1676567202128,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -65,9 +65,9 @@\n     saveCommand(color,quantity)\n     redirectToCart()\n }\n function saveCommand(color, quantity){\n-    const key = `${id}-${color}`\n+    //const key = `${id}-${color}`\n     const command = {\n         id : id,\n         color: color,\n         quantity: Number(quantity),\n"
+                },
+                {
+                    "date": 1676567213316,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -66,8 +66,9 @@\n     redirectToCart()\n }\n function saveCommand(color, quantity){\n     //const key = `${id}-${color}`\n+    let PANIER \n     const command = {\n         id : id,\n         color: color,\n         quantity: Number(quantity),\n"
+                },
+                {
+                    "date": 1676567230302,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -66,9 +66,9 @@\n     redirectToCart()\n }\n function saveCommand(color, quantity){\n     //const key = `${id}-${color}`\n-    let PANIER \n+    let panier =   localStorage.getItem(\"panier\") \n     const command = {\n         id : id,\n         color: color,\n         quantity: Number(quantity),\n"
+                },
+                {
+                    "date": 1676567236460,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -66,9 +66,9 @@\n     redirectToCart()\n }\n function saveCommand(color, quantity){\n     //const key = `${id}-${color}`\n-    let panier =   localStorage.getItem(\"panier\") \n+    let panier =  localStorage.getItem(\"panier\") \n     const command = {\n         id : id,\n         color: color,\n         quantity: Number(quantity),\n"
+                },
+                {
+                    "date": 1676567260156,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -67,9 +67,9 @@\n }\n function saveCommand(color, quantity){\n     //const key = `${id}-${color}`\n     let panier =  localStorage.getItem(\"panier\") \n-    const command = {\n+    let = {\n         id : id,\n         color: color,\n         quantity: Number(quantity),\n         price: itemPrice,\n"
+                },
+                {
+                    "date": 1676567310901,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -67,9 +67,9 @@\n }\n function saveCommand(color, quantity){\n     //const key = `${id}-${color}`\n     let panier =  localStorage.getItem(\"panier\") \n-    let = {\n+    let data = {\n         id : id,\n         color: color,\n         quantity: Number(quantity),\n         price: itemPrice,\n@@ -77,9 +77,9 @@\n         altTxt: altText,\n         name: productName \n     }\n     //Transformer les données en string\n-    localStorage.setItem(key, JSON.stringify(command))\n+    localStorage.setItem(key, JSON.stringify(d))\n }\n \n function ifInvalidCommand(color, quantity){\n     if (color == null || color === \"\" ) {\n"
+                },
+                {
+                    "date": 1676567368849,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -77,9 +77,9 @@\n         altTxt: altText,\n         name: productName \n     }\n     //Transformer les données en string\n-    localStorage.setItem(, JSON.stringify(data))\n+    localStorage.setItem(\"\", JSON.stringify(data))\n }\n \n function ifInvalidCommand(color, quantity){\n     if (color == null || color === \"\" ) {\n"
+                },
+                {
+                    "date": 1676568751339,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -77,9 +77,9 @@\n         altTxt: altText,\n         name: productName,\n     }\n     //Transformer les données en string\n-    localStorage.setItem(id, JSON.stringify(CO))\n+    localStorage.setItem(id, JSON.stringify(C))\n }\n \n function ifInvalidCommand(color, quantity){\n     if (color == null || color === \"\" ) {\n"
+                }
+            ],
+            "date": 1676560865956,
+            "name": "Commit-0",
+            "content": "const queryString = window.location.search\nconst urlParams = new URLSearchParams(queryString)\nconst id = urlParams.get(\"id\")\nif (id != null){\n    let itemPrice = 0\n    let imgUrl, altText\n    let productName\n}\n\nfetch(`http://localhost:3000/api/products/${id}`)\n   .then((reponse) => reponse.json())\n   .then((res) => dataKanap(res)) \n\nfunction dataKanap(kanap) {\n    //récupération de toutes les données dans l'objet kanap\n    const {altTxt, colors, description, imageUrl, name, price, id}  = kanap\n    //les données sont passées dans des fonctions qui vont les afficher\n    itemPrice = price\n    imgUrl = imageUrl\n    altText = altTxt\n    productName = name \n    makeImage(imageUrl, altTxt)\n    makeTitle(name)\n    makePrice(price)\n    makeDescription(description)\n    makeColors(colors)\n}\nfunction makeImage(imageUrl, altTxt){\n    const image = document.createElement(\"img\")\n    image.src = imageUrl\n    image.alt = altTxt\n    const parent = document.querySelector(\".item__img\")\n    if(parent != null)parent.appendChild(image)\n    return image\n} \nfunction makeTitle(name) {\n    const h1 = document.querySelector(\"#title\")\n    if(h1 != null)h1.textContent = name\n    return name\n}\nfunction makePrice(price) {\n    const span = document.querySelector(\"#price\")\n   if (span !=null)span.textContent = price\n}\nfunction makeDescription(description) {\n    const p = document.querySelector(\"#description\")\n    if (p != null)p.textContent = description\n}\nfunction makeColors(colors) {\n    const select = document.querySelector(\"#colors\")\n    colors.forEach((color) => {\n        const option = document.createElement(\"option\")\n        option.value = color\n        option.textContent = color\n        select.appendChild(option)\n    })\n}\nconst button = document.querySelector(\"#addToCart\")\nbutton.addEventListener(\"click\", buttonEvent)\n\nfunction buttonEvent(){\n    const color = document.querySelector(\"#colors\").value\n    const quantity = document.querySelector(\"#quantity\").value\n    if (ifInvalidCommand(color, quantity)) return\n    saveCommand(color,quantity)\n    redirectToCart()\n}\nfunction saveCommand(color, quantity){\n    const key = `${id}-${color}`\n    const command = {\n        id : id,\n        color: color,\n        quantity: Number(quantity),\n        price: itemPrice,\n        imageUrl: imgUrl,\n        altTxt: altText,\n        name: productName \n    }\n    //Transformer les données en string\n    localStorage.setItem(key, JSON.stringify(command))\n}\n\nfunction ifInvalidCommand(color, quantity){\n    if (color == null || color === \"\" || quantity == null || quantity == 0) {\n        alert(\"Vous devez sélectionner une couleur et une quantité. Merci\")\n        return true\n        }\n}\nfunction redirectToCart(){\n    window.location.href = \"cart.html\"\n}"
+        }
+    ]
+}
