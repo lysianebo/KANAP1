@@ -69,26 +69,25 @@ function invalidCommand(color, quantity){
         alert("Vous devez sélectionner une couleur. Merci")
         return true
         }
-  //  if (quantity == null || quantity <= 0 || quantity > 100 ||!Number.isInteger(quantity)) {
-      //  alert("Vous devez sélectionner une quantité de 1 à 100. Merci")
-    //    return true
-    //}
+  if (quantity == null || quantity <= 0 || quantity > 100 ||!Number.isInteger(quantity)) {
+      alert("Vous devez sélectionner une quantité de 1 à 100. Merci")
+    return true
+    }
 } 
 //Sauvegarde dans localStorage if commande valide
 function saveCommand(color, quantity){
-    let panier =  localStorage
-    console.log("panier")
-//Si le panier n'existe pas 
-//Soit il est vide
-   if(!panier){
+    let isFound = false;
+    let panier =   localStorage.getItem("panier")  // tu dois réccupérer le panier qui est stoké dans le localstorage et uniquement celui-ci, pas besoin de lui donner une valeur par défaut comme tu vaais essayer de faire ligne 4
+    // panier n'existe pas
+    if(!panier){  // soit le panier est vide
         let data = [{
             id : id,
             color : color,
             quantity: Number(quantity),
         }];
-        localStorage.setItem("panier",JSON.stringify(data))
+        localStorage.setItem("panier", JSON.stringify(data))
     }else{ // soit le panier n'est pas vide
-        panier = JSON.parse(panier)
+        panier = JSON.parse(panier);
 
         panier.forEach(item =>{
             if(isFound) return;
@@ -97,14 +96,16 @@ function saveCommand(color, quantity){
                 isFound = true
             }
         })
+
         if(!isFound){
             panier.push( {
                 id : id,
                 color: color,
-                quantity: Number(quantity)
+                quantity: Number(quantity),
             })
         }
-        localStorage.setItem("panier", JSON.stringify(panier))
+
+        localStorage.setItem("panier",JSON.stringify(panier))
     }
 }
 function redirectToCart(){
