@@ -1,41 +1,36 @@
-const panier = []
-let item = ""
+let panier = localStorage.getItem("panier") 
+if(panier) panier = JSON.parse(panier);
 
-retrieveItemsFromCache()
-panier.forEach((item) => makeArticle(item))
-//cart.forEach((item) => displayItem(item))
-function retrieveItemsFromCache() {
-    const numberofItems = localStorage.length
-    for (let i = 0; i < numberofItems; i++) {
-    const item = localStorage.getItem(localStorage.key(i)) || ""
-    const itemObjet = JSON.parse(item)
-    panier.push(itemObjet)
+loadPage()
+
+async function loadPage(){
+    let priceTotal = 0;
+    let numberTotal = 0
+    for await (let item of panier){
+      let result = await makeArticle(item); 
+        priceTotal += Number(result.price)* Number(result.number);
+        numberTotal += Number(result.number);
     }
+   displayTotalQuantity(numberTotal)
+   displayTotalPrice(priceTotal)
 }
+//***********  MISE EN PAGE DE L'ARTICLE  *******************
 
-fetch("http://localhost:3000/api/products")
-   .then((res) => res.json())
-   .then((panier) => makeArticle(panier))
+async function makeArticle(product){
+    let item = await fetch("http://localhost:3000/api/products/"+product.id)
+    .then((res) => res.json())
 
-function makeArticle(){
-for (var i = 0; i < localStorage.length; i++) {
-   console.log(localStorage.getItem(localStorage.key(i)));
-}
-  
-    //for (let i = 0; i < panier.length; i++) {
-
-      //  const item = panier[i];
     const addArticle = document.createElement("article")
     addArticle.classList.add("cart__item")
-    addArticle.dataset.id = item.id
-    addArticle.dataset.color = item.color
+    addArticle.dataset.id = "{product-ID}"
+    addArticle.dataset.color = "{product-color}"
     document.getElementById("cart__items").appendChild(addArticle)
 
         const divImg = document.createElement("div")
         divImg.classList.add("cart__item__img")
         const image = document.createElement("img")
-      //image.src = imageUrl
-      //image.alt = altTxt
+        image.src = item.imageUrl
+        image.alt = item.altTxt
         divImg.appendChild(image)
         
         const contentDiv = document.createElement('div')
@@ -47,102 +42,165 @@ for (var i = 0; i < localStorage.length; i++) {
             const h2= document.createElement("h2")
             h2.textContent = item.name
             const p = document.createElement("p")
-            p.textContent = item.color
+            p.textContent = product.color
             const p2 = document.createElement("p")
-            p2.textContent = item.price + "€"
+            p2.textContent = item.price  * product.quantity + "€" //prix en rapport avec la quantité
 
             const settingsDiv = document.createElement("div")
             settingsDiv.classList.add("cart__item__content__settings")
-                const quantity = document.createElement("div")
-                quantity.classList.add("cart__item__content__settings__quantity")
+                const settingsQuantityDiv = document.createElement("div")
+                settingsQuantityDiv.classList.add("cart__item__content__settings__quantity")
                     const quantityP = document.createElement("p")
                     quantityP.textContent ="Qté : "
-                    const input = document.createElement("input")
-                    input.type = "number"
-                    input.classList.add("itemQuantity")
-                    input.name ="itemQuantity"
-                    input.min ="1"
-                    input.max ="100"
-                    input.value = item.quantity
-                    input.addEventListener("input", (e) => updatePriceQuantity(panier.id, input.value, panier)) 
-                const contentDelete = document.createElement("div")
-                contentDelete.classList.add("cart__item__content__settings__delete")
-                    const deleteP = document.createElement("p")
-                    deleteP.classList.add("deleItem")
-                    deleteP.textContent ="Supprimer "
-                    
-                   // p.addEvenListener("click", () => deleteItem(item))
-                    //DeleteToSettings()
-                    //const Delete = DeleteToSettings()
+ 
+//***********Copie de function  quantityInputToOrder   *******************       
 
-             
+        const input = document.createElement("input")
+        input.type = "number"
+        input.classList.add("itemQuantity")
+        input.name ="itemQuantity"
+        input.min ="1"
+        input.max ="100"
+        input.value = product.quantity
+        const log = document.getElementsByClassName(".itemQuantity")
+        //input.addEventListener("change", (e) => QuantityToOrder()) 
+        input.addEventListener("input.value", updateValue)
+         function updateValue (event) {
+            log.textContent = event.target.value
+            
+         }
+        //     if (input.value != product.quantity){
+        //         const newQuantity = document.querySelector(".itemQuantity").value;
+        //         product.quantity
+        //     }else{
+        //         input.value = product.quantity
+        //         savePanier
+        //     }
+        // })
+
+        console.log("color :" + product.color, " / Qte :" + product.quantity, "  / NewInputQte :" + input.value, " / Prix Unitaire :" + item.price, " / Prix total par article :  " + product.quantity * item.price + "€" , item.price * input.value + "€"  )  
+
+    
+
+//***********Fin de Copie de function  quantityInputToOrder   *******************    
+
+//***********Copie de function  deleteProduct(item)   *******************  
+
+    const contentDelete = document.createElement("div")
+    contentDelete.classList.add("cart__item__content__settings__delete")
+        const deleteP = document.createElement("p")
+        deleteP.classList.add("deleItem")
+        deleteP.textContent ="Supprimer"
+        //deleteP.addEventListener("click", (d) =>deleteProduct(item))
+        deleteP.addEventListener("click", function(event){
+        const article = event.target.closest("article.cart__item") 
+        const productId = article.dataset.id
+        const productColor = article.dataset.color
+        const itemToDelete = panier.findIndex(product =>
+        productId === item.id && productColor === item.color)
+        panier.splice[itemToDelete, 1]
+        article.remove()
+        saveNewDataToCache
+        savePanier
+        })         
+//***********Fin de function  deleteProduct(item)  *******************  
+
+                     
         appendtoArticle(addArticle, [divImg, contentDiv])
         appendtoArticle(contentDiv, [descriptionDiv, settingsDiv])
-        appendtoArticle(settingsDiv, [quantity, contentDelete])
-
+        appendtoArticle(settingsDiv, [settingsQuantityDiv, contentDelete])
         appendtoArticle(descriptionDiv, [h2, p, p2])
-        appendtoArticle(quantity, [quantityP, input])
+        appendtoArticle(settingsQuantityDiv, [quantityP, input])
         appendtoArticle(contentDelete, [deleteP])
-
-        displayTotalQuantity()
-        displayTotalPrice()
-}
-
+                        
+        return { number : product.quantity, price: item.price}
+}   
+//***********Fin de MISE EN PAGE DE L'ARTICLE  *******************
 function appendtoArticle(article, array) {
     array.forEach(item => {
     article.appendChild(item)
 })
 }
-function displayTotalPrice(){
+function displayTotalPrice(price){
     const totalPrice = document.querySelector("#totalPrice")
-    //const totalItemPrice = panier.reduce((total,item) => total + item.price * item.quantity, 0)
-    //totalPrice.textContent = total
-    //const total = totalPrice.textContent
+    totalPrice.textContent = price
  }
- function displayTotalQuantity(){
+ function displayTotalQuantity(quantity){
     const totalQuantity = document.querySelector("#totalQuantity")
-  // const total = panier.reduce((total,item) => total + item.quantity, 0)
-    //totalQuantity.textContent = total
-    //const totalItems = totalQuantity.textContent
+    totalQuantity.textContent = quantity
  }
+ function QuantityInputToOrder(){
+    const input = document.createElement("input")
+        input.type = "number"
+        input.classList.add("itemQuantity")
+        input.name ="itemQuantity"
+        input.min ="1"
+        input.max ="100"
+        input.value = product.quantity
+        //input.addEventListener("change", (e) => QuantityToOrder()) 
+            if (input.value != product.quantity){
+                const newQuantity = document.querySelector(".itemQuantity").value;
+            }else{
+                input.value = product.quantity
+            }
+    console.log(product.color, product.quantity, item.price, product.quantity * item.price)                     
+
+    }
  function updatePriceQuantity(id, newValue, item){
-    const itemToUpdate = panier.find((item) => item.id === id)
-    itemToUpdate.quantity = Number(newValue)
-    item.quantity = itemToUpdate.quantity
-    displayTotalQuantity()
-    displayTotalPrice()
-    deleteDataFromCache(item)
+    //const itemToUpdate = panier.find((item) => item.id === id)
+    //itemToUpdate.quantity = Number(newValue)
+    //item.quantity = itemToUpdate.quantity
+    //displayTotalQuantity()
+    //displayTotalPrice()
+    //deleteDataFromCache(item)
  }
 
+// function updatePriceQuantity(id, newValue, item){
+   // 
+    //item.quantity = document.querySelector(".itemQuantity")
+   // p2.textContent = item.price * input.value + "€"
+   //const selectElement = document.querySelector(".itemQuantity");
 
+  // selectElement.addEventListener('change', (event) => {
+     //const result = document.querySelector(".itemQuantity").value;
+     //result.textContent = `${event.target.value}`;
+  // });
 
+ function deleteProduct(item) {
+    const contentDelete = document.createElement("div")
+                contentDelete.classList.add("cart__item__content__settings__delete")
+                    const deleteP = document.createElement("p")
+                    deleteP.classList.add("deleItem")
+                    deleteP.textContent ="Supprimer"
+                    deleteP.addEventListener("click", (d) =>deleteProduct(item))
+    deleteP.addEventListener("click", function(event){
+        //const article = event.target.closest("article.cart__item") 
+        //const productId = article.dataset.id
+        //const productColor = article.dataset.color
+        const itemToDelete = panier.findIndex(product =>
+    productId === item.id && productColor === item.color)
+    panier.splice[itemToDelete, 1]
+    article.remove() 
+    saveNewDataToCache() 
+    savePanier   
+     }  
+  )}
 
- 
-function saveNewDataToCache(item){
-    const dataToSave = JSON.stringify(item)
-    const key = id//`${item.id}-${item.color}`
-    localStorage.setItem(key, dataToSave)
+function saveNewDataToCache(panier){
+    const dataToPanier = JSON.stringify(panier)
+    const key = input
+    localStorage.setItem(key, dataToPanier)
 }
-function DeleteToSettings(settings, item) {
-   const supprimer = document.querySelector(".deleteItem")
-   supprimer.addEventListener("click", deleteDataFromCache)
-   const itemTodelete = cart.findIndex((product) =>
-   product.id === item.id && product.color === item.color)
-    cart.splice[itemToDelete, 1]
-    displayTotalQuantity()
-    displayTotalPrice
-    deleteDataFromCache(item)
+function savePanier(panier){
+    localStorage.setItem("product.id", JSON.stringify(panier))
 }
-function deleteDataFromCache(item){
-const key = id //`${item.id}-${item.color}`
-localStorage.removeItem(key)
-}
+
 const orderButton = document.querySelector("#order")
 orderButton.addEventListener("click", (e) => submitForm(e))
 
 function submitForm(e){
 e.preventDefault() //ne pas rafraîchir
-if (cart.lenght === 0) alert ("Sélectionnez votre canapé")
+if (panier.lenght === 0) alert ("Sélectionnez votre canapé")
 //return
 
 //if (formIsInvalid()) return
@@ -184,7 +242,6 @@ function emailIsInvalid(){
     return false
 }
 
-
 function makeRequestBody(){
     const form = document.querySelector("cart__order__form")
     inputFirstame = document.getElementById("firstName").value;
@@ -218,3 +275,5 @@ function getIdsFromCache(){
     }
     return ids
 }
+
+ 

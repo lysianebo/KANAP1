@@ -40,7 +40,7 @@ function makeTitle(name) {
 }
 function makePrice(price) {
     const span = document.querySelector("#price")
-   if (span !=null)span.textContent = price
+   if (span !=null)span.textContent = price.value
 }
 function makeDescription(description) {
     const p = document.querySelector("#description")
@@ -59,7 +59,7 @@ function makeColors(colors) {
     buttonToCart.addEventListener("click", buttonEvent)
 function buttonEvent(){
     const color = document.querySelector("#colors").value
-    const quantity = document.querySelector("#quantity").value
+    const quantity = Number.parseInt(document.querySelector("#quantity").value)
     if (invalidCommand(color, quantity)) return
     saveCommand(color,quantity)
     redirectToCart()
@@ -77,8 +77,7 @@ function invalidCommand(color, quantity){
 //Sauvegarde dans localStorage if commande valide
 function saveCommand(color, quantity){
     let isFound = false;
-    let panier =   localStorage.getItem("panier")  // tu dois réccupérer le panier qui est stoké dans le localstorage et uniquement celui-ci, pas besoin de lui donner une valeur par défaut comme tu vaais essayer de faire ligne 4
-    // panier n'existe pas
+    let panier = localStorage.getItem("panier") 
     if(!panier){  // soit le panier est vide
         let data = [{
             id : id,
