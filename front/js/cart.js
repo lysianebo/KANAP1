@@ -2,27 +2,33 @@ let panier = localStorage.getItem("panier")
 if(panier) panier = JSON.parse(panier);
 console.log("panier",panier)
 loadPage()
-//makeArticle()
+makeArticle()
 
 async function loadPage(){
     let priceTotal = 0
     let numberTotal = 0
-   // let produit =""
+    let product =""
+    let item =""
     for await (let item of panier){
         let product = await fetch("http://localhost:3000/api/products/"+item.id)
             .then((res) => res.json())
         priceTotal += Number(product.price)* Number(item.quantity);
         numberTotal += Number(item.quantity);
+        
+        console.dir({product}, {item})
     }
-   displayTotalQuantity(numberTotal)
-   displayTotalPrice(priceTotal)
+ //  displayTotalQuantity(numberTotal)
+  // displayTotalPrice(priceTotal)
+
+   //console.dir({product})
 }
 //***********  MISE EN PAGE DE L'ARTICLE  *******************
 
 async function makeArticle(product){
-    let item = await fetch("http://localhost:3000/api/products/"+product.id)
-    .then((res) => res.json())
-
+   // let item = await fetch("http://localhost:3000/api/products/"+product.id)
+    //.then((res) => res.json())
+    console.dir({product},{item})
+    
     const addArticle = document.createElement("article")
     addArticle.classList.add("cart__item")
     addArticle.dataset.id = product.id
