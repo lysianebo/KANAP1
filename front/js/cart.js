@@ -2,7 +2,6 @@ let panier = localStorage.getItem("panier")
 if(panier) panier = JSON.parse(panier);
 console.log("panier",panier)
 loadPage()
-makeArticle()
 
 async function loadPage(){
     let priceTotal = 0
@@ -12,10 +11,11 @@ async function loadPage(){
     for await (let item of panier){
         let product = await fetch("http://localhost:3000/api/products/"+item.id)
             .then((res) => res.json())
-        priceTotal += Number(product.price)* Number(item.quantity);
-        numberTotal += Number(item.quantity);
         
-        console.dir({product}, {item})
+            priceTotal += Number(product.price)* Number(item.quantity);
+        numberTotal += Number(item.quantity);
+       makeArticle(product) 
+       console.dir({product}, {item})
     }
  //  displayTotalQuantity(numberTotal)
   // displayTotalPrice(priceTotal)
@@ -25,21 +25,23 @@ async function loadPage(){
 //***********  MISE EN PAGE DE L'ARTICLE  *******************
 
 async function makeArticle(product){
-   // let item = await fetch("http://localhost:3000/api/products/"+product.id)
-    //.then((res) => res.json())
-    console.dir({product},{item})
+   // let product=""
+    let item = await fetch("http://localhost:3000/api/products/"+product._id)
+    .then((res) => res.json())
+
+   // console.dir({product},{item})
     
-    const addArticle = document.createElement("article")
-    addArticle.classList.add("cart__item")
-    addArticle.dataset.id = product.id
-    addArticle.dataset.color = product.color
-    document.getElementById("cart__items").appendChild(addArticle)
+    const Article = document.createElement("article")
+        Article.classList.add("cart__item")
+        Article.dataset.id = product._id
+        Article.dataset.color = product.colors
+        document.getElementById("cart__items").appendChild(Article)
 
         const divImg = document.createElement("div")
               divImg.classList.add("cart__item__img")
                 const image = document.createElement("img")
-                      image.src = imageUrl
-                      image.alt = altTxt
+                image.src = product.imageUrl
+                image.alt = product.altxt
               divImg.appendChild(image)
         
         const contentDiv = document.createElement('div')
@@ -47,11 +49,10 @@ async function makeArticle(product){
 
               const descriptionDiv = document.createElement("div")
                     descriptionDiv.classList.add("cart__item__content__description")
-            
                     const h2= document.createElement("h2")
                           h2.textContent = product.name
                     const p = document.createElement("p")
-                          p.textContent = product.color
+                          p.textContent = item.color
                     const p2 = document.createElement("p")
                           p2.textContent = product.price  * item.quantity + "€" //prix en rapport avec la quantité
               const settingsDiv = document.createElement("div")
@@ -65,8 +66,8 @@ async function makeArticle(product){
 
                 const input = document.createElement("input")
                 input.type = "number"
-                input.classList.add("itemQuantity")
-                input.name ="itemQuantity"
+                input.classList.add("productQuantity")
+                input.name ="productQuantity"
                 input.min ="1"
                 input.max ="100"
                 input.value = item.quantity
@@ -90,7 +91,7 @@ async function makeArticle(product){
         const contentDelete = document.createElement("div")
         contentDelete.classList.add("cart__item__content__settings__delete")
             const deleteP = document.createElement("p")
-            deleteP.classList.add("deleItem")
+            deleteP.classList.add("deleteproduct")
             deleteP.textContent ="Supprimer"
             //deleteP.addEventListener("click", (d) =>deleteProduct(item))
             deleteP.addEventListener("click", function(event){
@@ -108,7 +109,7 @@ async function makeArticle(product){
             })
 //***********Fin de function  deleteProduct(item)  *******************  
                      
-        appendtoArticle(addArticle, [divImg, contentDiv])
+        appendtoArticle(Article, [divImg, contentDiv])
         appendtoArticle(contentDiv, [descriptionDiv, settingsDiv])
         appendtoArticle(settingsDiv, [settingsQuantityDiv, contentDelete])
         appendtoArticle(descriptionDiv, [h2, p, p2])
