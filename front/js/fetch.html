@@ -1,3 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+<h1>bonjour</h1>
+<div id = "cart__items"></div>
+  <script>
+
 let panier = localStorage.getItem("panier") 
 if(panier) panier = JSON.parse(panier);
 console.log("panier",panier)
@@ -15,7 +29,9 @@ async function loadPage(){
     console.log(product, item);
     return product;
         }))
-        .then(function(product, item) {
+        .then(function(product) {
+         // let product = product
+         
          
                    const article = document.createElement("article")
                       article.classList.add("cart__item")
@@ -28,8 +44,7 @@ async function loadPage(){
                             const image = document.createElement("img")
                             image.src = product.imageUrl
                             image.alt = product.altxt
-                          divImg.appendChild(image)
-
+                        divImg.appendChild(image)
                         const contentDiv = document.createElement('div')
                         contentDiv.classList.add("cart__item__content")
 
@@ -41,26 +56,17 @@ async function loadPage(){
                                     p.textContent = item.color
                               const p2 = document.createElement("p")
                                     p2.textContent = Number(product.price)* Number(item.quantity)+ "€"
-                                    appendtoArticle(descriptionDiv, [h2, p, p2])
                         const settingsDiv = document.createElement("div")
                               settingsDiv.classList.add("cart__item__content__settings")
                                   const settingsQuantityDiv = document.createElement("div")
                                         settingsQuantityDiv.classList.add("cart__item__content__settings__quantity")
                                   const quantityP = document.createElement("p")
                                         quantityP.textContent ="Qté : "
-                                        appendtoArticle(settingsDiv, [settingsQuantityDiv])
-                                        
-                                        appendtoArticle(article, [divImg, contentDiv])
-                                        appendtoArticle(contentDiv, [descriptionDiv, settingsDiv])
-                                      
-                                        appendtoArticle(settingsDiv, [settingsQuantityDiv])
-  
-                                        
-                                        //***********   FORMULAIRE   *******************       
+          
+                          //***********   FORMULAIRE   *******************       
 
                           const input = document.createElement("input")
-                          appendtoArticle(settingsQuantityDiv, [quantityP, input])
-                        input.type = "number"
+                              input.type = "number"
                               input.classList.add("productQuantity")
                               input.name ="productQuantity"
                               input.min ="1"
@@ -73,28 +79,19 @@ async function loadPage(){
                                   const productColor = article.dataset.color
                                   const itemToDelete = panier.findIndex(product =>
                                       productId === product._id && productColor === product.color)
-                                      if(itemToDelete !== -1){
-                                        panier.splice(itemToDelete, 1)
-                                        article.remove()
-                                        savePanier(panier)
-                                        loadPage()
-                                //   if(itemToDelete !== -1){
-                                //       panier[itemToDelete].quantity = this.value
-                                //       savePanier(panier)
-                                //       loadPage()
-                                //   }
-                                  
+                                  if(itemToDelete !== -1){
+                                      panier[itemToDelete].quantity = this.value
+                                      savePanier(panier)
+                                      loadPage()
+                                  }
                               
                           //***********Fin de FORMULAIRE  *******************    
 
                     // //***********Copie de function  deleteProduct(item)   *******************  
 
                   const contentDelete = document.createElement("div")
-                  
                   contentDelete.classList.add("cart__item__content__settings__delete")
-                  
                       const deleteP = document.createElement("p")
-                      
                       deleteP.classList.add("deleteproduct")
                       deleteP.textContent ="Supprimer"
                       //deleteP.addEventListener("click", (d) =>deleteProduct(item))
@@ -114,30 +111,29 @@ async function loadPage(){
             
 //***********Fin de function  deleteProduct(item)  *******************  
                      
-//.then(function(product) {
-       // appendtoArticle(article, [divImg, contentDiv])
-        //appendtoArticle(contentDiv, [descriptionDiv, settingsDiv])
-        //appendtoArticle(settingsDiv, [settingsQuantityDiv, contentDelete])
-        //appendtoArticle(descriptionDiv, [h2, p, p2])
-        //appendtoArticle(settingsQuantityDiv, [quantityP, input])
-        //appendtoArticle(contentDelete, [deleteP])
+        appendtoArticle(article, [divImg, contentDiv])
+        appendtoArticle(contentDiv, [descriptionDiv, settingsDiv])
+        appendtoArticle(settingsDiv, [settingsQuantityDiv, contentDelete])
+        appendtoArticle(descriptionDiv, [h2, p, p2])
+        appendtoArticle(settingsQuantityDiv, [quantityP, input])
+        appendtoArticle(contentDelete, [deleteP])
        // console.dir({product} ,{item});             
-      
-  //})
+        return { number : item.quantity, price: product.price}
+})
 //}
 
 // //***********  MISE EN PAGE DE L'ARTICLE  *******************
 
 // //***********Fin de MISE EN PAGE DE L'ARTICLE  *******************
 
-                              }}
-                              )
+        })
+
     }
              
             
         
         
-     ) }  }  
+      }    
       function appendtoArticle(article, array) {
     array.forEach(item => {
     article.appendChild(item)
@@ -269,3 +265,8 @@ function getIdsFromCache(){
     }
     return ids
 }
+
+
+  </script>
+</body>
+</html>

@@ -39,8 +39,10 @@ function makeTitle(name) {
     return name
 }
 function makePrice(price) {
+    const quantity = Number.parseInt(document.querySelector("#quantity").value)
+
     const span = document.querySelector("#price")
-   if (span !=null)span.textContent = price.value
+   if (span !=null)span.textContent = price * quantity
 }
 function makeDescription(description) {
     const p = document.querySelector("#description")

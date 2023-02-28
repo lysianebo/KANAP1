@@ -2,5 +2,10 @@
     "workbench.settings.openDefaultKeybindings": true,
     "testing.automaticallyOpenPeekViewDuringAutoRun": true,
     "terminal.integrated.copyOnSelection": true,
-    "liveServer.settings.port": 5501
+    "liveServer.settings.port": 5501,
+    "git.timeline.showUncommitted": true,
+    "timeline.pageOnScroll": true,
+    "timeline.pageSize": 200,
+    "workbench.commandPalette.history": 1000,
+    "workbench.localHistory.maxFileSize": 1000
 }
