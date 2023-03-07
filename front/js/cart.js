@@ -1,226 +1,187 @@
+// Chargement du localStorage
 let panier = localStorage.getItem("panier") 
 if(panier) panier = JSON.parse(panier);
 console.log("panier",panier)
 
+
 loadPage()
-//makeArticle()
+
+// Chargement de la page panier en allant chercher les produits de l'API mentionnés dans le panier 
 async function loadPage(){
-    
-  //  let priceTotal = 0
-  //  let numberTotal = 0
+    let priceTotal = 0
+    let numberTotal = 0
+    if(!panier || panier.length  === 0 ) return ;
     for await (let item of panier){
-      fetch("http://localhost:3000/api/products/"+item.id)
-        .then((res) => res.json())
-        .then((product => {
-    console.log(product, item);
-    return product;
-        }))
-        .then(function(product, item) {
-         
-                   const article = document.createElement("article")
-                      article.classList.add("cart__item")
-                      article.dataset.id = product._id
-                      article.dataset.color = item.color
-                      document.getElementById("cart__items").appendChild(article)
-
-                    const divImg = document.createElement("div")
-                          divImg.classList.add("cart__item__img")
-                            const image = document.createElement("img")
-                            image.src = product.imageUrl
-                            image.alt = product.altxt
-                          divImg.appendChild(image)
-
-                        const contentDiv = document.createElement('div')
-                        contentDiv.classList.add("cart__item__content")
-
-                        const descriptionDiv = document.createElement("div")
-                              descriptionDiv.classList.add("cart__item__content__description")
-                              const h2= document.createElement("h2")
-                                    h2.textContent = product.name
-                              const p = document.createElement("p")
-                                    p.textContent = item.color
-                              const p2 = document.createElement("p")
-                                    p2.textContent = Number(product.price)* Number(item.quantity)+ "€"
-                                    appendtoArticle(descriptionDiv, [h2, p, p2])
-                        const settingsDiv = document.createElement("div")
-                              settingsDiv.classList.add("cart__item__content__settings")
-                                  const settingsQuantityDiv = document.createElement("div")
-                                        settingsQuantityDiv.classList.add("cart__item__content__settings__quantity")
-                                  const quantityP = document.createElement("p")
-                                        quantityP.textContent ="Qté : "
-                                        appendtoArticle(settingsDiv, [settingsQuantityDiv])
-                                        
-                                        appendtoArticle(article, [divImg, contentDiv])
-                                        appendtoArticle(contentDiv, [descriptionDiv, settingsDiv])
-                                      
-                                        appendtoArticle(settingsDiv, [settingsQuantityDiv])
-  
-                                        
-                                        //***********   FORMULAIRE   *******************       
-
-                          const input = document.createElement("input")
-                          appendtoArticle(settingsQuantityDiv, [quantityP, input])
-                        input.type = "number"
-                              input.classList.add("productQuantity")
-                              input.name ="productQuantity"
-                              input.min ="1"
-                              input.max ="100"
-                              input.value = item.quantity
-                              //input.addEventListener("change", (e) => QuantityToOrder()) 
-                              input.addEventListener("change",   function(event) {
-                                  const article = event.target.closest("article.cart__item")
-                                  const productId = article.dataset.id
-                                  const productColor = article.dataset.color
-                                  const itemToDelete = panier.findIndex(product =>
-                                      productId === product._id && productColor === product.color)
-                                      if(itemToDelete !== -1){
-                                        panier.splice(itemToDelete, 1)
-                                        article.remove()
-                                        savePanier(panier)
-                                        loadPage()
-                                //   if(itemToDelete !== -1){
-                                //       panier[itemToDelete].quantity = this.value
-                                //       savePanier(panier)
-                                //       loadPage()
-                                //   }
-                                  
-                              
-                          //***********Fin de FORMULAIRE  *******************    
-
-                    // //***********Copie de function  deleteProduct(item)   *******************  
-
-                  const contentDelete = document.createElement("div")
-                  
-                  contentDelete.classList.add("cart__item__content__settings__delete")
-                  
-                      const deleteP = document.createElement("p")
-                      
-                      deleteP.classList.add("deleteproduct")
-                      deleteP.textContent ="Supprimer"
-                      //deleteP.addEventListener("click", (d) =>deleteProduct(item))
-                      deleteP.addEventListener("click", function(event){
-                          const article = event.target.closest("article.cart__item")
-                          const productId = article.dataset.id
-                          const productColor = article.dataset.color
-                          const itemToDelete = panier.findIndex(product =>
-                          productId === product._id && productColor === product.color)
-                          if(itemToDelete !== -1){
-                              panier.splice(itemToDelete, 1)
-                              article.remove()
-                              savePanier(panier)
-                              loadPage()
-                              }
-                            })
-            
-//***********Fin de function  deleteProduct(item)  *******************  
-                     
-//.then(function(product) {
-       // appendtoArticle(article, [divImg, contentDiv])
-        //appendtoArticle(contentDiv, [descriptionDiv, settingsDiv])
-        //appendtoArticle(settingsDiv, [settingsQuantityDiv, contentDelete])
-        //appendtoArticle(descriptionDiv, [h2, p, p2])
-        //appendtoArticle(settingsQuantityDiv, [quantityP, input])
-        //appendtoArticle(contentDelete, [deleteP])
-       // console.dir({product} ,{item});             
-      
-  //})
-//}
-
-// //***********  MISE EN PAGE DE L'ARTICLE  *******************
-
-// //***********Fin de MISE EN PAGE DE L'ARTICLE  *******************
-
-                              }}
-                              )
+        let product = await fetch("http://localhost:3000/api/products/"+item.id)
+            .then((res) => res.json())
+        
+       makeArticle(product, item)
+       updateTotalPriceQuantity()
     }
-             
-            
+}
+//***********  MISE EN PAGE DE L'ARTICLE (modification du DOM) *******************
+
+async function makeArticle(product, item){
+    await fetch("http://localhost:3000/api/products/"+product._id)
+    .then((res) => res.json())
+    
+    const Article = document.createElement("article")
+        Article.classList.add("cart__item")
+        Article.dataset.id = product._id
+        Article.dataset.color = item.color
+        document.getElementById("cart__items").appendChild(Article)
+
+        const divImg = document.createElement("div")
+              divImg.classList.add("cart__item__img")
+                const image = document.createElement("img")
+                image.src = product.imageUrl
+                image.alt = product.altxt
+              divImg.appendChild(image)
         
-        
-     ) }  }  
-      function appendtoArticle(article, array) {
+        const contentDiv = document.createElement('div')
+              contentDiv.classList.add("cart__item__content")
+
+              const descriptionDiv = document.createElement("div")
+                    descriptionDiv.classList.add("cart__item__content__description")
+                    const h2= document.createElement("h2")
+                          h2.textContent = product.name
+                    const p = document.createElement("p")
+                          p.textContent = item.color
+                    const p2 = document.createElement("p")
+                          p2.textContent = (product.price * item.quantity) + "€" //prix en rapport avec la quantité
+                          
+              const settingsDiv = document.createElement("div")
+                    settingsDiv.classList.add("cart__item__content__settings")
+                        const settingsQuantityDiv = document.createElement("div")
+                              settingsQuantityDiv.classList.add("cart__item__content__settings__quantity")
+                        const quantityP = document.createElement("p")
+                              quantityP.textContent ="Qté : "
+ 
+
+//***********  quantityInput   *******************       
+
+                const input = document.createElement("input")
+                input.type = "number"
+                input.classList.add("itemQuantity")
+                input.name ="itemQuantity"
+                input.min ="1"
+                input.max ="100"
+                input.value = item.quantity
+                input.addEventListener("change",   function(event) {
+                   // TODO  VERIFICATION CHAMP QUANTITY
+                    location.reload();
+                    const article = event.target.closest("article.cart__item")
+                    const productId = article.dataset.id
+                    const productColor = article.dataset.color
+                    
+                    const itemToDelete = panier.findIndex(product =>
+                        productId === product.id && productColor === product.color)
+                    if(itemToDelete !== -1){
+                        panier[itemToDelete].quantity = this.value
+                        savePanier(panier)
+                        updateTotalPriceQuantity()
+                    }
+                })
+//***********      deleteProduct(item)   *******************  
+
+        const contentDelete = document.createElement("div")
+        contentDelete.classList.add("cart__item__content__settings__delete")
+            const deleteP = document.createElement("p")
+            deleteP.classList.add("deleteproduct")
+            deleteP.textContent ="Supprimer"
+            deleteP.addEventListener("click", function(event){
+                const article = event.target.closest("article.cart__item")
+                const productId = article.dataset.id
+                const productColor = article.dataset.color
+                console.log(productColor)
+                const itemToDelete = panier.findIndex(product =>
+                productId === product.id && productColor === product.color)
+
+                if(itemToDelete !== -1){
+                    panier.splice(itemToDelete, 1)
+                    article.remove()
+                    savePanier(panier)
+                    updateTotalPriceQuantity()
+                }
+            })
+//***********Fin de deleteProduct(item)  *******************  
+                     
+        appendtoArticle(Article, [divImg, contentDiv])
+        appendtoArticle(contentDiv, [descriptionDiv, settingsDiv])
+        appendtoArticle(settingsDiv, [settingsQuantityDiv, contentDelete])
+        appendtoArticle(descriptionDiv, [h2, p, p2])
+        appendtoArticle(settingsQuantityDiv, [quantityP, input])
+        appendtoArticle(contentDelete, [deleteP])
+                        
+       // return { number : item.quantity, price: product.price}
+}   
+//***********Fin de MISE EN PAGE DE L'ARTICLE  *******************
+function appendtoArticle(article, array) {
     array.forEach(item => {
     article.appendChild(item)
 })
 }
 function displayTotalPrice(price){
     const totalPrice = document.querySelector("#totalPrice")
-    totalPrice.textContent = price
+    totalPrice.textContent = price 
  }
  function displayTotalQuantity(quantity){
     const totalQuantity = document.querySelector("#totalQuantity")
           totalQuantity.textContent = quantity
  }
- function QuantityInputToOrder(){
-    const input = document.createElement("input")
-        input.type = "number"
-        input.classList.add("itemQuantity")
-        input.name ="itemQuantity"
-        input.min ="1"
-        input.max ="100"
-        input.value = item.quantity
-        //input.addEventListener("change", (e) => QuantityToOrder()) 
-            if (input.value != item.quantity){
-                const newQuantity = document.querySelector(".itemQuantity").value;
-            }else{
-                input.value = item.quantity
-            }
-    console.log(product.color, item.quantity, product.price, item.quantity * product.price)                     
-
-    }
-// function updatePriceQuantity(id, newValue, item){
-    //const itemToUpdate = panier.find((item) => item.id === id)
-    //itemToUpdate.quantity = Number(newValue)
-    //item.quantity = itemToUpdate.quantity
-    //displayTotalQuantity()
-    //displayTotalPrice()
-    //deleteDataFromCache(item)
- //}
-
-function updatePriceQuantity(id, newValue, item){
-    item.quantity = document.querySelector(".itemQuantity")
-    p2.textContent = product.price * input.value + "€"
-    const selectElement = document.querySelector(".itemQuantity");
-
-    selectElement.addEventListener('change', (event) => {
-    const result = document.querySelector(".itemQuantity").value;
-    result.textContent = `${event.target.value}`;
-  })
+async function updateTotalPriceQuantity(id, newValue, item){
+      let priceTotal = 0
+      let numberTotal = 0
+      for await (let item of panier){
+          let product = await fetch("http://localhost:3000/api/products/"+item.id)
+              .then((res) => res.json())
+         priceTotal += Number(product.price)* Number(item.quantity);
+        numberTotal += Number(item.quantity);
+      }
+      displayTotalQuantity(numberTotal)
+      displayTotalPrice(priceTotal)
 }
+
 function savePanier(panier){
     localStorage.setItem("panier", JSON.stringify(panier))
 }
 
-const orderButton = document.querySelector("#order")
-    orderButton.addEventListener("click", (e) => submitForm(e))
+
+//*********Envoyer la commande après vérification du formulaire *******
+   
+    const orderButton = document.querySelector("#order")
+          orderButton.addEventListener("click", (e) => submitForm(e))
 
 function submitForm(e){
     e.preventDefault() //ne pas rafraîchir
-    if (panier.lenght === 0) alert ("Sélectionnez votre canapé")
+    if(!panier || panier.length  === 0 )  alert ("Vous devez retourner à la page d'accueil pour sélectionner votre canapé")
     //return
+    
+    if (formIsInvalid()) //return
+    if (emailIsInvalid())// return
+    
+  // let body = makeRequestBody()
+        body = JSON.stringify(body),
 
-    //if (formIsInvalid()) return
-    if (emailIsInvalid()) return
-
-    const dataOrder = collectInfoCustomer()
     fetch("http://localhost:3000/api/products/order",{
-    method : "POST",
-    body: JSON.stringify(dataOrder),
-    Headers:{
-        "Accept": "application/json",
-        "Content-Type":"application/json"
-    }
-})
-   .then((res) => res.json())
+        method : "POST",
+        body: body,
+        headers:{
+            "Accept": "application/json",
+            "Content-Type":"application/json"
+        }
+    })
+    .then((res) => res.json())
     .then((data) => {
+        console.log("data",data)
     const orderId = data.orderId
-    window.location.href = "confirmation.html" + "?orderId=" + getIdsFromCache()
+    window.location.href = "confirmation.html" + "?orderId=" + orderId
     })
     .catch((err) => console.error(err))
 }
 function formIsInvalid(){
-   // const form = document.querySelector("cart__order__form")
-   const inputs = form.querySelectorAll("input")
+    const form = document.querySelector("cart__order__form")
+    const inputs = form.querySelectorAll("input")
     inputs.forEach((input) =>{
         if (input.value === ""){
             alert("Vous devez compléter ce champ")
@@ -238,34 +199,31 @@ function emailIsInvalid(){
     }
     return false
 }
-function collectInfoCustomer(){
-  //  const form = document.querySelector("cart__order__form")
+
+function makeRequestBody(){
+    //const form = document.querySelector("cart__order__form")
     inputFirstame = document.getElementById("firstName").value;
     inputLastname = document.getElementById("lastName").value;
     inputAddress = document.getElementById("address").value;
     inputCity = document.getElementById("city").value;
     inputEmail = document.getElementById("email").value;
 
-    const body = {
+    return {
     contact: {
-        firstName: firstName,
-        lastName: lastName,
-        address: address,
-        city: city,
-        email: email
-      },
-      products: getIdsFromCache()
+        firstName: inputFirstame,
+        lastName: inputLastname,
+        address: inputAddress,
+        city: inputCity,
+        email: inputEmail
+        },
+        products: getIdsFromCache()
     }
     return body
 }
-//pas besoin de faire split si seulement key et pas color
 function getIdsFromCache(){
-
-    let panier = JSON.parse(localStorage.panier);
-    const ids = []
-    for(let i =0; i<panier.length ;i++){
-        let panierId= (panier[i].id)
-        ids.push(panierId)
-    }
-    return ids
-}
+        const ids = []
+        for (let item of panier){
+            ids.push(`product-${item.id}`)
+        }
+        return ids
+ }
